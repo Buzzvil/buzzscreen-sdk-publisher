@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Slider">
+        <attr name="fromBottom" format="dimension" />
+        <attr name="radius" format="dimension" />
+        <attr name="pointer" format="reference" />
+        <attr name="pointer_drag" format="reference" />
+        <attr name="left_icon" format="reference" />
+        <attr name="right_icon" format="reference" />
+    </declare-styleable>
+
+</resources>

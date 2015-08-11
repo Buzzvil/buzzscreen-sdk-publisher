@@ -1,0 +1,100 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slider="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/locker_background_top" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/locker_background_bottom" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="32dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/locker_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="56sp" />
+
+        <TextView
+            android:id="@+id/locker_am_pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/locker_time"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/locker_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/locker_time"
+            android:layout_marginTop="-4dp"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/locker_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/locker_camera" />
+
+    </RelativeLayout>
+
+    <com.buzzvil.buzzscreen.sdk.widget.Slider
+        android:id="@+id/locker_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        slider:left_icon="@drawable/locker_landing"
+        slider:pointer="@drawable/locker_slider_normal"
+        slider:pointer_drag="@drawable/locker_slider_drag"
+        slider:radius="128dp"
+        slider:right_icon="@drawable/locker_unlock" />
+
+    <ImageView
+        android:id="@+id/locker_arrow_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:src="@drawable/locker_arrow_top" />
+
+    <ImageView
+        android:id="@+id/locker_arrow_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:src="@drawable/locker_arrow_bottom" />
+
+</RelativeLayout>
