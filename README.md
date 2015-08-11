@@ -2,6 +2,7 @@
 - 버즈스크린을 안드로이드 어플리케이션에 연동하기 위한 라이브러리
 - 안드로이드 버전 지원 : Android 2.3(API Level 9) 이상
 - SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
+- 구글 플레이 서비스 라이브러리 설정 필요. [구글 플레이 서비스 라이브러리 설정 방법](https://developers.google.com/android/guides/setup)) 을 참고하여 직접 구글 플레이 서비스 라이브러리를 추가하면 된다.
 
 ## 폴더 설명
 - **buzzscreen-sdk-core** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.
@@ -9,6 +10,7 @@
 - **buzzscreen-sample-basic** : 가장 간단한 형태의 연동 샘플이다. buzzscreen-sdk-full을 사용하여 최소한의 코드로 버즈스크린을 연동하는 것을 보여준다.
 - **buzzscreen-sample-custom** : 잠금화면을 커스터마이징 하는 샘플이다. buzzscreen-sdk-core를 연동하여 커스터마이징을 어떻게 하는지 알 수 있다. buzzscreen-sdk-full에 포함되어있는 SimpleLockerActivity와 이 샘플에서 제공하는 CustomLockerActivity와의 비교를 통해 쉽게 이해할 수 있도록 구성했다.
 - **buzzscreen-sample-multi-process** : 메모리 사용의 효율성을 위해 잠금화면 프로세스를 분리하는 샘플이다. 연동가이드 고급에서 다루는 프로세스 분리를 참고한다.
+- **google-play-services_lib** : 구글 플레이 서비스 라이브러리. 참고 : [구글 플레이 서비스 라이브러리 설정](https://developers.google.com/android/guides/setup)
 
 ## 버즈스크린 SDK 연동 가이드 - 기본
 가장 기본적인 연동 방법으로, 이 연동만으로도 버즈스크린을 안드로이드 어플리케이션에 탑재할 수 있다.
@@ -33,6 +35,10 @@
 
     <application>
         ...
+        <!-- Setting for Google Play Services -->
+        <meta-data android:name="com.google.android.gms.version"
+    		android:value="@integer/google_play_services_version" />
+        
         <!-- Activities for BuzzScreen -->
         <activity
             android:name="com.buzzvil.buzzscreen.sdk.SimpleLockerActivity"
