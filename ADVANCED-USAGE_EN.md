@@ -1,8 +1,8 @@
 # BuzzScreen SDK Integration Guideline - Advanced
-Before reading this document, please read [ BuzzScreen SDK Integration Guideline - Basic ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/README_EN.md) first.
-- [ Lock screen customization ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE_EN.md#Lock-screen-customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
-- [ Process separation ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#process-separation) : Separating lock screen process from main process in order to increase efficiency in memory usage
-- [ Distributing point accumulation request traffic  ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#Distributing-Point-Accumulation-Request-Traffic) : Distributing point accumulation request traffic which is concentrated on the hour
+Before reading this document, please read [BuzzScreen SDK Integration Guideline - Basic](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/README_EN.md) first.
+- [Lock screen customization](#lock-screen-customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
+- [Process separation](#process-separation) : Separating lock screen process from main process in order to increase efficiency in memory usage
+- [Distributing point accumulation request traffic](#distributing-point-accumulation-request-traffic) : Distributing point accumulation request traffic which is concentrated on the hour
 
 
 ## Lock screen customization
@@ -13,7 +13,7 @@ Lock screen consists of one activity and just like standard activity, you may cr
 #### Layout
 
 Layout basically consists of watch, slider, and background gradation like below. You may also add additional views if necessary.  
-> Reference: [ Layout Guideline ](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
+> Reference: [Layout Guideline](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
 
 ![Layout](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/layout.jpg)
 
