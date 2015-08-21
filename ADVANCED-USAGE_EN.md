@@ -67,7 +67,7 @@ BuzzScreen SDK is always running/using Android's service component in the Foregr
     Components in which the attribute should be added : SimpleLockerActivity(In case customizing lock screen, it should be apply to the activity controlling the lock screen), LandingHelperActivity, LockerService, ChangeAdReceiver, DownloadAdReceiver
 
 
-> **Precautions on process separation** : After applying process separation, Lock screen is running separately from publisher app's main process, please be careful when developing a feature related to pubslisher's app on the lock screen area.
+> **Precautions on process separation** : After applying process separation, lock screen is running separately from publisher app's main process, please be careful when developing a feature related to pubslisher's app on the lock screen area.
 
 
 ## Distributing Point Accumulation Request Traffic
