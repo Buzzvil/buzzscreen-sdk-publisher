@@ -61,6 +61,7 @@ BuzzScreen SDK is always running/using Android's service component in the Foregr
 ```
 
 - Please add android:process=":locker" attribute to existing BuzzsScreen component in Android Mainfest file.
+
 >The same as process attribute used in MultipleProcessesReceiver
 
     Components in which the attribute should be added : SimpleLockerActivity(In case customizing lock screen, it should be apply to the activity controlling the lock screen), LandingHelperActivity, LockerService, ChangeAdReceiver, DownloadAdReceiver
@@ -89,4 +90,5 @@ public class App extends Application {
     }
 }
 ```
+
 > Please keep in mind that by usign this feature, you might potentially give different experience for each user.
