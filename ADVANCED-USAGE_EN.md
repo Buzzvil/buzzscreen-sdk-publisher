@@ -13,7 +13,7 @@ Lock screen consists of one activity and just like standard activity, you may cr
 #### Layout
 
 Layout basically consists of watch, slider, and background gradation like below. You may also add additional views if necessary.  
-> Reference: [Layout Guideline](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
+> Reference : [Layout Guideline](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
 
 ![Layout](layout.jpg)
 
