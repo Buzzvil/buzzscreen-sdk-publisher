@@ -1,6 +1,6 @@
 # BuzzScreen SDK Integration Guideline - Advanced
 Before reading this document, please read [ BuzzScreen SDK Integration Guideline - Basic ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/README_EN.md) first.
-- [ Lock screen customization ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#Lock-screen customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
+- [ Lock screen customization ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE_EN.md#Lock-screen-customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
 - [ Process separation ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#process-separation) : Separating lock screen process from main process in order to increase efficiency in memory usage
 - [ Distributing point accumulation request traffic  ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#Distributing-Point-Accumulation-Request-Traffic) : Distributing point accumulation request traffic which is concentrated on the hour
 
