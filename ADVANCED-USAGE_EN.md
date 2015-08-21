@@ -1,8 +1,8 @@
 # BuzzScreen SDK Integration Guideline - Advanced
-Before reading this document, please read [ BuzzScreen SDK Integration Guideline - Basic ](영어 버전 URL 넣어주세요) first.
-- [Lock screen customization](URL 삽입 필요) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
-- [Process separation](URL 삽입 필요) : Separating lock screen process from main process in order to increase efficiency in memory usage
-- [Distributing point accumulation request traffic](URL 삽입 필요) : Distributing point accumulation request traffic which is concentrated on the hour
+Before reading this document, please read [ BuzzScreen SDK Integration Guideline - Basic ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/README_EN.md) first.
+- [ Lock screen customization ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#Lock-screen customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
+- [ Process separation ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#process-separation) : Separating lock screen process from main process in order to increase efficiency in memory usage
+- [ Distributing point accumulation request traffic  ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/edit/master/ADVANCED-USAGE_EN.md#Distributing-Point-Accumulation-Request-Traffic) : Distributing point accumulation request traffic which is concentrated on the hour
 
 
 ## Lock screen customization
@@ -13,14 +13,14 @@ Lock screen consists of one activity and just like standard activity, you may cr
 #### Layout
 
 Layout basically consists of watch, slider, and background gradation like below. You may also add additional views if necessary.  
->Reference:[Layout Guideline](https://drive.google.com/a/buzzvil.com/file/d/0B4bLqCqPIOIaZ1ZkS0tSczIya2M/view -- 영어 버전 제작 후 업로드 / URL 새로 넣기)
+> Reference: [ Layout Guideline ](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
 
 ![Layout](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/layout.jpg)
 
 - Watch : Add a view to layout, and process it at onTimeUpdated inside activity.
 - Slider : You may change all the image files that form the slider.
 
-    |Slider 속성|Description|
+    |Slider Attribute|Description|
     |--------|--------|
     |slider:left_icon|left icon of slider|
     |slider:right_icon|right icon of slider|
