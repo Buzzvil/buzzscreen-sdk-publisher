@@ -6,11 +6,11 @@
 
 
 ## Folder instructions
-- **buzzscreen-sdk-core** : Essential SDK for integrating BuzzScreen. It doesn't include default lock screen feature provided by BuzzScreen (SimpleLockerActivity), meaning you may write a new code to customize lock screen. (Please refer to ["BuzzScreen SDK Integration Guideline-Advanced"] for more details)
+- **buzzscreen-sdk-core** : Essential SDK for integrating BuzzScreen. It doesn't include default lock screen feature provided by BuzzScreen (SimpleLockerActivity), meaning you may write a new code to customize lock screen. (Please refer to [ BuzzScreen SDK Integration Guideline-Advanced ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE_EN.md) for more details)
 - **buzzscreen-sdk-full** : Full spec SDK buzzscreen-sdk-core which includes default locker feature (SimpleLockerActivity). SimpleLockerActivity is the default lock screen feature which has the basic functions provided by BuzzScreen. Please use this SDK if you don't need customized functions.
 - **buzzscreen-sample-basic** : BuzzScreen integration sample in the most basic format, integrating buzzscreen-sdk-full.
 - **buzzscreen-sample-custom** : BuzzScreen integration sample with customized lock screen, integrating buzzscreen-sdk-core. Please compare SimpleLockerActivity from buzzscreen-sdk-full with CustomLockerActivity from buzzscreen-sdk-core for further understanding.
-- **buzzscreen-sample-multi-process** : BuzzScreen integration aample that separates lock screen process from main process in order to increase the efficiency in memory usage. Please refer to ["BuzzScreen SDK Integration Guideline-Advanced"]
+- **buzzscreen-sample-multi-process** : BuzzScreen integration aample that separates lock screen process from main process in order to increase the efficiency in memory usage. Please refer to [ BuzzScreen SDK Integration Guideline-Advanced ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE_EN.md)
 - **google-play-services_lib** : Google Play services library. Please refer to [ Google Play services library setting ](https://developers.google.com/android/guides/setup)
 
 
@@ -115,7 +115,7 @@ public class App extends Application {
 ![Task Flow](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/postback_flow.jpg)
 
 ### 4. Additional Features
-If you need features below, please refer to [ BuzzScreen SDK Integration Guideline - Advanced ](영어 버전 URL 넣어주세요)
+If you need features below, please refer to [ BuzzScreen SDK Integration Guideline - Advanced ](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE_EN.md)
 - Lock screen customization : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
 - Process separation : Separating lock screen process from main process in order to increase efficiency in memory usage
 - Distributing point accumulation request traffic, which is concentrated on the hour
