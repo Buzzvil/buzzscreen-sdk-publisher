@@ -24,9 +24,9 @@
 - Android Manifest : 아래와 같이 권한, 액티비티, 서비스, 리시버 추가
 
 ```Xml
-<!-- Permissions for BuzzScreen -->
 <manifest>
     ...
+    <!-- Permissions for BuzzScreen -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
