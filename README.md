@@ -3,6 +3,7 @@
 - 안드로이드 버전 지원 : Android 2.3(API Level 9) 이상
 - SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
 - 구글 플레이 서비스 라이브러리 설정 필요. [구글 플레이 서비스 라이브러리 설정 방법](https://developers.google.com/android/guides/setup)을 참고하여 직접 추가하면 된다.
+- 현재는 이클립스에서만 빌드됩니다. 안드로이드 스튜디오 지원은 준비중이며,급한 경우는 따로 문의바랍니다.
 
 ## 폴더 설명
 - **buzzscreen-sdk-core** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.
@@ -23,9 +24,9 @@
 - Android Manifest : 아래와 같이 권한, 액티비티, 서비스, 리시버 추가
 
 ```Xml
-<!-- Permissions for BuzzScreen -->
 <manifest>
     ...
+    <!-- Permissions for BuzzScreen -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -107,6 +108,7 @@ public class App extends Application {
 ### 3. 포인트 적립 요청(포스트백)  - 서버 연동
 - 버즈스크린은 포인트 적립이 발생했을 때 직접 유저들에게 포인트를 지급하는 것이 아니다. 버즈스크린 서버에서 매체사 서버로 포인트 적립 요청을 보낼 뿐이고, 실제 지급은 매체사 서버에서 처리한다.
 - 포인트 적립 요청에 대한 처리 방법은 [포인트 적립 요청 연동 가이드](https://buzzvilian.atlassian.net/wiki/display/PUB/BuzzScreen+API+Guide)를 참고한다.
+
 > 포인트 적립 알림 푸쉬를 유저에게 보내고 싶은 경우에는 포인트 적립 요청을 받고 매체사에서 직접 푸쉬를 전송한다.
 
 ####포인트 적립 요청 흐름
