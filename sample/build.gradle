@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.buzzvil.buzzscreen.sample"
+        minSdkVersion 9
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
+    }
+
+    productFlavors {
+        basic {}
+        custom {}
+        multiProcess {}
+    }
+}
+
+dependencies {
+    compile 'com.google.android.gms:play-services-ads:7.5.0'
+    compile 'com.loopj.android:android-async-http:1.4.8'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+
+    basicCompile(name:'buzzscreen-full', ext:'aar')
+    customCompile(name:'buzzscreen-core', ext:'aar')
+    multiProcessCompile(name:'buzzscreen-full', ext:'aar')
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
