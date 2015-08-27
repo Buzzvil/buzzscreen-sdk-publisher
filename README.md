@@ -23,13 +23,13 @@
 - [SDK 다운로드](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) 후 압축 해제
 - 압축 해제한 폴더 내의 aars/buzzscreen-sdk-full을 개발중인 안드로이드 어플리케이션 내에 포함(이클립스인 경우는 eclipse-projects/buzzscreen-sdk-full)
 
-    안드로이드 스튜디오인 경우 build.gradle에 다음 두 라이브러리를 추가합니다. (이클립스인 경우는 SDK 프로젝트내의 libs 에 이미 포함되어 있음)
+    > 안드로이드 스튜디오인 경우 build.gradle에 다음 두 라이브러리를 추가합니다. (이클립스인 경우는 SDK 프로젝트내의 libs 에 이미 포함되어 있음)
     ```
-dependencies {
-    compile 'com.loopj.android:android-async-http:1.4.8'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-}
-```
+    dependencies {
+        compile 'com.loopj.android:android-async-http:1.4.8'
+        compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    }
+    ```
 - Android Manifest : 아래와 같이 권한, 액티비티, 서비스, 리시버 추가
 
 ```Xml
