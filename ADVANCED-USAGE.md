@@ -5,7 +5,7 @@
 - [포인트 적립 요청 트래픽 분산](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#포인트-적립-요청-트래픽-분산) : 매시 정각에 집중되는 포인트 적립 요청 트래픽 분산
 
 ## 잠금화면 커스터마이징
-참고 샘플 : **buzzscreen-sample-custom**
+참고 샘플 : **sample-custom**
 
 잠금화면은 하나의 액티비티로 구성되며, 일반적인 액티비티와 마찬가지로 레이아웃을 만들어주고, 액티비티 클래스 내에서 몇가지 필수 함수들을 호출 혹은 구현해주면 된다. 잠금화면을 커스터마이징 하는 경우는 **buzzscreen-sdk-full** 대신 **buzzscreen-sdk-core**를 사용하여 연동작업을 진행하면 된다.
 
@@ -45,7 +45,7 @@ BaseLockerActivity를 상속받아서 액티비티를 생성하고, 초기화 �
 - setOnTrackingListener : 임프레션 및 클릭 이벤트 발생을 트래킹 하고 싶으면 사용한다.
 
 ## 프로세스 분리
-참고 샘플 : **buzzscreen-sample-multi-process**
+참고 샘플 : **sample-multi-process**
 
 버즈스크린을 동작시키는 서비스는 항상 실행중인 상태를 유지하고 있다. 이 때문에 버즈스크린 서비스가 매체사 앱(버즈스크린을 연동하려는 앱)과 같은 프로세스 내에서 동작하는 경우, 프로세스 단위 메모리 관리가 같이 되고, 이 때문에 메모리 사용량이 높게 측정 된다. 이를 막기 위해서는 버즈스크린 서비스가 실행되는 프로세스를 분리해야 한다.
 
