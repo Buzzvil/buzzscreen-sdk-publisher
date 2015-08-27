@@ -3,25 +3,35 @@
 - 안드로이드 버전 지원 : Android 2.3(API Level 9) 이상
 - SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
 - 구글 플레이 서비스 라이브러리 설정 필요. [구글 플레이 서비스 라이브러리 설정 방법](https://developers.google.com/android/guides/setup)을 참고하여 직접 추가하면 된다.
-- 현재는 이클립스에서만 빌드됩니다. 안드로이드 스튜디오 지원은 준비중이며,급한 경우는 따로 문의바랍니다.
 
-## 폴더 설명
-- **buzzscreen-sdk-core** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.
-- **buzzscreen-sdk-full** : buzzscreen-sdk-core에 기본 잠금화면(SimpleLockerActivity)을 포함한 SDK이다. SimpleLockerActivity는 가장 간단한 형태의 잠금화면으로 잠금화면 커스터마이징이 필요하지 않은 경우 이 SDK를 사용한다.
-- **buzzscreen-sample-basic** : 가장 간단한 형태의 연동 샘플이다. buzzscreen-sdk-full을 사용하여 최소한의 코드로 버즈스크린을 연동하는 것을 보여준다.
-- **buzzscreen-sample-custom** : 잠금화면을 커스터마이징 하는 샘플이다. buzzscreen-sdk-core를 연동하여 커스터마이징을 어떻게 하는지 알 수 있다. buzzscreen-sdk-full에 포함되어있는 SimpleLockerActivity와 이 샘플에서 제공하는 CustomLockerActivity와의 비교를 통해 쉽게 이해할 수 있도록 구성했다.
-- **buzzscreen-sample-multi-process** : 메모리 사용의 효율성을 위해 잠금화면 프로세스를 분리하는 샘플이다. 연동가이드 고급에서 다루는 프로세스 분리를 참고한다.
-- **google-play-services_lib** : 구글 플레이 서비스 라이브러리. 참고 : [구글 플레이 서비스 라이브러리 설정](https://developers.google.com/android/guides/setup)
+    > 안드로이드 스튜디오와 이클립스 설정이 다릅니다. 다운받은 소스에서 샘플을 참고하세요.
+
+## 폴더 및 파일 설명
+- **aars/** : 안드로이드 스튜디오에서 사용가능한 안드로이드 라이브러리들이 들어있다.
+- **aars/buzzscreen-sdk-core.aar** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.(이클립스인 경우는 **eclipse-projects/buzzscreen-sdk-core**)
+- **aars/buzzscreen-sdk-full.aar** : buzzscreen-sdk-core에 기본 잠금화면(SimpleLockerActivity)을 포함한 SDK이다. SimpleLockerActivity는 가장 간단한 형태의 잠금화면으로 잠금화면 커스터마이징이 필요하지 않은 경우 이 SDK를 사용한다.(이클립스인 경우는 **eclipse-projects/buzzscreen-sdk-full**)
+- **sample-basic** : 가장 간단한 형태의 연동 샘플이다. buzzscreen-sdk-full을 사용하여 최소한의 코드로 버즈스크린을 연동하는 것을 보여준다.
+- **sample-custom** : 잠금화면을 커스터마이징 하는 샘플이다. buzzscreen-sdk-core를 연동하여 커스터마이징을 어떻게 하는지 알 수 있다. buzzscreen-sdk-full에 포함되어있는 SimpleLockerActivity와 이 샘플에서 제공하는 CustomLockerActivity와의 비교를 통해 쉽게 이해할 수 있도록 구성했다.
+- **sample-multi-process** : 메모리 사용의 효율성을 위해 잠금화면 프로세스를 분리하는 샘플이다. 연동가이드 고급에서 다루는 프로세스 분리를 참고한다.
 
 ## 버즈스크린 SDK 연동 가이드 - 기본
 가장 기본적인 연동 방법으로, 이 연동만으로도 버즈스크린을 안드로이드 어플리케이션에 탑재할 수 있다.
 
-참고 샘플 : **buzzscreen-sample-basic**
+참고 샘플 : **sample-basic**
 
 ### 1. 설정
 - [SDK 다운로드](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) 후 압축 해제
-- 압축 해제한 폴더 내의 buzzscreen-sdk-full을 개발중인 안드로이드 어플리케이션 내에 포함
+- 압축 해제한 폴더 내의 aars/buzzscreen-sdk-full을 개발중인 안드로이드 어플리케이션 내에 포함(이클립스인 경우는 eclipse-projects/buzzscreen-sdk-full)
 - Android Manifest : 아래와 같이 권한, 액티비티, 서비스, 리시버 추가
+
+추가적으로 안드로이드 스튜디오인 경우 build.gradle에 다음 두 라이브러리를 추가합니다. (이클립스인 경우는 SDK 프로젝트내의 libs 에 이미 포함되어 있음)
+```
+dependencies {
+    compile 'com.loopj.android:android-async-http:1.4.8'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+}
+```
+
 
 ```Xml
 <manifest>
