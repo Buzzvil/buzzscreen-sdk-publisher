@@ -1,8 +1,8 @@
 # BuzzScreen SDK for Android
 - Buzzvil's library for integrating BuzzScreen with Android apps.
 - Requires Android version 2.3 (API level 9) or newer.
-- Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or run sample applications.
-- The Google Play services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
+- Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
+- The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 
 ## Included files
 - **buzzscreen-sdk-core**: Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.)
@@ -10,7 +10,7 @@
 - **buzzscreen-sample-basic**: Basic BuzzScreen integration example that uses **buzzscreen-sdk-full**.
 - **buzzscreen-sample-custom**: Custom BuzzScreen integration example that uses **buzzscreen-sdk-core** and a customized lock screen. Please compare `SimpleLockerActivity` from **buzzscreen-sdk-full** with `CustomLockerActivity` from **buzzscreen-sdk-core** for further understanding.
 - **buzzscreen-sample-multi-process**: BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.
-- **google-play-services_lib**: Google Play services library. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
+- **google-play-services_lib**: Google Play Services library. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 
 ## Basic guide (buzzscreen-sample-basic)
 Our simplest integration method – add BuzzScreen to your Android application in just a few easy steps.
@@ -95,7 +95,7 @@ public class App extends Application {
 ```
 
 ### 2. Lock Screen Control
-- `BuzzScreen.getInstance().launch()`: Call in the app's launch activity.
+- `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
 - `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()`,  `setGender()`, and `setRegion()`. ([Region formatting](REGION-FORMAT.md) will be added later according to your region. Please contact your account manager.)
