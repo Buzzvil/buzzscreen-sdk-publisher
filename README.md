@@ -106,6 +106,14 @@ public class App extends Application {
 }
 ```
 
+##### Proguard 설정
+Proguard 사용시에 다음 라인들을 Proguard 설정에 추가합니다.
+
+```
+-keep class com.buzzvil.buzzscreen.sdk.** { *; }
+-keep interface com.buzzvil.buzzscreen.sdk.** { *; }
+```
+
 ### 2. 잠금화면 제어
 - BuzzScreen.getInstance().launch() : 앱 실행시 처음 실행되는 액티비티에 추가해 준다.
 - BuzzScreen.getInstance().activate() : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
