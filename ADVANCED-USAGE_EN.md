@@ -1,94 +1,88 @@
-# BuzzScreen SDK Integration Guideline - Advanced
-Before reading this document, please read [BuzzScreen SDK Integration Guideline - Basic](README_EN.md) first.
-- [Lock screen customization](#lock-screen-customization) : Changing watch UI and lock screen slider UI (swiping UI), and adding widgets
-- [Process separation](#process-separation) : Separating lock screen process from main process in order to increase efficiency in memory usage
-- [Distributing point accumulation request traffic](#distributing-point-accumulation-request-traffic) : Distributing point accumulation request traffic which is concentrated on the hour
-
+# BuzzScreen SDK Advanced Integration
+*Please make sure to read [BuzzScreen SDK for Android](README_EN.md) first.*
+- [Lock screen customization](#lock-screen-customization): Customized lock screen sliding/swiping UI, clock UI, and extra lock screen widgets.
+- [Process separation](#process-separation): Separating the lock screen process from main process in order to increase memory usage efficiency.
+- [Distributing point accumulation request traffic](#distributing-point-accumulation-request-traffic): Distributing point accumulation request traffic over time instead of concentrated on the hour.
 
 ## Lock screen customization
-Reference Sample : **buzzscreen-sample-custom**
+Sample files are located in **buzzscreen-sample-custom**.
 
-Lock screen consists of one activity and just like standard activity, you may create layout and call a few essential functions inside activity class. When you customize lock screen, please use **buzzscreen-sdk-core** instead of **buzzscreen-sdk-full** in the integration process.
+The lock screen consists of one activity. Just like a standard activity, you should create the layout and call a few essential functions inside the activity class. If you customize the lock screen, please use **buzzscreen-sdk-core** instead of **buzzscreen-sdk-full** in the integration process.
 
 #### Layout
+The layout basically consists of a clock, slider, and background gradation as below. You may add additional views if necessary.
 
-Layout basically consists of watch, slider, and background gradation like below. You may also add additional views if necessary.  
-> Reference : [Layout Guideline](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing)
+[Layout Guideline](https://drive.google.com/file/d/0BxlsmkGYXVSyYUhDREkxYTl6STg/view?usp=sharing):
 
 ![Layout](layout.jpg)
 
-- Watch : Add a view to layout, and process it at onTimeUpdated inside activity.
-- Slider : You may change all the image files that form the slider.
+- Clock: Add a view to layout, and process it upon `onTimeUpdated()` inside your activity.
+- Slider: You must change all the image files that make up the slider.
 
     |Slider Attribute|Description|
     |--------|--------|
-    |slider:left_icon|left icon of slider|
-    |slider:right_icon|right icon of slider|
-    |slider:pointer|center image of slider|
-    |slider:pointer_drag|center image of slider when touching on|
+    |slider:left_icon|left icon of the slider|
+    |slider:right_icon|right icon of the slider|
+    |slider:pointer|center image of the slider|
+    |slider:pointer_drag|center image of the slider during touch|
     |slider:radius|the distance between slider center and the center of left/right icons|
 
-- Background Gradation : As readability of watch and slider may be affected by color of campaign images, it is necessary to set up background gradation under the UI.
-- Adding additional views : Just like standard view, you may add a view to layout, and write a feature inside activity.
+- Background: As readability of clock and slider may be affected by the color of campaign images, it is necessary to set up a background gradation under the UI.
+- Additional views: Just like a standard view, you may add a view to the layout, and write a feature inside the activity.
 
 #### Activity Class
-Please create an activity inheriting BaseLockerActivity and this activity class should be delivered to initilization function(BuzzScreen.init). Slider and watch are required to be implemented inside Activity, and the others are optional.
+Please create an activity inheriting `BaseLockerActivity` and pass it to `BuzzScreen.init()`. The slider and clock must be implemented inside Activity, while the others are optional.
 
 ##### Slider
-Slider is an independent view from lock screen so it is required to complete two more steps in order to connect it with lock screen.
-- Setting listners for left/right slider : You may set up listenrs for left/right slider through Slider.setLeftOnSelectListener , Slider.setRightOnSelectListener . Please call either unlock function or landing function in align with sliding direction. 
-- Left/Right point update : It is necessary to change left/right point in accordance with campaign type. Please find onCurrentCampaignUpdated, a function in the Activity called at the point of campaign change, and update Slider.setLeftText and Slider.setRightText.
+Slider is an independent view from lock screen, so two more steps are required in order to connect it to the lock screen.
 
-##### Watch
-Update the view in layout according to time change. As onTimeUpdate in Activity is to be called every minute, please update the view here.
+- Set up listeners for the slider through `Slider.setLeftOnSelectListener()` and `Slider.setRightOnSelectListener()`. Please call either the unlock function or the landing function depending on the sliding direction. 
+- It is necessary to change the slide points in accordance with the campaign type. Please find `onCurrentCampaignUpdated()`, a function in the Activity called at the point of campaign change, and call `Slider.setLeftText()` and `Slider.setRightText()`.
+
+##### Clock
+If an `onTimeUpdate()` method is defined in your Activity, it will automatically be called by BuzzScreen every minute, upon which you should update your view.
 
 ##### Etc
-- Previous/Next Page Icon : When touching lock screen, you may show (ideally arrow) icon on whether there would be previous or/and next page on lock screen when swiping up & down. Please call setPageIndicators and set up a view.
-- setOnTrackingListener : Impression and click event can be tracked through this Listner.
+- Previous/next page icons: Call `setPageIndicators()` and set up a view to display previous/next icons (ideally arrows) to indicate if there is more content that can be swiped up/down to.
+- setOnTrackingListener: Impression and click events can be tracked through this listener.
 
-## Process Separation
-Reference Sample : **buzzscreen-sample-multi-process**
+## Process separation
+Sample files are located in **buzzscreen-sample-multi-process**.
 
-BuzzScreen SDK is always running/using Android's service component in the Foreground. Thus, in case BuzzScreen service is running in the same process with Publisher's app, memory for BuzzScreen will be managed together with main process, which will result in inefficient memory usage. To prevent this, it's necessary to separate the process in whcih BuzzScreen is running from the main process.
+The BuzzScreen SDK is always running/using Android's service component in the foreground. Thus, in case the BuzzScreen service is running in the same process as your app, memory for BuzzScreen will be managed together your main process, which will result in inefficient memory usage. To prevent this, it's necessary to separate the process in which BuzzScreen is running from the main process.
 
-#### How to apply
-- Modifying initialization function : From BuzzScreen.init function, please set useMultiProcess true.
-- Please add MultipleProcessesReceiver to Android Manifest file.
-```Xml
+- In `BuzzScreen.init()`, please set `useMultiProcess` to true.
+- Please add our `MultipleProcessesReceiver` to your Android Manifest file.
+```xml
 <receiver
     android:name="com.buzzvil.buzzscreen.sdk.MultipleProcessesReceiver"
     android:process=":locker" />
 ```
+- Please add a `android:process=":locker"` attribute to the existing BuzzScreen components in your Android Mainfest file. Components in which the attribute should be added to include `SimpleLockerActivity` (unless you're customizing the lock screen, in which case it should be added to the activity controlling the lock screen), `LandingHelperActivity`, `LockerService`, `ChangeAdReceiver`, and `DownloadAdReceiver`.
 
-- Please add android:process=":locker" attribute to existing BuzzsScreen component in Android Mainfest file.
-
->The same as process attribute used in MultipleProcessesReceiver
-
-    Components in which the attribute should be added : SimpleLockerActivity(In case customizing lock screen, it should be apply to the activity controlling the lock screen), LandingHelperActivity, LockerService, ChangeAdReceiver, DownloadAdReceiver
+> **Warning**: After enabling process separation, the lock screen will run separately from your app's main process. Please be careful when developing a feature related to your app on the lock screen area.
 
 
-> **Precautions on process separation** : After applying process separation, lock screen is running separately from publisher app's main process, please be careful when developing a feature related to pubslisher's app on the lock screen area.
+## Distributing point accumulation request traffic
+By default, when BuzzScreen makes point accumulation requests to a publisher's server, the traffic is concentrated every hour on the hour. In order to distribute the traffic, please call `BuzzScreen.init()` and then `BuzzScreen.set.BasePointsSpreadingFactor()` with an integer between 0 and 30:
 
-
-## Distributing Point Accumulation Request Traffic
-When BuzzScreen makes a point accumulation requests to publisher's server, the traffic could be not evenly distributed over time and rather concentrated every hour on the hour as BuzzScreen SDK's initial setting is developed to initialize the point accumulation logic every hour. In order to distribute the traffic, please call BuzzScreen.init and BuzzScreen.set.BasePointsSpreadingFactor together. 
-A parameter delivering to BuzzScreen.setBasePointsSpreadingFactor should be integer, from 0 to 30. Please apply as below:
-```Java
+```java
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
         ...
-        // app_key : unique key value for publisher. Please check it on the BuzzScreen admin page.
-        // SimpleLockerActivity.class : lock screen activity class
-        // R.drawable.image_on_fail : a back fill image to be shown when network error occurs or there is no campaign available.
-        // useMultiProcess : if lock screen is separated from main process, it's true. if not, it's false.
+        // app_key: Unique key value for publisher. Please find it on your BuzzScreen dashboard.
+        // SimpleLockerActivity.class: Lock screen activity class.
+        // R.drawable.image_on_fail: A back fill image to be shown when a network error occurs or there is no campaign available.
+        // useMultiProcess: true if the lock screen is separated from the main process, otherwise false.
         BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
-        // If distributing the traffic from 0 to 10 min
+        
+        // Distribute the traffic over 10 minutes.
         BuzzScreen.setBasePointsSpreadingFactor(10);
     }
 }
 ```
 
-> Please keep in mind that by usign this feature, you might potentially give different experience for each user.
+> Please keep in mind that by using this feature, you are potentially giving a different experience to each user.
