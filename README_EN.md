@@ -22,12 +22,12 @@ Our simplest integration method – add BuzzScreen to your Android application i
 Download and unzip the [BuzzScreen SDK](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) and include **aars/buzzscreen-sdk-full** from the unzipped folder in your Android application.
 
 > If you are using Android Studio, add the below libraries in your build.gradle.(In Eclipse, the below libraries are included in libs)
-    ```
-    dependencies {
-        compile 'com.loopj.android:android-async-http:1.4.8'
-        compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
-    }
-    ```
+```
+dependencies {
+    compile 'com.loopj.android:android-async-http:1.4.8'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+}
+```
 
 Add permissions, activities, services, and receivers to your Android Manifest as below.
 
