@@ -4,39 +4,50 @@
 - Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
 - The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 
-## Included files
-- **buzzscreen-sdk-core**: Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.)
-- **buzzscreen-sdk-full**: Full SDK including BuzzScreen's default `SimpleLockerActivity` lock screen which supports BuzzScreen's basic features. Please use this SDK if you don't need customized features.
-- **buzzscreen-sample-basic**: Basic BuzzScreen integration example that uses **buzzscreen-sdk-full**.
-- **buzzscreen-sample-custom**: Custom BuzzScreen integration example that uses **buzzscreen-sdk-core** and a customized lock screen. Please compare `SimpleLockerActivity` from **buzzscreen-sdk-full** with `CustomLockerActivity` from **buzzscreen-sdk-core** for further understanding.
-- **buzzscreen-sample-multi-process**: BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.
-- **google-play-services_lib**: Google Play Services library. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
+	> Android studio configuration is different from eclipse. If you are using andorid studio, just add `compile 'com.google.android.gms:play-services-ads:7.5.0'` to **build.gradle > dependencies**.
 
-## Basic guide (buzzscreen-sample-basic)
+
+## Included files
+- **aars/** : Android Library files for Android Studio
+- **aars/buzzscreen-sdk-core.aar** : Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.)
+- **aars/buzzscreen-sdk-full.aar** : Full SDK including BuzzScreen's default `SimpleLockerActivity` lock screen which supports BuzzScreen's basic features. Please use this SDK if you don't need customized features.
+- **sample-basic** : Basic BuzzScreen integration example that uses **buzzscreen-sdk-full**.
+- **sample-custom** : Custom BuzzScreen integration example that uses **buzzscreen-sdk-core** and a customized lock screen. Please compare `SimpleLockerActivity` from **buzzscreen-sdk-full** with `CustomLockerActivity` from **buzzscreen-sdk-core** for further understanding.
+- **sample-multi-process** : BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.
+
+## Basic guide (sample-basic)
 Our simplest integration method – add BuzzScreen to your Android application in just a few easy steps.
 
 ### 1. Setup
-Download and unzip the [BuzzScreen SDK](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) and include **buzzscreen-sdk-full** from the unzipped folder in your Android application.
+Download and unzip the [BuzzScreen SDK](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) and include **aars/buzzscreen-sdk-full** from the unzipped folder in your Android application.
+
+> If you are using Android Studio, add the below libraries in your build.gradle.(In Eclipse, the below libraries are included in libs)
+    ```
+    dependencies {
+        compile 'com.loopj.android:android-async-http:1.4.8'
+        compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+    }
+    ```
 
 Add permissions, activities, services, and receivers to your Android Manifest as below.
 
 ```xml
-<!-- Permissions for BuzzScreen -->
 <manifest>
     ...
+    <!-- Permissions for BuzzScreen -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    
+
     <application>
         ...
         <!-- Google Play Services -->
         <meta-data android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        
+
         <!-- Activities for BuzzScreen -->
         <activity
             android:name="com.buzzvil.buzzscreen.sdk.SimpleLockerActivity"
@@ -50,10 +61,10 @@ Add permissions, activities, services, and receivers to your Android Manifest as
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-        
+
         <!-- Service for BuzzScreen -->
         <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
-        
+
         <!-- Receivers for BuzzScreen -->
         <receiver
             android:name="com.buzzvil.buzzscreen.sdk.BootReceiver"
@@ -92,6 +103,13 @@ public class App extends Application {
         BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
     }
 }
+```
+
+##### ProGuard Configuration
+To prevent ProGuard from stripping away required classes, add the following lines in your ProGuard configuration file.
+```
+-keep class com.buzzvil.buzzscreen.sdk.** { *; }
+-keep interface com.buzzvil.buzzscreen.sdk.** { *; }
 ```
 
 ### 2. Lock Screen Control
