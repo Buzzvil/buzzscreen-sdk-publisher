@@ -108,8 +108,12 @@ public class App extends Application {
 Proguard 사용시에 다음 라인들을 Proguard 설정에 추가합니다.
 
 ```
--keep class com.buzzvil.buzzscreen.sdk.** { *; }
--keep interface com.buzzvil.buzzscreen.sdk.** { *; }
+-keep class com.buzzvil.buzzscreen.sdk.** {*;}
+-keep interface com.buzzvil.buzzscreen.sdk.** {*;}
+
+-keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 ```
 
 ### 2. 잠금화면 제어
