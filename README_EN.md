@@ -106,8 +106,12 @@ public class App extends Application {
 ##### ProGuard Configuration
 To prevent ProGuard from stripping away required classes, add the following lines in your ProGuard configuration file.
 ```
--keep class com.buzzvil.buzzscreen.sdk.** { *; }
--keep interface com.buzzvil.buzzscreen.sdk.** { *; }
+-keep class com.buzzvil.buzzscreen.sdk.** {*;}
+-keep interface com.buzzvil.buzzscreen.sdk.** {*;}
+
+-keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 ```
 
 ### 2. Lock Screen Control
