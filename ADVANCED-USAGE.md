@@ -20,11 +20,11 @@
 
     |슬라이더 속성|설명|
     |--------|--------|
-    |slider:left_icon|슬라이더의 왼쪽 아이콘|
-    |slider:right_icon|슬라이더의 오른쪽 아이콘|
-    |slider:pointer|슬라이더의 가운데 이미지|
-    |slider:pointer_drag|슬라이더의 가운데 눌렀을 때 이미지|
-    |slider:radius|슬라이더 중심과 좌우 아이콘 중심까지의 반지름|
+    |slider:sl_left_icon|슬라이더의 왼쪽 아이콘|
+    |slider:sl_right_icon|슬라이더의 오른쪽 아이콘|
+    |slider:sl_pointer|슬라이더의 가운데 이미지|
+    |slider:sl_pointer_drag|슬라이더의 가운데 눌렀을 때 이미지|
+    |slider:sl_radius|슬라이더 중심과 좌우 아이콘 중심까지의 반지름|
 
 - 배경 그라데이션 : 현재 보여지는 캠페인 이미지에 따라 시계 및 슬라이더의 가독성이 떨어질 수 있으므로 해당 UI 뒤에 배경 그라데이션을 넣어준다.
 - 뷰 추가 : 일반적인 뷰와 같이, 원하는 뷰를 레이아웃에 배치하고, 기능은 액티비티 내에서 구현한다.
