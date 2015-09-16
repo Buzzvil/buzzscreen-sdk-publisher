@@ -73,11 +73,11 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="8dp"
-        slider:left_icon="@drawable/locker_landing"
-        slider:pointer="@drawable/locker_slider_normal"
-        slider:pointer_drag="@drawable/locker_slider_drag"
-        slider:radius="128dp"
-        slider:right_icon="@drawable/locker_unlock" />
+        slider:sl_left_icon="@drawable/locker_landing"
+        slider:sl_pointer="@drawable/locker_slider_normal"
+        slider:sl_pointer_drag="@drawable/locker_slider_drag"
+        slider:sl_radius="128dp"
+        slider:sl_right_icon="@drawable/locker_unlock" />
 
     <ImageView
         android:id="@+id/locker_arrow_top"
