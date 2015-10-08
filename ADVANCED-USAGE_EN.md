@@ -2,7 +2,6 @@
 *Please make sure to read [BuzzScreen SDK for Android](README_EN.md) first.*
 - [Lock screen customization](#lock-screen-customization): Customized lock screen sliding/swiping UI, clock UI, and extra lock screen widgets.
 - [Process separation](#process-separation): Separating the lock screen process from main process in order to increase memory usage efficiency.
-- [Distributing point accumulation request traffic](#distributing-point-accumulation-request-traffic): Distributing point accumulation request traffic over time instead of concentrated on the hour.
 
 ## Lock screen customization
 Sample files are located in **buzzscreen-sample-custom**.
@@ -61,28 +60,3 @@ The BuzzScreen SDK is always running/using Android's service component in the fo
 - Please add a `android:process=":locker"` attribute to the existing BuzzScreen components in your Android Mainfest file. Components in which the attribute should be added to include `SimpleLockerActivity` (unless you're customizing the lock screen, in which case it should be added to the activity controlling the lock screen), `LandingHelperActivity`, `LockerService`, `ChangeAdReceiver`, and `DownloadAdReceiver`.
 
 > **Warning**: After enabling process separation, the lock screen will run separately from your app's main process. Please be careful when developing a feature related to your app on the lock screen area.
-
-
-## Distributing point accumulation request traffic
-By default, when BuzzScreen makes point accumulation requests to a publisher's server, the traffic is concentrated every hour on the hour. In order to distribute the traffic, please call `BuzzScreen.init()` and then `BuzzScreen.set.BasePointsSpreadingFactor()` with an integer between 0 and 30:
-
-```java
-public class App extends Application {
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ...
-        // app_key: Unique key value for publisher. Please find it on your BuzzScreen dashboard.
-        // SimpleLockerActivity.class: Lock screen activity class.
-        // R.drawable.image_on_fail: A back fill image to be shown when a network error occurs or there is no campaign available.
-        // useMultiProcess: true if the lock screen is separated from the main process, otherwise false.
-        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
-        
-        // Distribute the traffic over 10 minutes.
-        BuzzScreen.setBasePointsSpreadingFactor(10);
-    }
-}
-```
-
-> Please keep in mind that by using this feature, you are potentially giving a different experience to each user.

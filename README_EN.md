@@ -4,7 +4,7 @@
 - Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
 - The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 
-	> Android studio configuration is different from eclipse. If you are using andorid studio, just add `compile 'com.google.android.gms:play-services-ads:7.5.0'` to **build.gradle > dependencies**.
+	> If you are using andorid studio, just add `compile 'com.google.android.gms:play-services-ads:7.5.0'` to **build.gradle > dependencies**.
 
 
 ## Included files
@@ -21,10 +21,9 @@ Our simplest integration method – add BuzzScreen to your Android application i
 ### 1. Setup
 Download and unzip the [BuzzScreen SDK](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) and include **aars/buzzscreen-sdk-full** from the unzipped folder in your Android application.
 
-> If you are using Android Studio, add the below libraries in your build.gradle.(In Eclipse, the below libraries are included in libs)
+Add the below libraries in your build.gradle.
 ```
 dependencies {
-    compile 'com.loopj.android:android-async-http:1.4.8'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 ```
@@ -136,4 +135,3 @@ Point accumulation request flow:
 If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md):
 - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
 - Separating the lock screen process from main process in order to increase memory usage efficiency.
-- Distributing point accumulation request traffic over time instead of concentrated on the hour.

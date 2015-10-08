@@ -2,7 +2,6 @@
 ["버즈스크린 SDK 연동 가이드 - 기본"](https://github.com/Buzzvil/buzzscreen-sdk-publisher#버즈스크린-sdk-연동-가이드---기본)을 먼저 진행한 후에 필요에 따라 본 문서 내용을 진행한다.
 - [잠금화면 커스터마이징](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#잠금화면-커스터마이징) : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
 - [프로세스 분리](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#프로세스-분리) : 메모리의 효율적 사용을 위해 프로세스 분리 지원
-- [포인트 적립 요청 트래픽 분산](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#포인트-적립-요청-트래픽-분산) : 매시 정각에 집중되는 포인트 적립 요청 트래픽 분산
 
 ## 잠금화면 커스터마이징
 참고 샘플 : **sample-custom**
@@ -65,24 +64,3 @@ BaseLockerActivity를 상속받아서 액티비티를 생성하고, 초기화 �
 
 
 > **프로세스 적용 분리시 주의사항** : 잠금화면이 매체사 앱과는 다른 프로세스에서 구동되기 때문에 커스터마이징한 잠금화면에서 매체사 앱과 연관된 작업을 진행할때에는 구현에 주의를 요한다.
-
-## 포인트 적립 요청 트래픽 분산
-버즈스크린에서 포인트를 지급하는 경우 기본적으로 매시 정각에 포인트 지급이 초기화된다.(정각부터 다시 적립금을 쌓는 기회가 생김) 포인트 지급이 발생할 때는 매체사 서버로 포인트 적립 요청을 보내게 되고, 이는 매시 정각에 매체사 서버에 트래픽 부담을 유발할 수 있다. 이를 완화하기 위해서 포인트 지급 초기화 시점을 매시 정각부터 매시 특정 분까지 분산시킬 수 있는 기능을 제공한다. BuzzScreen.init 호출과 함께 BuzzScreen.setBasePointsSpreadingFactor를 호출해 주면 된다. BuzzScreen.setBasePointsSpreadingFactor에 전달하는 파라미터는 분 단위의 값이며 0~30까지의 정수만 가능하다. 다음과 같이 적용 한다.
-```Java
-public class App extends Application {
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ...
-        // app_key : SDK 사용을 위한 앱키로, 어드민에서 확인 가능
-        // SimpleLockerActivity.class : 잠금화면 액티비티 클래스
-        // R.drawable.image_on_fail : 네트워크 에러 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지.
-        // useMultiProcess : 잠금화면 서비스를 분리된 프로세스에서 실행하는 경우 true, 사용하지 않으면 false
-        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
-        // 0~10분까지 분산 설정
-        BuzzScreen.setBasePointsSpreadingFactor(10);
-    }
-}
-```
-> 이 기능은 모든 유저에게 동일한 경험(모든 유저가 매시 정각에 포인트 지급 초기화)을 주지 못하는 단점이 있기 때문에 매체사에서는 유저경험을 생각하여 적용을 결정해야 한다.
