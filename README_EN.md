@@ -124,7 +124,7 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 3. Points Accumulation Request (Postback) - Server to Server Integration
 When a point accumulation activity occurs from a user, BuzzScreen does not give the user reward points directly. The BuzzScreen server will make a point accumulation request to the publisher's server and the publisher's server will process the request and provide points for the user.
 
-Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](https://buzzvilian.atlassian.net/wiki/pages/viewpage.action?pageId=4718597) for more details.
+Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](POSTBACK_EN.md) for more details.
 
 > If you would like to send the user a push notification on point accumulation, it should be processed/sent from the publisher's server after receiving a point accumulation request from BuzzScreen.
 
