@@ -19,14 +19,12 @@ Defined by publisher
 | base_point     | integer | Parameters regarding hourly free reward points to users. If a user is given points within this hour, it's 0. Or, it's the value of hourly free reward points.                                                                                           |
 | campaign_id    | long    | Campaign id that offered reward points                                                                                                                                                                                                  |
 | campaign_name  | string  | Campaign name that offered reward points                                                                                                                                                                         |
-| event_at       | long    | The time of offering reward points. timestamp value. Mostly, it's the same as the time of API request. 
-However, it could vary in case there was the second trial of request.                                                                                                |
+| event_at       | long    | The time of offering reward points. timestamp value. Mostly, it's the same as the time of API request. However, it could vary in case there was the second trial of request.                                                                                                |
 | is_media       | integer | <ul><li>0: Campaigns from Buzzvil</li><li>1: Campaigns from Publisher</li></ul>                                                                                                                                                                                 |
 | click_type     | string  | A separator of landing and swipe to unlock <ul><li>u: Swipe to unlock</li><li>l: Landing (Click) </li></ul>                                                                                                                                                                                   |
-| extra          | string  | Json serialized strings of extra campaign data defined by publisher
-It might take up to 10 mins to apply updated information in case these data were changed in the middle of ongoing campaign
-eg) {"sub_type": "A", "source":"external"} |
-| data           | string  | (Optional) Use this parameter when sending encrypted HTTP request parameter. Please refer to the below for more information.                                                                                                                 |                                                                                                         |
+| extra          | string  | Json serialized strings of extra campaign data defined by publisher. It might take up to 10 mins to apply updated information in case these data were changed in the middle of ongoing campaign. eg) {"sub_type": "A", "source":"external"}                                         |
+
+| data           | string  | (Optional) Use this parameter when sending encrypted HTTP request parameter. Please refer to the below for more information.                                  |                                                                                                         
  
 ### 6. HTTP Request Parameter Encryption
 Use this parameter when it is necessary to encrypt HTTP Request parameter. Please follow the process below in order.
