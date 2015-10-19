@@ -23,7 +23,6 @@ Defined by publisher
 | is_media       | integer | <ul><li>0: Campaigns from Buzzvil</li><li>1: Campaigns from Publisher</li></ul>                                                                                                                                                                                 |
 | click_type     | string  | A separator of landing and swipe to unlock <ul><li>u: Swipe to unlock</li><li>l: Landing (Click) </li></ul>                                                                                                                                                                                   |
 | extra          | string  | Json serialized strings of extra campaign data defined by publisher. It might take up to 10 mins to apply updated information in case these data were changed in the middle of ongoing campaign. eg) {"sub_type": "A", "source":"external"}                                         |
-
 | data           | string  | (Optional) Use this parameter when sending encrypted HTTP request parameter. Please refer to the below for more information.                                  |                                                                                                         
  
 ### 6. HTTP Request Parameter Encryption
