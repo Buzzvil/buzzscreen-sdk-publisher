@@ -129,7 +129,7 @@ Regarding processing point accumulation requests, please refer to [BuzzScreen's 
 > If you would like to send the user a push notification on point accumulation, it should be processed/sent from the publisher's server after receiving a point accumulation request from BuzzScreen.
 
 Point accumulation request flow:
-![Task Flow](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/postback_flow.jpg)
+![Task Flow](postback_flow.jpg)
 
 ### 4. Additional Features
 If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md):

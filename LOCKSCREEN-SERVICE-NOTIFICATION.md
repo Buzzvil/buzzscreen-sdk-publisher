@@ -30,4 +30,4 @@ public class App extends Application {
 }
 ```
 #### 예제 노티피케이션
-![Notification Sample](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/notification_sample.png)
+![Notification Sample](notification_sample.png)

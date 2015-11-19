@@ -125,14 +125,14 @@ Proguard 사용시에 다음 라인들을 Proguard 설정에 추가합니다.
 
 ### 3. 포인트 적립 요청(포스트백)  - 서버 연동
 - 버즈스크린은 포인트 적립이 발생했을 때 직접 유저들에게 포인트를 지급하는 것이 아니다. 버즈스크린 서버에서 매체사 서버로 포인트 적립 요청을 보낼 뿐이고, 실제 지급은 매체사 서버에서 처리한다.
-- 포인트 적립 요청에 대한 처리 방법은 [포인트 적립 요청 연동 가이드](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/POSTBACK.md)를 참고한다.
+- 포인트 적립 요청에 대한 처리 방법은 [포인트 적립 요청 연동 가이드](POSTBACK.md)를 참고한다.
 
 > 포인트 적립 알림 푸쉬를 유저에게 보내고 싶은 경우에는 포인트 적립 요청을 받고 매체사에서 직접 푸쉬를 전송한다.
 
 ####포인트 적립 요청 흐름
-![Task Flow](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/postback_flow.jpg)
+![Task Flow](postback_flow.jpg)
 
 ### 4. 추가 기능
-다음과 같은 기능이 필요할 때는 ["버즈스크린 SDK 연동 가이드-고급"](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md)을 참고한다.
+다음과 같은 기능이 필요할 때는 ["버즈스크린 SDK 연동 가이드-고급"](ADVANCED-USAGE.md)을 참고한다.
 - 잠금화면 커스터마이징 : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
 - 프로세스 분리 : 메모리의 효율적 사용을 위해 프로세스 분리 지원

@@ -12,7 +12,7 @@
 레이아웃은 기본적으로 아래 그림처럼 시계, 슬라이더, 배경 그라데이션으로 구성되며, 그 외에 원하는 뷰를 추가할 수 있다.
 >참고:[레이아웃 가이드라인](https://drive.google.com/a/buzzvil.com/file/d/0B4bLqCqPIOIaZ1ZkS0tSczIya2M/view)
 
-![Layout](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/layout.jpg)
+![Layout](layout.jpg)
 
 - 시계 : 레이아웃에 뷰를 추가하고, 해당 뷰에 표시되는 값은 액티비티 내의 onTimeUpdated에서 처리한다.
 - 슬라이더 : 슬라이더를 구성하는 모든 이미지들을 변경할 수 있다.
