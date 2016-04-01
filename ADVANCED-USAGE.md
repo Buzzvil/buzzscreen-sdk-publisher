@@ -24,6 +24,7 @@
     |slider:sl_pointer|슬라이더의 가운데 이미지|
     |slider:sl_pointer_drag|슬라이더의 가운데 눌렀을 때 이미지|
     |slider:sl_radius|슬라이더 중심과 좌우 아이콘 중심까지의 반지름|
+    |slider:sl_text_size|슬라이더의 포인트 텍스트의 크기(Default : 14sp)|
     
     슬라이더 속성 사용 예제
 	```Xml
@@ -38,7 +39,8 @@
         slider:sl_pointer="@drawable/locker_slider_normal"
         slider:sl_pointer_drag="@drawable/locker_slider_drag"
         slider:sl_radius="128dp"
-        slider:sl_right_icon="@drawable/locker_unlock" />
+        slider:sl_right_icon="@drawable/locker_unlock"
+        slider:sl_text_size="14sp" />
     ```
 
 - 배경 그라데이션 : 현재 보여지는 캠페인 이미지에 따라 시계 및 슬라이더의 가독성이 떨어질 수 있으므로 해당 UI 뒤에 배경 그라데이션을 넣어준다.
