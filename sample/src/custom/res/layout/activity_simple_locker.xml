@@ -67,7 +67,8 @@
         slider:sl_pointer="@drawable/locker_slider_normal"
         slider:sl_pointer_drag="@drawable/locker_slider_drag"
         slider:sl_radius="128dp"
-        slider:sl_right_icon="@drawable/locker_unlock" />
+        slider:sl_right_icon="@drawable/locker_unlock"
+        slider:sl_text_size="14sp" />
 
     <ImageView
         android:id="@+id/locker_arrow_top"

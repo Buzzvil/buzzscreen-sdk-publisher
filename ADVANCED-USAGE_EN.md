@@ -25,6 +25,7 @@ The layout basically consists of a clock, slider, and background gradation as be
     |slider:sl_pointer|center image of the slider|
     |slider:sl_pointer_drag|center image of the slider during touch|
     |slider:sl_radius|the distance between slider center and the center of left/right icons|
+    |slider:sl_text_size|the size of the texts which show points(Default : 14sp)|
 
 - Background: As readability of clock and slider may be affected by the color of campaign images, it is necessary to set up a background gradation under the UI.
 - Additional views: Just like a standard view, you may add a view to the layout, and write a feature inside the activity.
