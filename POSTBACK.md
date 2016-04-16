@@ -36,8 +36,8 @@ JSON serialized parameters with UTF-8 encoding  -> AES(CBC mode, PCKS7 padding) 
 base64 decoding -> AES decoding -> JSON load
 ```
  
-암호화에 사용할 AES key, IV 값은 따로 요청해야 한다.
- 
+암호화 사용 시, 이메일(`product@buzzvil.com`)을 통해 암호화를 요청하면 BuzzScreen에서 매체사로 암호화에 사용할 AES key, IV 값을 지급한다.
+
 - 예제 평문
 ```
 {"user_id": "testuserid76301", "click_type": "u", "extra": "{}", "is_media": 0, "point": 2, "campaign_id": 3467, "event_at": 1442984268, "campaign_name": "test campaign", "base_point": 2, "transaction_id": 429482977}
