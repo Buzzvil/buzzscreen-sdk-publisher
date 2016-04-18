@@ -22,9 +22,9 @@ POST
 | is_media       | integer | <ul><li>0: 버즈빌측 캠페인</li><li>1: 매체사측 캠페인</li></ul>                                                                                                                                                                                 |
 | click_type     | string  | 랜딩/잠금해제 구분자 <ul><li>u: 잠금해제</li><li>l: 랜딩 </li></ul>                                                                                                                                                                                   |
 | extra          | string  | 매체사별 자체 정의한 캠페인 데이터의 json serilaize된 스트링. 라이브중에 캠페인 extra 정보가 바뀐 경우 실제 포인트 적립 api에서 바뀐 정보가 적용되는데에 최대 10분이 걸릴 수 있다. eg) {"sub_type": "A", "source":"external"} |
-| data           | string  | (Optional) HTTP request parameter를 암호화 해서 전송하는 경우 이 파라미터를 사용한다. 자세한 내용은 6. 참조                                                                                                                 |                                                                                                         |
+| data           | string  | (Optional) HTTP request parameter를 암호화 해서 전송하는 경우 이 파라미터를 사용한다. 자세한 내용은 5. 참조                                                                                                                 |                                                                                                         |
  
-### 6. HTTP Request Parameter Encryption
+### 5. HTTP Request Parameter Encryption
 HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미터. 아래와 같은 순서로 파라미터를 암호화 한다.
 ```
 JSON serialized parameters with UTF-8 encoding  -> AES(CBC mode, PCKS7 padding) encryption -> base64 encoding
