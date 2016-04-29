@@ -33,3 +33,10 @@ public class App extends Application {
 ```
 #### 예제 노티피케이션
 ![Notification Sample](notification_sample.png)
+
+## 잠금화면 서비스 노티피케이션 활용
+서비스 노티피케이션이 노출되어 있는 상태에서 노티피케이션을 추가적으로 띄울 경우(적립 알림 등), 한 앱에서 다수의 노티피케이션이 알림바에 나타나기 때문에 유저 경험상 좋지 않을 수 있다. SDK에서 제공하는 메소드를 통해 서비스 노티피케이션이 있던 곳에 새로운 노티피케이션을 띄우고, 다시 원래의 서비스 노티피케이션으로 돌아갈 수 있다.
+
+> 주의 : 이 기능을 사용할 때에는 반드시 LockerServiceNotificationConfig 에서 ShowAlways 값을 true로 설정해야 한다. 설정하지 않을 경우 메소드가 작동하지 않는다.
+
+- `BuzzScreen.getInstance.notifyOnServiceNotification(Notification notification)` : 퍼블리셔 측에서 빌드가 완료된 notification을 이 메소드의 파라미터로 전달하면, 해당 notification을 서비스 노티피케이션이 위치한 곳에 띄운다. 다시 원래의 서비스 노티피케이션으로 돌아가려면(LockerServiceNotificationConfig에서 설정한 상태) 파라미터로 null 을 전달하여 이 메소드를 다시 호출하면 된다.
