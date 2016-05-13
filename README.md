@@ -23,7 +23,7 @@
 ### 1. 라이브러리 추가
 개발 환경에 따라 설정 방법이 달라진다.
 
-##### Android studio
+#### Android studio
 - [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 `buzzscreen-sdk-full.aar` 을 개발중인 안드로이드 어플리케이션 내에 포함한다.
     1. 다운받은 aar 파일을 개발중인 모듈의 libs/ 폴더에 넣는다.
     2. build.gradle에 다음의 내용을 추가한다.
@@ -46,9 +46,10 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 ```
-- [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
+##### Facebook Audience Network library 
+[AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
-##### Eclipse
+#### Eclipse
 - [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 `buzzscreen-sdk-full-eclipse.zip` 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
     1. File -> import -> Android -> Existing Android code into Workspace를 선택하여 다운받은 디렉토리를 root directory로 갖는 새로운 프로젝트를 생성한다.
     2. 1번을 통해 생성된 프로젝트의 속성 중 'is Library' 를 체크해 라이브러리로 등록한다.
