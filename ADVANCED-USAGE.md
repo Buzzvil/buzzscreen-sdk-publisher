@@ -8,7 +8,7 @@
 
 잠금화면은 하나의 액티비티로 구성되며, 일반적인 액티비티와 마찬가지로 레이아웃을 만들어주고, 액티비티 클래스 내에서 몇가지 필수 함수들을 호출 혹은 구현해주면 된다. 잠금화면을 커스터마이징 하는 경우는 **buzzscreen-sdk-full** 대신 **buzzscreen-sdk-core**를 사용하여 연동작업을 진행하면 된다.(이클립스의 경우는 **buzzscreen-sdk-core-eclipse** 를 사용한다.)
 
-#### 레이아웃
+### 레이아웃
 레이아웃에는 필수적으로 **시계, 슬라이더**가 포함되어 있어야 하며, 캠페인 이미지에 따라 뷰들의 가독성이 떨어지지 않게 하기 위해 배경 그라데이션을 추가하는 것이 좋다. 그 외에 커스텀화 된 기능을 위한 뷰(아래 그림의 카메라 shortcut 등)를 추가할 수 있다.
 >참고:[레이아웃 가이드라인](https://drive.google.com/a/buzzvil.com/file/d/0B4bLqCqPIOIaZ1ZkS0tSczIya2M/view)
 
@@ -46,27 +46,31 @@
 - 배경 그라데이션 : 현재 보여지는 캠페인 이미지에 따라 시계 및 슬라이더의 가독성이 떨어질 수 있으므로 해당 UI 뒤에 배경 그라데이션을 넣어준다.
 - 뷰 추가 : 일반적인 뷰와 같이, 원하는 뷰를 레이아웃에 배치하고, 기능은 액티비티 내에서 구현한다.
 
-#### 액티비티 클래스
+### 액티비티 클래스
 `BaseLockerActivity`를 상속받아서 잠금화면 액티비티를 생성하고, 초기화 함수(BuzzScreen.init)의 3번째 파라미터에 생성한 액티비티 클래스를 지정해준다. 액티비티 내에서 구현해야하는 필수 요소는 **슬라이더, 시계**이며 그외는 선택에 따라 직접 구현하면 된다.
 
-##### 슬라이더
+#### 슬라이더
 슬라이더는 잠금화면과 독립적인 뷰이기 때문에 잠금화면과의 연동을 위해서는 크게 두가지 작업을 해야 한다.
 - 좌/우 슬라이더 선택에 따른 리스너 등록 : `Slider.setLeftOnSelectListener` , `Slider.setRightOnSelectListener` 를 통해 좌/우 선택에 따른 리스너를 등록해야 한다. 좌/우 선택 이벤트 발생시에 잠금해제(unlock) 함수를 호출하거나 링크이동(landing) 함수를 호출한다.
 - 좌/우 포인트 업데이트 : 캠페인 롤링 시 각각의 캠페인에 따라 화면에 표시되는 좌/우 포인트 변경이 필요하다. 캠페인 롤링 시 캠페인이 변할 때마다 `BaseLockerActivity` 내의 함수인 `onCurrentCampaignUpdated` 가 호출되므로 이를 오버라이딩하여 이 함수의 파라미터로 전달되는 campaign 정보를 이용해 `Slider.setLeftText`와 `Slider.setRightText`를 통해 포인트 정보를 업데이트 해야 한다.
 
-##### 시계
+#### 시계
 레이아웃에서 배치한 뷰를 시간변화에 따라 업데이트 해준다. 시간이 분 단위로 업데이트 될때마다 `BaseLockerActivity` 내의 함수인 `onTimeUpdated`가 호출되므로 이를 오버라이딩하여 이 함수의 파라미터로 전달되는 시간 정보를 이용해 time, am/pm, date등의 정보를 업데이트 해야 한다.
 
 > 주의 - 잠금화면 액티비티에서 `onCurrentCampaignUpdated` 와 `onTimeUpdated` 를 오버라이딩하여 구현하지 않으면 오류가 발생하므로 반드시 구현해야 한다. 구체적 사용 예시는 샘플 내의 **CustomLockerActivity.java** 참고.
 
-##### 추가적으로 제공되는 기능
-- 전/후 페이지 유무 표시 : 잠금화면 터치시에 전/후 페이지 유무를 표시할 수 있다. 이를 위해서는 `setPageIndicators` 를 호출하여 표시할 뷰를 지정해준다.
+#### 추가적으로 제공되는 기능
+
+##### 전/후 페이지 유무 표시
+잠금화면 터치시에 전/후 페이지 유무를 표시할 수 있다. 이를 위해서는 `setPageIndicators` 를 호출하여 표시할 뷰를 지정해준다.
 
 Method prototype(in BaseLockerActivity)
 ```Java
 // previous : 이전 페이지가 존재할 경우 표시할 뷰
 // next : 이후 페이지가 존재할 경우 표시할 뷰
-protected void setPageIndicators(View previous, View next) { ... }
+protected void setPageIndicators(View previous, View next) {
+    ...
+}
 ```
 
 사용 예시
@@ -77,7 +81,8 @@ setPageIndicators(
 );
 ```
 
-- 임프레션 및 클릭 이벤트 트래킹 : `setOnTrackingListener` 를 이용하여 TrackingListener를 설정해 임프레션, 클릭시 원하는 기능을 구현할 수 있다.
+##### 임프레션 및 클릭 이벤트 트래킹
+`setOnTrackingListener()` 를 이용하여 TrackingListener를 설정해 임프레션, 클릭시 원하는 기능을 구현할 수 있다.
 
 사용 예시
 ```Java
@@ -96,12 +101,41 @@ setOnTrackingListener(new OnTrackingListener() {
 });
 ```
 
+##### 잠금화면 캠페인 전환 효과 커스터마이즈
+`setPageTransformer()` 를 통해 잠금화면 캠페인의 전환 효과를 커스터마이징 할 수 있다. 파라미터로 퍼블리셔가 구현한 ViewPager.PageTransformer 를 전달한다.
+
+- ViewPager 의 PageTransformer 를 설정하는 방법은 [안드로이드 가이드 문서](http://developer.android.com/intl/ko/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float))를 참조한다.
+
+- **주의** : Android 3.0 (API 11) 이상부터 지원된다.
+
+Method prototype(in BaseLockerActivity)
+```Java
+protected void setPageTransformer(ViewPager.PageTransformer transformer) { 
+    ... 
+}
+```
+
+사용 예시
+```Java
+setPageTransformer(new ViewPager.PageTransformer() {
+    @Override
+    public void transformPage(View page, float position) {
+        if (Build.VERSION.SDK_INT >= 11) {
+            int pageHeight = page.getHeight();
+            if (0 <= position && position <= 1) {
+                page.setTranslationY(pageHeight * -position + (position * pageHeight / 4));
+            }
+        }
+    }
+});
+```
+
 ## 프로세스 분리
 참고 샘플 : **sample/multiProcess**
 
 버즈스크린을 동작시키는 서비스는 항상 실행중인 상태를 유지하고 있다. 이 때문에 버즈스크린 서비스가 매체사 앱(버즈스크린을 연동하려는 앱)과 같은 프로세스 내에서 동작하는 경우, 프로세스 단위 메모리 관리가 같이 되고, 이 때문에 메모리 사용량이 높게 측정 된다. 이를 막기 위해서는 버즈스크린 서비스가 실행되는 프로세스를 분리해야 한다.
 
-#### 적용 방법
+### 적용 방법
 - 초기화 함수 수정 : BuzzScreen.init 함수에서 useMultiProcess를 true로 설정한다.
 - Android Manifest 파일에 MultipleProcessesReceiver 추가
 ```Xml

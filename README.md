@@ -46,6 +46,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 ```
+- [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
 ##### Eclipse
 - [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 `buzzscreen-sdk-full-eclipse.zip` 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
@@ -55,6 +56,8 @@ dependencies {
 
 - **구글 플레이 서비스 라이브러리** 설정 필요. [구글 플레이 서비스 라이브러리 설정 방법](https://developers.google.com/android/guides/setup)을 참고하여 직접 추가하면 된다.
 - **universal image loader 라이브러리**를 추가한다. [universal image loader README](https://github.com/nostra13/Android-Universal-Image-Loader)를 참고하여 직접 추가하면 된다.
+
+- [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
 ### 2. 설정
 - Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
