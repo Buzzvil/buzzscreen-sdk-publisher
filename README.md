@@ -24,12 +24,13 @@
 개발 환경에 따라 설정 방법이 달라진다.
 
 #### Android studio
-- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 `buzzscreen-sdk-full.aar` 을 개발중인 안드로이드 어플리케이션 내에 포함한다.
+- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full_*VERSION*.aar 을 개발중인 안드로이드 어플리케이션 내에 포함한다.
     1. 다운받은 aar 파일을 개발중인 모듈의 libs/ 폴더에 넣는다.
     2. build.gradle에 다음의 내용을 추가한다.
     ```
     dependencies {
-        compile(name:'buzzscreen-sdk-full', ext:'aar')
+        // 받은 aar 파일명을 다음의 name으로 설정한다.
+        compile(name:'buzzscreen-sdk-full_VERSION', ext:'aar')
     }
     repositories{
         flatDir{
@@ -50,7 +51,7 @@ dependencies {
 [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
 #### Eclipse
-- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 `buzzscreen-sdk-full-eclipse.zip` 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
+- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full-eclipse_*VERSION*.zip 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
     1. File -> import -> Android -> Existing Android code into Workspace를 선택하여 다운받은 디렉토리를 root directory로 갖는 새로운 프로젝트를 생성한다.
     2. 1번을 통해 생성된 프로젝트의 속성 중 'is Library' 를 체크해 라이브러리로 등록한다.
     3. 개발중인 어플리케이션 프로젝트 속성에서 위에서 등록한 라이브러리 프로젝트에 대한 dependency를 추가한다.
@@ -62,6 +63,8 @@ dependencies {
 
 ### 2. 설정
 - Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
+
+> Version 1.2.0 이상부터 리시버 중 기존에 사용하던 ChangeAdReceiver, DownloadAdReceiver 는 Deprecate 되었다.
 
 ```Xml
 <manifest>
@@ -111,6 +114,8 @@ dependencies {
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
+        <!--Deprecated. No need to add these receivers -->
         <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
         <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
     </application>
@@ -191,8 +196,10 @@ public class App extends Application {
 ![Task Flow](postback_flow.jpg)
 
 ### 5. 추가 기능
-다음과 같은 기능이 필요할 때는 ["버즈스크린 SDK 연동 가이드-고급"](ADVANCED-USAGE.md)을 참고한다.
-- 잠금화면 커스터마이징 : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
-- 프로세스 분리 : 메모리의 효율적 사용을 위해 프로세스 분리 지원
+- 다음과 같은 기능이 필요할 때는 ["버즈스크린 SDK 연동 가이드-고급"](ADVANCED-USAGE.md)을 참고한다.
+    - 잠금화면 커스터마이징 : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
+    - 프로세스 분리 : 메모리의 효율적 사용을 위해 프로세스 분리 지원
 
-유저에게 할당되는 광고의 타게팅 정보를 커스터마이징 하려고 할 때는 ["버즈스크린 커스텀 타게팅"](CUSTOM_TARGETING.md)을 참고한다.
+- 유저에게 할당되는 광고의 타게팅 정보를 커스터마이징 하려고 할 때는 ["버즈스크린 커스텀 타게팅"](CUSTOM_TARGETING.md)을 참고한다.
+
+- OnGoing Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.

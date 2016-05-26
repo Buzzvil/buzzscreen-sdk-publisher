@@ -57,6 +57,8 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
+        <!--Deprecated. No need to add these receivers -->
         <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
         <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
     </application>

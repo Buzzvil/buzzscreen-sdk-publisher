@@ -147,7 +147,6 @@ setPageTransformer(new ViewPager.PageTransformer() {
 - Android Mainfest 파일의 기존 버즈스크린 컴포넌트에 android:process=":locker" 속성 추가
 >MultipleProcessesReceiver에서 사용하는 프로세스 속성과 동일
 
-    속성 추가해야 할 컴포넌트 : SimpleLockerActivity(기본 잠금화면을 커스터마이징 하는경우 해당 액티비티에 적용), LandingHelperActivity, LockerService, ChangeAdReceiver, DownloadAdReceiver
-
+    속성 추가해야 할 컴포넌트 : SimpleLockerActivity(기본 잠금화면을 커스터마이징 하는경우 해당 액티비티에 적용), LandingHelperActivity, LockerService (~~ChangeAdReceiver, DownloadAdReceiver~~ - Deprecated since Version 1.2.0)
 
 > **프로세스 적용 분리시 주의사항** : 잠금화면이 매체사 앱과는 다른 프로세스에서 구동되기 때문에 커스터마이징한 잠금화면에서 매체사 앱과 연관된 작업을 진행할때에는 구현에 주의를 요한다.
