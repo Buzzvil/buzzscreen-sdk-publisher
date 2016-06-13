@@ -20,8 +20,8 @@
 
 * Info
 
-| 필드           | 타입    | 설명                                                                                                                                                                                                                        |
-|----------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 필드 | 타입 | 설명 |
+|-----|----|-----|
 | transaction_id | String(64)  | 포인트 중복 적립을 막기 위한 **id**.<br>같은 **transaction_id**로 요청이 온 경우에는 반드시 포인트 중복 적립이 안되도록 처리해주어야 한다.<br>**최대 64자까지 전달 될 수 있으므로, 연동 시 확인이 필요하다.** |
 | user_id | String | 매체사에서 정의한 user_id |
 | campaign_id | Long | 포인트가 지급된 캠페인 id |
@@ -40,8 +40,8 @@
 HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미터. BuzzScreen 에서는 아래와 같은 순서로 파라미터를 암호화한다.
 
 1. JSON serialized parameters with UTF-8 encoding
-1. AES(CBC mode, PCKS7 padding) encryption
-1. base64 encoding
+2. AES(CBC mode, PCKS7 padding) encryption
+3. base64 encoding
 
 암호화된 데이터는 HTTP POST request 파라미터에 data 라는 이름으로 추가하여 전송한다.
 
@@ -74,5 +74,4 @@ HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미�
 
 ```
 Vblq5XX2g/M2fGs5GRbrLQGh6mwGXDI/frRb2Zn2syY0VAzG6ftcvDzaxSLLvgzYMmvhLTDKZATDX2F9U4AENfBZYQ/Ov+Y9QPfW9A39kaQi/XS3kea09+aI1pO0NkHqP8My8TuR//xhVYtoWovSIw42jbTzUhgJ8SePTC5ZwrLg7bOS7cy3gEgcHL9XzUOrxL8RqMo8fieSMv9hr2YkJJmNL2t0akyj/Hz/lXUvOqhrb9mmFuSlWLF/kS8af3fRKgjxNjGGIVDoVotPipFSbHbpExSp6wY0wsmjfcXGw6g=
-
 ```
