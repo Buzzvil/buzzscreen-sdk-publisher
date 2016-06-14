@@ -57,7 +57,7 @@ HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미�
 ```json
 {
     "user_id": "testuserid76301", 
-    "click_type": "u", 
+    "action_type": "u", 
     "extra": "{}", 
     "is_media": 0,
     "point": 2,
