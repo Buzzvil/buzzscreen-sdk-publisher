@@ -55,7 +55,7 @@ Please request for AES key and IV value to your account manager.
 ```json
 {
     "user_id": "testuserid76301", 
-    "click_type": "u", 
+    "action_type": "u", 
     "extra": "{}", 
     "is_media": 0,
     "point": 2,
