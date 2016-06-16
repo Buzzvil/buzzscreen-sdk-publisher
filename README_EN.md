@@ -162,6 +162,8 @@ Point accumulation request flow:
 ![Task Flow](postback_flow.jpg)
 
 ### 5. Additional Features
-If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md):
-- Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
-- Separating the lock screen process from main process in order to increase memory usage efficiency.
+- If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md):
+    - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
+    - Separating the lock screen process from main process in order to increase memory usage efficiency.
+
+- To customize ongoing service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
