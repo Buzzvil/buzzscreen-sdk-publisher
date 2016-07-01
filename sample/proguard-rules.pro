@@ -24,3 +24,5 @@
 #
 #-keep class com.buzzvil.buzzscreen.sdk.** { *; }
 #-keep interface com.buzzvil.buzzscreen.sdk.** { *; }
+
+-dontwarn com.facebook.ads.internal.**
