@@ -141,6 +141,8 @@ To prevent ProGuard from stripping away required classes, add the following line
 -keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
+
+-dontwarn com.facebook.ads.internal.**
 ```
 
 ### 3. Lock Screen Control
