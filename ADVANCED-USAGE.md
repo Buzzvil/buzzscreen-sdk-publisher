@@ -130,6 +130,42 @@ setPageTransformer(new ViewPager.PageTransformer() {
 });
 ```
 
+##### 적립 시도 성공 및 실패 알림 기능
+`OnPointListener` 인터페이스를 통해 포인트 적립 시도가 성공적으로 발생했을 때(onSuccess), 유저의 네트워크 에러로 현재 적립 시도가 불가능할 때(onFail) 에 대해 알림을 구현할 수 있다. 구현된 interface를 ‘setOnPointListener(OnPointListener listener)' 메소드를 통해 등록하여 사용한다.
+
+```Java
+interface OnPointListener {
+    void onSuccess(PointType type, int points);
+    void onFail(PointType type);
+}
+```
+- PointType : 해당 포인트가 발생한 원인에 따라 UNLOCK(잠금해제 - 오른쪽 스와이프), LANDING(페이지 랜딩 - 왼쪽 스와이프) 두가지 중 하나로 정해져 전달된다.
+
+- **주의**
+	- 알림으로 뜨는 포인트는 즉시 적립 가능한 포인트만을 의미한다. 회원가입, 앱 실행형 등 액션을 마쳐야 적립이 이루어지는 광고의 경우 알림을 주지 않는다. 
+	- 이러한 상황에 대해서도 알림을 구현하려고 하는 경우에는 `OnTrackingListener` 의 `onClick(Campaign campaign)` 메소드를 이용해서 처리할 수 있다.([임프레션 및 클릭 이벤트 트래킹](#임프레션-및-클릭-이벤트-트래킹) 참고)
+	
+	> onClick 의 파라미터로 전달되는 캠페인에 대해 `campaign.getActionPoints()`를 통해 액션형 포인트를 얻은 후, 이 값이 0보다 크다면 해당 캠페인은 액션형 캠페인이므로 이 정보를 통해 알림을 직접 구현한다.
+
+사용 예시
+```Java
+setOnPointListener(new OnPointListener() {
+
+	@Override
+    public void onSuccess(PointType type, int points) {
+    	// 적립 요청 성공 메세지
+    	Toast.makeText(MainActivity.this, points + " p 적립 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
+    }
+	
+    @Override
+    public void onFail(PointType type) {
+    	// 포인트 적립 실패 메세지
+    	Toast.makeText(MainActivity.this, "네트워크 문제로 적립되지 않았습니다", Toast.LENGTH_LONG).show();
+    }
+    
+});
+```
+
 ## 프로세스 분리
 참고 샘플 : **sample/multiProcess**
 
