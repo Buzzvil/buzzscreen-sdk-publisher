@@ -16,13 +16,12 @@
 #   public *;
 #}
 
-#-keep class com.loopj.android.** { *; }
-#-keep interface com.loopj.android.** { *; }
-#
-#-keep class com.nostra13.universalimageloader.** { *; }
-#-keep interface com.nostra13.universalimageloader.** { *; }
-#
-#-keep class com.buzzvil.buzzscreen.sdk.** { *; }
-#-keep interface com.buzzvil.buzzscreen.sdk.** { *; }
+-keep class com.buzzvil.buzzscreen.sdk.** {*;}
+-keep interface com.buzzvil.buzzscreen.sdk.** {*;}
+
+-keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 
 -dontwarn com.facebook.ads.internal.**
+-dontwarn com.google.android.gms.ads.**

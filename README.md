@@ -43,7 +43,7 @@
 
 ```
 dependencies {
-    compile 'com.google.android.gms:play-services-ads:7.5.0'
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 }
 ```
@@ -133,6 +133,7 @@ dependencies {
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 
 -dontwarn com.facebook.ads.internal.**
+-dontwarn com.google.android.gms.ads.**
 ```
 
 ### 3. 메소드 호출

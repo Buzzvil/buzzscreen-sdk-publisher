@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.gms:play-services-ads:7.5.0'
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 
     basicCompile(name:'buzzscreen-sdk-full-1.2.4', ext:'aar')
