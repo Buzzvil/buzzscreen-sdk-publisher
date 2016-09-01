@@ -150,7 +150,7 @@ To prevent ProGuard from stripping away required classes, add the following line
 - `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
-- `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()`,  `setGender()`, and `setRegion()`. ([Region formatting](REGION-FORMAT.md) will be added later according to your region. Please contact your account manager.)
+- `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()` and `setGender()`.
 
 > Keep in mind that you must set `userId` before calling `BuzzScreen.getInstance().activate()`, and `UserProfile` data including `userId` can be updated later at any time.
 
