@@ -64,7 +64,7 @@ dependencies {
 ### 2. 설정
 - Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
 
-#### Update Guide
+#### Upgrade Guide
 - Version 1.2.0 이상부터 리시버 중 기존에 사용하던 ChangeAdReceiver, DownloadAdReceiver 는 Deprecate 되었다.
 - Version 1.2.6 이상부터 LandingOverlayActivity 가 추가되었다.
 
