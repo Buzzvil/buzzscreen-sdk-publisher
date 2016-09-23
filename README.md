@@ -7,11 +7,6 @@
 - **aars/** : 안드로이드 스튜디오에서 사용가능한 안드로이드 라이브러리들이 들어있다.
     - **buzzscreen-sdk-core.aar** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.
     - **buzzscreen-sdk-full.aar** : buzzscreen-sdk-core에 기본 잠금화면(SimpleLockerActivity)을 포함한 SDK이다. SimpleLockerActivity는 가장 간단한 형태의 잠금화면으로 잠금화면 커스터마이징이 필요하지 않은 경우 이 SDK를 사용한다.
-- **eclipse/** : 이클립스에서 사용가능한 안드로이드 라이브러리들이 들어있다.
-    > 주의 : 이클립스용 라이브리리는 1.2.5 버젼 이후로 지원이 종료되었다.
-    
-    - **buzzscreen-sdk-core-eclipse.zip** : buzzscreen-sdk-core.aar 과 역할이 동일한 이클립스용 라이브러리이다.
-    - **buzzscreen-sdk-full-eclipse.zip** : buzzscreen-sdk-full.aar 과 역할이 동일한 이클립스용 라이브러리이다.
 - **sample/** : 버즈스크린 연동 샘플 모듈이 들어있다. basic, custom, multiProcess 라는 이름의 productFlavors 를 이용하여 모든 연동 버젼에 대한 샘플 앱을 각각 빌드할 수 있다.
     - **basic** : 가장 간단한 형태의 연동 샘플이다. buzzscreen-sdk-full을 사용하여 최소한의 코드로 버즈스크린을 연동하는 것을 보여준다.
     - **custom** : 잠금화면을 커스터마이징 하는 샘플이다. buzzscreen-sdk-core를 연동하여 커스터마이징을 어떻게 하는지 알 수 있다. buzzscreen-sdk-full에 포함되어있는 SimpleLockerActivity와 이 샘플에서 제공하는 CustomLockerActivity와의 비교를 통해 쉽게 이해할 수 있도록 구성했다.
@@ -23,7 +18,6 @@
 참고 샘플 : **sample/basic**
 
 ### 1. 라이브러리 추가
-개발 환경에 따라 설정 방법이 달라진다.
 
 #### Android studio
 - [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full_*VERSION*.aar 을 개발중인 안드로이드 어플리케이션 내에 포함한다.
@@ -51,20 +45,6 @@ dependencies {
 ```
 ##### Facebook Audience Network library 
 [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
-
-#### Eclipse
-
-> 주의 : 이클립스용 라이브리리는 1.2.5 버젼 이후로 지원이 종료되었다.
-
-- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full-eclipse_*VERSION*.zip 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
-    1. File -> import -> Android -> Existing Android code into Workspace를 선택하여 다운받은 디렉토리를 root directory로 갖는 새로운 프로젝트를 생성한다.
-    2. 1번을 통해 생성된 프로젝트의 속성 중 'is Library' 를 체크해 라이브러리로 등록한다.
-    3. 개발중인 어플리케이션 프로젝트 속성에서 위에서 등록한 라이브러리 프로젝트에 대한 dependency를 추가한다.
-
-- **구글 플레이 서비스 라이브러리** 설정 필요. [구글 플레이 서비스 라이브러리 설정 방법](https://developers.google.com/android/guides/setup)을 참고하여 직접 추가하면 된다.
-- **universal image loader 라이브러리**를 추가한다. [universal image loader README](https://github.com/nostra13/Android-Universal-Image-Loader)를 참고하여 직접 추가하면 된다.
-
-- [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
 ### 2. 설정
 - Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
