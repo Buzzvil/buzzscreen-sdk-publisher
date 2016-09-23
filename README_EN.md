@@ -1,6 +1,6 @@
 # BuzzScreen SDK for Android
 - Buzzvil's library for integrating BuzzScreen with Android apps.
-- Requires Android version 2.3 (API level 9) or newer.
+- Requires Android version 3.0 (API level 11) or newer.
 - Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
 - The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 

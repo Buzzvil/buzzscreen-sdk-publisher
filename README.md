@@ -1,6 +1,6 @@
 # BuzzScreen SDK for Android
 - 버즈스크린을 안드로이드 어플리케이션에 연동하기 위한 라이브러리
-- 안드로이드 버전 지원 : Android 2.3(API Level 9) 이상
+- 안드로이드 버전 지원 : Android 3.0(API Level 11) 이상
 - SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
 
 ## 폴더 및 파일 설명
