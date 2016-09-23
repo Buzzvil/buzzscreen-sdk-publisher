@@ -153,6 +153,8 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 3. Lock Screen Control
 - `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
+    > If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
 - `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()` and `setGender()`.
 
@@ -173,4 +175,4 @@ Point accumulation request flow:
     - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
     - Separating the lock screen process from main process in order to increase memory usage efficiency.
 
-- To customize ongoing service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+- To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).

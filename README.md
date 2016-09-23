@@ -189,6 +189,8 @@ public class App extends Application {
 
 #### 3) 잠금화면 제어 설정
 - BuzzScreen.getInstance().activate() : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
+    > 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+
 - BuzzScreen.getInstance().deactivate() : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
     
 > **주의** : 유저가 로그아웃할 경우 잠금화면에서 버즈스크린이 더이상 나타나지 않게 하기 위해 로그아웃 로직에 반드시 명시적으로 `BuzzScreen.getInstance().deactivate()` 를 호출해야 한다.
@@ -209,4 +211,4 @@ public class App extends Application {
 
 - 유저에게 할당되는 광고의 타게팅 정보를 커스터마이징 하려고 할 때는 ["버즈스크린 커스텀 타게팅"](CUSTOM_TARGETING.md)을 참고한다.
 
-- OnGoing Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+- Lockscreen Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
