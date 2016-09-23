@@ -5,11 +5,12 @@ Buzzscreen uses [Foregound Service](http://developer.android.com/guide/component
 
 ## Lockscreen Service Notification Configuration
 **LockerServiceNotificationConfig** class enables to get or set service notification configurations. Below are configuration details that you can control. You MUST use this class after calling `BuzzScreen.init()`.
-- **Title** : Title of the notification. Default is the app's name.
-- **Text** : Content of the notification. Default is an empty string("").
-- **SmallIcon** : Small icon of the notification. Default is the app's icon.
-- **LargeIcon** : Large icon of the notification. Default is none.
-- **ShowAlways** : Boolean value that decides whether or not to show the notification always. You can use it to test your notification setting. Defult is false.
+- **Title** : Title of the notification(String). Default is the app's name.
+- **Text** : Content of the notification(String). Default is an empty string("").
+- **SmallIcon** : Small icon of the notification(int). Default is the app's icon.
+- **LargeIcon** : Large icon of the notification(int). Default is none.
+- **ShowAlways** : Boolean value that decides whether or not to show the notification always(boolean). You can use it to test your notification setting. Defult is false.
+- **Intent** : Intent that defines the action when notification is clicked(Intent). Default is to start the Launcher Activity.
 
 ### Example
 ```Java

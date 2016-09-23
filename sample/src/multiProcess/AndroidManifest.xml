@@ -39,6 +39,13 @@
             android:process=":locker"
             android:screenOrientation="portrait"
             android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
+        <activity
+            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:process=":locker"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
 
         <!-- Service for BuzzScreen -->
         <service

@@ -1,6 +1,6 @@
 # BuzzScreen SDK for Android
 - Buzzvil's library for integrating BuzzScreen with Android apps.
-- Requires Android version 2.3 (API level 9) or newer.
+- Requires Android version 3.0 (API level 11) or newer.
 - Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
 - The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
 
@@ -56,7 +56,9 @@ Download [AudienceNetwork.jar](libs/AudienceNetwork.jar) and add it as library. 
 
 Add permissions, activities, services, and receivers to your Android Manifest as below.
 
-> Since version 1.2.0, ChangeAdReceiver and DownloadAdReceiver are deprecated.
+#### Upgrade Guide
+- From version 1.2.0, ChangeAdReceiver and DownloadAdReceiver are deprecated.
+- From version 1.2.6, LandingOverlayActivity is added.
 
 ```xml
 <manifest>
@@ -86,6 +88,12 @@ Add permissions, activities, services, and receivers to your Android Manifest as
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
+        <activity
+            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
 
         <!-- Service for BuzzScreen -->
         <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
@@ -106,10 +114,6 @@ Add permissions, activities, services, and receivers to your Android Manifest as
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
-        <!--Deprecated. No need to add these receivers -->
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
     </application>
 </manifest>
 ```
@@ -149,6 +153,8 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 3. Lock Screen Control
 - `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
+    > If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
 - `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()` and `setGender()`.
 
@@ -169,4 +175,4 @@ Point accumulation request flow:
     - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
     - Separating the lock screen process from main process in order to increase memory usage efficiency.
 
-- To customize ongoing service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+- To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).

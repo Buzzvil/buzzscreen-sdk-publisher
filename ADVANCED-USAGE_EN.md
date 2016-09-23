@@ -144,6 +144,6 @@ The BuzzScreen SDK is always running/using Android's service component in the fo
     android:name="com.buzzvil.buzzscreen.sdk.MultipleProcessesReceiver"
     android:process=":locker" />
 ```
-- Please add a `android:process=":locker"` attribute to the existing BuzzScreen components in your Android Mainfest file. Components in which the attribute should be added to include `SimpleLockerActivity` (unless you're customizing the lock screen, in which case it should be added to the activity controlling the lock screen), `LandingHelperActivity`, `LockerService`, (~~ChangeAdReceiver, DownloadAdReceiver~~ - Deprecated since Version 1.2.0)
+- Please add a `android:process=":locker"` attribute to the existing BuzzScreen components in your Android Mainfest file. Components in which the attribute should be added to include `SimpleLockerActivity` (unless you're customizing the lock screen, in which case it should be added to the activity controlling the lock screen), `LandingHelperActivity`, `LandingOverlayActivity`, `LockerService`, (~~ChangeAdReceiver, DownloadAdReceiver~~ - Deprecated since Version 1.2.0)
 
 > **Warning**: After enabling process separation, the lock screen will run separately from your app's main process. Please be careful when developing a feature related to your app on the lock screen area.

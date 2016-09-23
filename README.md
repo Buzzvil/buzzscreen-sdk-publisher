@@ -1,6 +1,6 @@
 # BuzzScreen SDK for Android
 - 버즈스크린을 안드로이드 어플리케이션에 연동하기 위한 라이브러리
-- 안드로이드 버전 지원 : Android 2.3(API Level 9) 이상
+- 안드로이드 버전 지원 : Android 3.0(API Level 11) 이상
 - SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
 
 ## 폴더 및 파일 설명
@@ -8,6 +8,8 @@
     - **buzzscreen-sdk-core.aar** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:연동 가이드 - 고급)하는 경우 사용한다.
     - **buzzscreen-sdk-full.aar** : buzzscreen-sdk-core에 기본 잠금화면(SimpleLockerActivity)을 포함한 SDK이다. SimpleLockerActivity는 가장 간단한 형태의 잠금화면으로 잠금화면 커스터마이징이 필요하지 않은 경우 이 SDK를 사용한다.
 - **eclipse/** : 이클립스에서 사용가능한 안드로이드 라이브러리들이 들어있다.
+    > 주의 : 이클립스용 라이브리리는 1.2.5 버젼 이후로 지원이 종료되었다.
+    
     - **buzzscreen-sdk-core-eclipse.zip** : buzzscreen-sdk-core.aar 과 역할이 동일한 이클립스용 라이브러리이다.
     - **buzzscreen-sdk-full-eclipse.zip** : buzzscreen-sdk-full.aar 과 역할이 동일한 이클립스용 라이브러리이다.
 - **sample/** : 버즈스크린 연동 샘플 모듈이 들어있다. basic, custom, multiProcess 라는 이름의 productFlavors 를 이용하여 모든 연동 버젼에 대한 샘플 앱을 각각 빌드할 수 있다.
@@ -51,6 +53,9 @@ dependencies {
 [AudienceNetwork.jar](libs/AudienceNetwork.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
 
 #### Eclipse
+
+> 주의 : 이클립스용 라이브리리는 1.2.5 버젼 이후로 지원이 종료되었다.
+
 - [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full-eclipse_*VERSION*.zip 의 압축을 풀어 개발중인 안드로이드 어플리케이션 내에 라이브러리로 포함한다.
     1. File -> import -> Android -> Existing Android code into Workspace를 선택하여 다운받은 디렉토리를 root directory로 갖는 새로운 프로젝트를 생성한다.
     2. 1번을 통해 생성된 프로젝트의 속성 중 'is Library' 를 체크해 라이브러리로 등록한다.
@@ -64,7 +69,9 @@ dependencies {
 ### 2. 설정
 - Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
 
-> Version 1.2.0 이상부터 리시버 중 기존에 사용하던 ChangeAdReceiver, DownloadAdReceiver 는 Deprecate 되었다.
+#### Upgrade Guide
+- Version 1.2.0 이상부터 리시버 중 기존에 사용하던 ChangeAdReceiver, DownloadAdReceiver 는 Deprecate 되었다.
+- Version 1.2.6 이상부터 LandingOverlayActivity 가 추가되었다.
 
 ```Xml
 <manifest>
@@ -94,6 +101,12 @@ dependencies {
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
+        <activity
+            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
 
         <!-- Service for BuzzScreen -->
         <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
@@ -114,10 +127,6 @@ dependencies {
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
-        <!--Deprecated. No need to add these receivers -->
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
     </application>
 </manifest>
 ```
@@ -185,6 +194,8 @@ public class App extends Application {
 
 #### 3) 잠금화면 제어 설정
 - BuzzScreen.getInstance().activate() : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
+    > 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+
 - BuzzScreen.getInstance().deactivate() : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
     
 > **주의** : 유저가 로그아웃할 경우 잠금화면에서 버즈스크린이 더이상 나타나지 않게 하기 위해 로그아웃 로직에 반드시 명시적으로 `BuzzScreen.getInstance().deactivate()` 를 호출해야 한다.
@@ -205,4 +216,4 @@ public class App extends Application {
 
 - 유저에게 할당되는 광고의 타게팅 정보를 커스터마이징 하려고 할 때는 ["버즈스크린 커스텀 타게팅"](CUSTOM_TARGETING.md)을 참고한다.
 
-- OnGoing Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+- Lockscreen Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
