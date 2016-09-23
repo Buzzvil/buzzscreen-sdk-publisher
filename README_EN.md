@@ -56,7 +56,9 @@ Download [AudienceNetwork.jar](libs/AudienceNetwork.jar) and add it as library. 
 
 Add permissions, activities, services, and receivers to your Android Manifest as below.
 
-> Since version 1.2.0, ChangeAdReceiver and DownloadAdReceiver are deprecated.
+#### Update Guide
+- From version 1.2.0, ChangeAdReceiver and DownloadAdReceiver are deprecated.
+- From version 1.2.6, LandingOverlayActivity is added.
 
 ```xml
 <manifest>
@@ -86,6 +88,12 @@ Add permissions, activities, services, and receivers to your Android Manifest as
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
+        <activity
+            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
 
         <!-- Service for BuzzScreen -->
         <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
@@ -106,10 +114,6 @@ Add permissions, activities, services, and receivers to your Android Manifest as
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
-        <!--Deprecated. No need to add these receivers -->
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
     </application>
 </manifest>
 ```
