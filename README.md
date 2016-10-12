@@ -173,12 +173,11 @@ public class App extends Application {
 > BuzzScreen.getInstance().activate() 호출 전에 반드시 userId 설정이 필요하며, 이후에 userId를 포함한 UserProfile 정보는 수시로 변경가능하다.
 
 #### 3) 잠금화면 제어 설정
-- BuzzScreen.getInstance().activate() : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
+- `BuzzScreen.getInstance().activate()` : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
     > 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
 
-- BuzzScreen.getInstance().deactivate() : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
-    
-> **주의** : 유저가 로그아웃할 경우 잠금화면에서 버즈스크린이 더이상 나타나지 않게 하기 위해 로그아웃 로직에 반드시 명시적으로 `BuzzScreen.getInstance().deactivate()` 를 호출해야 한다.
+- `BuzzScreen.getInstance().deactivate()` : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
+    - `BuzzScreen.getInstance().logout()` : 유저가 로그아웃할 경우 이 함수를 호출한다. 이 함수는 deactivate() 를 호출하며, 버즈스크린에서 사용하는 유저 정보를 디바이스에서 삭제한다.
 
 ### 4. 포인트 적립 요청(포스트백)  - 서버 연동
 - 버즈스크린은 포인트 적립이 발생했을 때 직접 유저들에게 포인트를 지급하는 것이 아니다. 버즈스크린 서버에서 매체사 서버로 포인트 적립 요청을 보낼 뿐이고, 실제 지급은 매체사 서버에서 처리한다.

@@ -156,6 +156,8 @@ To prevent ProGuard from stripping away required classes, add the following line
     > If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
 
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
+    - `BuzzScreen.getInstance().logout()` : Call this when you the user has logged-out. This method calls `deactivate()`, and removes all the `UserProfile` related info from the device.
+
 - `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()` and `setGender()`.
 
 > Keep in mind that you must set `userId` before calling `BuzzScreen.getInstance().activate()`, and `UserProfile` data including `userId` can be updated later at any time.
