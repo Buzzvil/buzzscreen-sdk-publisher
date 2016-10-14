@@ -146,7 +146,9 @@ To prevent ProGuard from stripping away required classes, add the following line
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
 -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 
--dontwarn com.facebook.ads.internal.**
+-keep class com.facebook.ads.** { *; }
+-keep interface com.facebook.ads.** { *; }
+-dontwarn com.facebook.ads.**
 -dontwarn com.google.android.gms.ads.**
 ```
 
