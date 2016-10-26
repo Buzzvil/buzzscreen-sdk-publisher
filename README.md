@@ -111,7 +111,7 @@ dependencies {
 </manifest>
 ```
 
-- Proguard 설정(선택사항) : Proguard 사용시에 다음 라인들을 Proguard 설정에 추가한다.
+- Proguard 설정 : Proguard 사용시에 다음 라인들을 **반드시** Proguard 설정에 추가한다.
 
 ```
 -keep class com.buzzvil.buzzscreen.sdk.** {*;}
