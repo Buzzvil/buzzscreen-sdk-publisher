@@ -176,7 +176,15 @@ public class App extends Application {
 
 #### 3) 잠금화면 제어 설정
 - `BuzzScreen.getInstance().activate()` : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
-    > 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+    - 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+    
+    - 활성화한 후 실제로 잠금화면이 처음 준비가 완료된 시점을 알고 싶을 때, 아래의 interface를 구현하여 activate() 메소드의 파라미터로 넘긴다. `BuzzScreen.getInstance().activate(ActivateListener listener)`의 형태이다.
+          
+        ```Java
+        public interface ActivateListener {
+            void onReady();// This will be called when the first lockscreen is ready to be shown.
+        }
+        ```
 
 - `BuzzScreen.getInstance().deactivate()` : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
     - `BuzzScreen.getInstance().logout()` : 유저가 로그아웃할 경우 이 함수를 호출한다. 이 함수는 deactivate() 를 호출하며, 버즈스크린에서 사용하는 유저 정보를 디바이스에서 삭제한다.

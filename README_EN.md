@@ -155,7 +155,15 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 3. Lock Screen Control
 - `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
-    > If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+    - If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+    
+    - If you want to catch the event when the lockscreen is ready for the first time after the `activate()` method has been called, implement the below interface and pass it as the parameter for the activate() method as `BuzzScreen.getInstance().activate(ActivateListener listener)`
+      
+    ```Java
+    public interface ActivateListener {
+        void onReady();// This will be called when the first lockscreen is ready to be shown.
+    }
+    ```
 
 - `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
     - `BuzzScreen.getInstance().logout()` : Call this when you the user has logged-out. This method calls `deactivate()`, and removes all the `UserProfile` related info from the device.
