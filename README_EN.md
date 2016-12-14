@@ -9,17 +9,15 @@
 
 ## Included files
 - **aars/** : Android Library files for Android Studio
-    - **buzzscreen-sdk-core.aar** : Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.)
+    - **buzzscreen-sdk-core.aar** : Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md) for more details.)
     - **buzzscreen-sdk-full.aar** : Full SDK including BuzzScreen's default `SimpleLockerActivity` lock screen which supports BuzzScreen's basic features. Please use this SDK if you don't need customized features.
 - **sample/** : BuzzScreen sample module that enables to build the sample app. It has productFlavors called basic, custom, and multiProcess that represent all versions of integration.
     - **basic** : Basic BuzzScreen integration example that uses **buzzscreen-sdk-full**.
     - **custom** : Custom BuzzScreen integration example that uses **buzzscreen-sdk-core** and a customized lock screen. Please compare `SimpleLockerActivity` from **buzzscreen-sdk-full** with `CustomLockerActivity` from **buzzscreen-sdk-core** for further understanding.
-    - **multiProcess** : BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md) for more details.
+    - **multiProcess** : BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md) for more details.
 
 ## Basic guide (sample-basic)
 Our simplest integration method – add BuzzScreen to your Android application in just a few easy steps.
-
-Download and unzip the [BuzzScreen SDK](https://github.com/Buzzvil/buzzscreen-sdk-publisher/archive/master.zip) and include **aars/buzzscreen-sdk-full** from the unzipped folder in your Android application.
 
 ### 1. Add Libraries
 
@@ -50,7 +48,7 @@ dependencies {
 ```
 
 ##### Facebook Audience Network library 
-Download [AudienceNetwork.jar](libs/AudienceNetwork.jar) and add it as library. This is for using [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) so if you are already using it, please don't add it again.
+Download [AudienceNetwork.jar](libs/AudienceNetwork-4.13.1.jar) and add it as library. This is for using [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) so if you are already using it, please don't add it again.
 
 ### 2. Setup
 
@@ -155,7 +153,7 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 3. Lock Screen Control
 - `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
 - `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
-    - If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+    - If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
     
     - If you want to catch the event when the lockscreen is ready for the first time after the `activate()` method has been called, implement the below interface and pass it as the parameter for the activate() method as `BuzzScreen.getInstance().activate(ActivateListener listener)`
       
@@ -175,16 +173,16 @@ To prevent ProGuard from stripping away required classes, add the following line
 ### 4. Points Accumulation Request (Postback) - Server to Server Integration
 When a point accumulation activity occurs from a user, BuzzScreen does not give the user reward points directly. The BuzzScreen server will make a point accumulation request to the publisher's server and the publisher's server will process the request and provide points for the user.
 
-Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](POSTBACK_EN.md) for more details.
+Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](docs/POSTBACK_EN.md) for more details.
 
 > If you would like to send the user a push notification on point accumulation, it should be processed/sent from the publisher's server after receiving a point accumulation request from BuzzScreen.
 
 Point accumulation request flow:
-![Task Flow](postback_flow.jpg)
+![Task Flow](docs/postback_flow.jpg)
 
 ### 5. Additional Features
-- If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](ADVANCED-USAGE_EN.md):
+- If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md):
     - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
     - Separating the lock screen process from main process in order to increase memory usage efficiency.
 
-- To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+- To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
