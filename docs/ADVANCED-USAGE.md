@@ -1,7 +1,7 @@
 # 버즈스크린 SDK 연동 가이드 - 고급
 ["버즈스크린 SDK 연동 가이드 - 기본"](https://github.com/Buzzvil/buzzscreen-sdk-publisher#버즈스크린-sdk-연동-가이드---기본)을 먼저 진행한 후에 필요에 따라 본 문서 내용을 진행한다.
-- [잠금화면 커스터마이징](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#잠금화면-커스터마이징) : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
-- [프로세스 분리](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/ADVANCED-USAGE.md#프로세스-분리) : 메모리의 효율적 사용을 위해 프로세스 분리 지원
+- [잠금화면 커스터마이징](#잠금화면-커스터마이징) : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
+- [프로세스 분리](#프로세스-분리) : 메모리의 효율적 사용을 위해 프로세스 분리 지원
 
 ## 잠금화면 커스터마이징
 참고 샘플 : **sample/custom**

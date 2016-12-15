@@ -1,5 +1,5 @@
 # BuzzScreen SDK Advanced Integration
-*Please make sure to read [BuzzScreen SDK for Android](README_EN.md) first.*
+*Please make sure to read [BuzzScreen SDK for Android](https://github.com/Buzzvil/buzzscreen-sdk-publisher#README_EN.md) first.*
 - [Lock screen customization](#lock-screen-customization): Customized lock screen sliding/swiping UI, clock UI, and extra lock screen widgets.
 - [Process separation](#process-separation): Separating the lock screen process from main process in order to increase memory usage efficiency.
 
