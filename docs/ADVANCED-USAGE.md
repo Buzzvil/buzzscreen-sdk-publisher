@@ -131,7 +131,8 @@ setPageTransformer(new ViewPager.PageTransformer() {
 ```
 
 ##### 적립 시도 성공 및 실패 알림 기능
-`OnPointListener` 인터페이스를 통해 포인트 적립 시도가 성공적으로 발생했을 때(onSuccess), 유저의 네트워크 에러로 현재 적립 시도가 불가능할 때(onFail) 에 대해 알림을 구현할 수 있다. 구현된 interface를 ‘setOnPointListener(OnPointListener listener)' 메소드를 통해 등록하여 사용한다.
+`OnPointListener` 인터페이스를 통해 포인트 적립 시도가 성공적으로 발생했을 때(onSuccess), 유저의 네트워크 에러로 현재 적립 시도가 불가능할 때(onFail) 에 대해 알림을 구현할 수 있다. 구현된 interface를 `setOnPointListener(OnPointListener listener)` 메소드를 통해 등록하여 사용한다.
+> setOnPointListener(OnPointListener pointListener) 메소드는 `BuzzScreen` class에 정의되어 있다. 따라서 사용할 때는 `BuzzScreen.getInstance().setOnPointListener(...)` 으로 사용해야 한다. 반드시 `BuzzScreen.init()` 호출 이후 호출해야 한다.
 
 ```Java
 interface OnPointListener {
@@ -149,20 +150,20 @@ interface OnPointListener {
 
 사용 예시
 ```Java
-setOnPointListener(new OnPointListener() {
+BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
 
-	@Override
+    @Override
     public void onSuccess(PointType type, int points) {
-    	// 적립 요청 성공 메세지
-    	Toast.makeText(MainActivity.this, points + " p 적립 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
+        // 적립 요청 성공 메세지
+        Toast.makeText(MainActivity.this, points + " p 적립 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
     }
-	
+
     @Override
     public void onFail(PointType type) {
-    	// 포인트 적립 실패 메세지
-    	Toast.makeText(MainActivity.this, "네트워크 문제로 적립되지 않았습니다", Toast.LENGTH_LONG).show();
+        // 포인트 적립 실패 메세지
+        Toast.makeText(MainActivity.this, "네트워크 문제로 적립되지 않았습니다", Toast.LENGTH_LONG).show();
     }
-    
+
 });
 ```
 
