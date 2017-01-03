@@ -132,6 +132,43 @@ setPageTransformer(new ViewPager.PageTransformer() {
 });
 ```
 
+##### Informing Point Earning Request's Status
+Using `OnPointListener` interface, you can inform user that the point earning request resulted from unlocking or landing lockscreen has been successful or not. You can use it by implementing following interface, and pass it as the parameter in `setOnPointListener(OnPointListener listener)` method.
+> setOnPointListener(OnPointListener pointListener) is defined in `BuzzScreen` class. So you have to use it as `BuzzScreen.getInstance().setOnPointListener(...)`. This method must be called after `BuzzScreen.init()`.
+
+```Java
+interface OnPointListener {
+    void onSuccess(PointType type, int points);
+    void onFail(PointType type);
+}
+```
+- PointType : Depending on the user's action which results in current point request, the `PointType` is either UNLOCK(swiping right) or LANDING(swiping left).
+
+- **Caution**
+	- The informed points are only for **instantly earning-possible points**. Points which can be earned after certain actions - app execution, sign up, event participation(aka CPA types) - will **not** be informed by this method.
+	- If you want to handle the CPA types too, you can use `onClick(Campaign campaign)` method in `OnTrackingListener`.(Please refer to [Tracking Impression and Click Events](#tracking-impression-and-click-events))
+
+	> Using `campaign.getActionPoints()` to get action type's points(action_points) in `onClick` method's parameter, `campaign`, and check if it is bigger than 0, which means the campaign is CPA type. If so, you can inform users of instructions like - 'if you finish participating this campaign, you can get {action_points} points'.
+
+Example
+```Java
+BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
+
+    @Override
+    public void onSuccess(PointType type, int points) {
+        // Point accumulation request success message
+        Toast.makeText(MainActivity.this, points + " p request succeeded!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFail(PointType type) {
+        // Point accumulation request fail message
+        Toast.makeText(MainActivity.this, "Fail to request points due to the network issue..", Toast.LENGTH_LONG).show();
+    }
+
+});
+```
+
 ## Process separation
 Sample files are located in **buzzscreen-sample-multi-process**.
 
