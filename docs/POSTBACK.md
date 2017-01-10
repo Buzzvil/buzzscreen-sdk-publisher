@@ -33,6 +33,7 @@
 | point | Integer | 유저에게 지급할 포인트의 전체 합.<br>유저의 액션에 의해 캠페인에서 지급되는 포인트와 기본적립금인 base_point를 합친 값이다. |
 | *base_point* | Integer | (Optional) 유저에게 정해진 interval 당 기본적으로 제공해주는 포인트.<br>최근에 기본 포인트를 적립받은 시점으로부터 정해진 **interval**이 지나지 않았으면 지급되지 않아야 하므로 0, 지났으면 기본 적립금 값으로 설정된다. |
 | data | String  | (Optional) HTTP request parameter를 암호화 해서 전송하는 경우 이 파라미터를 사용한다. 자세한 내용은 5. 참조 |
+| revenue_type | String | 광고 타입. cpi, cpe, cpa 등의 값이 올 수 있다. 컨텐츠인 경우 빈 값. |
 | ~~click_type~~ (Deprecated) | String  | (Optional) ~~랜딩/잠금해제 구분자 <ul><li>u: 잠금해제</li><li>l: 랜딩 </li></ul>~~ ||
 
 ### 5. HTTP Request Parameter Encryption/Decryption
