@@ -10,7 +10,7 @@
 
 ### 레이아웃
 레이아웃에는 필수적으로 **시계, 슬라이더**가 포함되어 있어야 하며, 캠페인 이미지에 따라 뷰들의 가독성이 떨어지지 않게 하기 위해 배경 그라데이션을 추가하는 것이 좋다. 그 외에 커스텀화 된 기능을 위한 뷰(아래 그림의 카메라 shortcut 등)를 추가할 수 있다.
->참고:[레이아웃 가이드라인](https://drive.google.com/a/buzzvil.com/file/d/0B4bLqCqPIOIaZ1ZkS0tSczIya2M/view)
+>참고:[레이아웃 가이드라인](https://drive.google.com/file/d/0B1aKRQxB-KLJZlpHbjdNaFBBTms/view?usp=sharing)
 
 ![Layout](layout.jpg)
 
