@@ -34,7 +34,7 @@ dependencies {
 }
 
 ```
-> `com.google.android.gms:play-services-ads:8.4.0` 와 `com.google.android.gms:play-services-location:8.4.0` 에서 사용하는 버전 8.4.0은 앱에서 사용하는 구글 플레이 서비스 버전과 동일하도록 수정바랍니다. 그렇지 않을 경우 컴파일시에 `com.android.dex.DexException` 등의 에러를 만날 수 있씁니다.
+> `com.google.android.gms:play-services-ads:8.4.0` 와 `com.google.android.gms:play-services-location:8.4.0` 에서 사용하는 버전 8.4.0은 앱에서 사용하는 구글 플레이 서비스 버전과 동일하도록 수정바랍니다. 그렇지 않을 경우 컴파일시에 `com.android.dex.DexException` 등의 에러를 만날 수 있습니다.
 
 
 #### `AndroidManifest.xml` 에 다음 코드를 추가합니다.
