@@ -1,12 +1,17 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven { url "https://dl.bintray.com/buzzvil/buzzscreen/" }
+    maven { url "http://dl.appnext.com/" }
+}
+
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.buzzvil.buzzscreen.sample"
-        minSdkVersion 11
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -17,20 +22,22 @@ android {
         custom {}
         multiProcess {}
     }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
 
-    basicCompile(name:'buzzscreen-sdk-full-1.3.0', ext:'aar')
-    customCompile(name:'buzzscreen-sdk-core-1.3.0', ext:'aar')
-    multiProcessCompile(name:'buzzscreen-sdk-full-1.3.0', ext:'aar')
-}
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-location:8.4.0'
 
-repositories{
-    flatDir{
-        dirs 'libs'
-    }
+    basicCompile 'com.buzzvil:buzzscreen:1.+'
+    customCompile 'com.buzzvil:buzzscreen:1.+'
+    multiProcessCompile 'com.buzzvil:buzzscreen-multi-process:1.+'
 }

@@ -2,12 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.buzzvil.buzzscreen.sample">
 
-    <!-- Permissions for BuzzScreen -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -24,49 +18,13 @@
             </intent-filter>
         </activity>
 
-        <!-- Activities for BuzzScreen -->
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.SimpleLockerActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingHelperActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
-
-        <!-- Service for BuzzScreen -->
-        <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
-
-        <!-- Receivers for BuzzScreen -->
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.BootReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.UpdateReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-
-        <!--Deprecated. No need to add these receivers -->
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.ChangeAdReceiver" />
-        <receiver android:name="com.buzzvil.buzzscreen.sdk.DownloadAdReceiver" />
+        <!-- Configuration for BuzzScreen-->
+        <meta-data
+            android:name="app_license"
+            android:value="<app_license>" />
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.baidu.plist"
+            android:value="<plist>" />
     </application>
 
 </manifest>

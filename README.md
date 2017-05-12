@@ -1,145 +1,71 @@
 # BuzzScreen SDK for Android
-- 버즈스크린을 안드로이드 어플리케이션에 연동하기 위한 라이브러리
-- 안드로이드 버전 지원 : Android 3.0(API Level 11) 이상
-- SDK 연동 및 샘플 어플리케이션 실행을 위해서는 app_key(버즈스크린 어드민에서 확인 가능) 필요
+* 버즈스크린을 안드로이드 어플리케이션에 연동하기 위한 라이브러리
+* 안드로이드 버전 지원 : Android 4.0.3(API Level 15) 이상
+* 연동을 하기 위해 발급받아야 하는 키 값들
+    * `app_key` : 버즈빌 파트너십 매니저에에게 발급받은 어드민에서 확인 가능([`BuzzScreen.init` 메소드에서 필요](#1-초기화--init-호출-및-launch-호출로-이루어진다))
+    * `app_license` : 버즈빌 파트너십 매니저에게 문의([`AndroidManifest.xml` 설정에서 필요](#androidmanifestxml-에-다음-코드를-추가합니다))
+    * `plist` : 버즈빌 파트너십 매니저에게 문의([`AndroidManifest.xml` 설정에서 필요](#androidmanifestxml-에-다음-코드를-추가합니다))
 
-## 폴더 및 파일 설명
-- **aars/** : 안드로이드 스튜디오에서 사용가능한 안드로이드 라이브러리들이 들어있다.
-    - **buzzscreen-sdk-core.aar** : 버즈스크린의 필수적인 요소들만으로 구성된 SDK이다. 기본적으로 제공하는 잠금화면이 아닌 직접 커스터마이징(참고:[버즈스크린 SDK 연동 가이드-고급](docs/ADVANCED-USAGE.md))하는 경우 사용한다.
-    - **buzzscreen-sdk-full.aar** : buzzscreen-sdk-core에 기본 잠금화면(SimpleLockerActivity)을 포함한 SDK이다. SimpleLockerActivity는 가장 간단한 형태의 잠금화면으로 잠금화면 커스터마이징이 필요하지 않은 경우 이 SDK를 사용한다.
-- **sample/** : 버즈스크린 연동 샘플 모듈이 들어있다. basic, custom, multiProcess 라는 이름의 productFlavors 를 이용하여 모든 연동 버젼에 대한 샘플 앱을 각각 빌드할 수 있다.
-    - **basic** : 가장 간단한 형태의 연동 샘플이다. buzzscreen-sdk-full을 사용하여 최소한의 코드로 버즈스크린을 연동하는 것을 보여준다.
-    - **custom** : 잠금화면을 커스터마이징 하는 샘플이다. buzzscreen-sdk-core를 연동하여 커스터마이징을 어떻게 하는지 알 수 있다. buzzscreen-sdk-full에 포함되어있는 SimpleLockerActivity와 이 샘플에서 제공하는 CustomLockerActivity와의 비교를 통해 쉽게 이해할 수 있도록 구성했다.
-    - **multiProcess** : 메모리 사용의 효율성을 위해 잠금화면 프로세스를 분리하는 샘플이다. [버즈스크린 SDK 연동 가이드-고급](docs/ADVANCED-USAGE.md)에서 다루는 프로세스 분리를 참고한다.
+* 모든 연동작업 완료 후 연동한 앱 APK 파일을 버즈빌 파트너십 매니저에게 전달 후 승인 과정을 거쳐 라이브하게 됩니다.
+> 1.4.0 이전 버전의 SDK를 연동한 퍼블리셔들은 [마이그레이션 가이드](docs/MIGRATION-TO-1.4.0.md)를 참고 바랍니다.
 
 ## 버즈스크린 SDK 연동 가이드 - 기본
 가장 기본적인 연동 방법으로, 이 연동만으로도 버즈스크린을 안드로이드 어플리케이션에 탑재할 수 있다.
 
 참고 샘플 : **sample/basic**
+> 반드시 샘플을 확인하고 실제 자신의 코드에 적용바랍니다.
 
-### 1. 라이브러리 추가
+### 1. 설정
 
-#### Android studio
-- [버즈스크린 SDK 릴리즈 목록](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) 중 최신 릴리즈 버젼의 buzzscreen-sdk-full_*VERSION*.aar 을 개발중인 안드로이드 어플리케이션 내에 포함한다.
-    1. 다운받은 aar 파일을 개발중인 모듈의 libs/ 폴더에 넣는다.
-    2. build.gradle에 다음의 내용을 추가한다.
-    ```
-    dependencies {
-        // 받은 aar 파일명을 다음의 name으로 설정한다.
-        compile(name:'buzzscreen-sdk-full_VERSION', ext:'aar')
-    }
-    repositories{
-        flatDir{
-            dirs 'libs'
-        }
-    }
-    ```
-
-- **구글 플레이 서비스 라이브러리**와 **universal image loader 라이브러리**를 추가한다. 모듈 내 build.gradle에 다음과 같이 dependencies 를 추가하면 된다.
+#### 모듈 내의 `build.gradle` 에 다음 코드를 추가합니다.
 
 ```
-dependencies {
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+repositories {
+    maven { url "https://dl.bintray.com/buzzvil/buzzscreen/" }
+    maven { url "http://dl.appnext.com/" }
 }
+
+...
+
+dependencies {
+    compile 'com.buzzvil:buzzscreen:1.+'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-location:8.4.0'
+}
+
 ```
-##### Facebook Audience Network library 
-[AudienceNetwork.jar](libs/AudienceNetwork-4.13.1.jar) 를 다운받아 라이브러리로 추가해준다. 이 라이브러리는 [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) 사용을 위한 것으로 이미 사용하던 경우에는 추가하지 않아도 된다.
+> `com.google.android.gms:play-services-ads:8.4.0` 와 `com.google.android.gms:play-services-location:8.4.0` 에서 사용하는 버전 8.4.0은 앱에서 사용하는 구글 플레이 서비스 버전과 동일하도록 수정바랍니다. 그렇지 않을 경우 컴파일시에 `com.android.dex.DexException` 등의 에러를 만날 수 있씁니다.
 
-### 2. 설정
-- Android Manifest에 아래와 같이 권한, 액티비티, 서비스, 리시버들을 추가한다.
 
-#### Upgrade Guide
-- Version 1.2.0 이상부터 리시버 중 기존에 사용하던 ChangeAdReceiver, DownloadAdReceiver 는 Deprecate 되었다.
-- Version 1.2.6 이상부터 LandingOverlayActivity 가 추가되었다.
-
+#### `AndroidManifest.xml` 에 다음 코드를 추가합니다.
 ```Xml
 <manifest>
-    ...
-    <!-- Permissions for BuzzScreen -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application>
         ...
-        <!-- Setting for Google Play Services -->
-        <meta-data android:name="com.google.android.gms.version"
-    		android:value="@integer/google_play_services_version" />
-
-        <!-- Activities for BuzzScreen -->
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.SimpleLockerActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingHelperActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-
-        <!-- Service for BuzzScreen -->
-        <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
-
-        <!-- Receivers for BuzzScreen -->
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.BootReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.UpdateReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
+        <!-- Configuration for BuzzScreen-->
+        <meta-data
+            android:name="app_license"
+            android:value="<app_license>" />
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.baidu.plist"
+            android:value="<plist>" />
     </application>
 </manifest>
 ```
+> `<app_license>` 및 `<plist>` 는 파트너십 매니저에게 문의 바랍니다.
 
-- Proguard 설정 : Proguard 사용시에 다음 라인들을 **반드시** Proguard 설정에 추가한다.
-
-```
--keep class com.buzzvil.buzzscreen.sdk.** {*;}
--keep interface com.buzzvil.buzzscreen.sdk.** {*;}
-
--keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
-
--keep class com.facebook.ads.** { *; }
--keep interface com.facebook.ads.** { *; }
--dontwarn com.facebook.ads.**
--dontwarn com.google.android.gms.ads.**
-```
-
-### 3. 메소드 호출
-버즈스크린을 연동하기 위해서는 전체적으로
+### 2. 메소드 호출
+버즈스크린을 안드로이드 앱에 연동하기 위해서는
     **1) 초기화 -> 2) 유저 정보 설정 -> 3) 잠금화면 제어 설정**
 의 세 단계를 따라야 한다.
 
 #### 1) 초기화 : init() 호출 및 launch() 호출로 이루어진다.
 - `BuzzScreen.init()` : Application Class의 onCreate에 추가한다. 이로써 모든 다른 메소드보다 항상 먼저 호출되도록 할 수 있다. 파라미터는 다음과 같다.
-    - String appKey : SDK 사용을 위한 앱키로, 어드민에서 확인 가능하다.
+   - String appKey : SDK 사용을 위한 앱키로, 버즈스크린 어드민에서 확인 가능하다.
     - Context context : Application context 를 `this` 로 입력한다.
     - Class<?> lockerActivityClass : 잠금화면 액티비티 클래스. 잠금화면 커스터마이징을 하지 않는 경우 SDK내에서 제공하는 `SimpleLockerActivity.class` 를 설정한다. 커스터마이징을 하는 경우 직접 구현한 잠금화면 액티비티 클래스를 설정한다. 자세한 사항은 [버즈스크린 SDK 연동 가이드-고급](docs/ADVANCED-USAGE.md) 내 '잠금화면 커스터마이징' 설명을 참조한다.
     - int imageResourceIdOnFail : 네트워크 에러 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지를 앱 내 리소스에 포함시켜야 한다. 이 이미지의 리소스 아이디를 설정한다.
-    - boolean useMultiProcess : 잠금화면 서비스를 분리된 프로세스에서 실행하는 경우 true, 사용하지 않으면 false 로 설정한다. 자세한 사항은 [버즈스크린 SDK 연동 가이드-고급](docs/ADVANCED-USAGE.md) 내 '프로세스 분리' 설명을 참조한다.
-    
+
      > **주의** : 기존에 사용하던 Application Class가 없이 버즈스크린 연동을 위해 처음으로 Application Class를 생성할 경우 반드시 AndroidManifest.xml 에 해당 Application Class를 등록해야 한다.
 
 ```Java
@@ -152,8 +78,7 @@ public class App extends Application {
         // app_key : SDK 사용을 위한 앱키로, 어드민에서 확인 가능
         // SimpleLockerActivity.class : 잠금화면 액티비티 클래스
         // R.drawable.image_on_fail : 네트워크 에러 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지.
-        // useMultiProcess : 잠금화면 서비스를 분리된 프로세스에서 실행하는 경우 true, 사용하지 않으면 false
-        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
+        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail);
     }
 }
 ```
@@ -172,11 +97,14 @@ public class App extends Application {
     - `UserProfile.USER_GENDER_FEMALE` : 여성인 경우
 - `setRegion(String region)` : [지역 형식](docs/REGION-FORMAT.md)에 맞게 지역을 설정한다.
 
-> BuzzScreen.getInstance().activate() 호출 전에 반드시 userId 설정이 필요하며, 이후에 userId를 포함한 UserProfile 정보는 수시로 변경가능하다.
+> BuzzScreen.getInstance().activate() 호출 전에 반드시 유저 정보 설정 필요
 
-#### 3) 잠금화면 제어 설정
+#### 3) 잠금화면 제어
 - `BuzzScreen.getInstance().activate()` : 버즈스크린을 활성화한다. 이 함수가 호출된 이후부터 잠금화면에 버즈스크린이 나타난다.
-    - 버즈스크린을 활성화한 후 Notification area 에 지워지지 않는 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](docs/LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+
+    - activate()는 처음 잠금화면 활성화시 호출하면, 그 이후에 자동으로 잠금화면 사이클이 관리되기 때문에 deactivate()을 호출하기 전에 다시 호출할 필요는 없다.
+
+    - 버즈스크린을 활성화한 후 Notification area 에 고정된 Notification이 생성된 경우 ["잠금화면 서비스 노티피케이션"](docs/LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
     
     - 활성화한 후 실제로 잠금화면이 처음 준비가 완료된 시점을 알고 싶을 때, 아래의 interface를 구현하여 activate() 메소드의 파라미터로 넘긴다. `BuzzScreen.getInstance().activate(ActivateListener listener)`의 형태이다.
           
@@ -184,12 +112,12 @@ public class App extends Application {
         public interface ActivateListener {
             void onReady();// This will be called when the first lockscreen is ready to be shown.
         }
-        ```
+        ```   
 
 - `BuzzScreen.getInstance().deactivate()` : 버즈스크린을 비활성화한다. 이 함수가 호출되면 더이상 잠금화면에서 버즈스크린이 나타나지 않는다.
     - `BuzzScreen.getInstance().logout()` : 유저가 로그아웃할 경우 이 함수를 호출한다. 이 함수는 deactivate() 를 호출하며, 버즈스크린에서 사용하는 유저 정보를 디바이스에서 삭제한다.
 
-### 4. 포인트 적립 요청(포스트백)  - 서버 연동
+### 3. 포인트 적립 요청(포스트백)  - 서버 연동
 - 버즈스크린은 포인트 적립이 발생했을 때 직접 유저들에게 포인트를 지급하는 것이 아니다. 버즈스크린 서버에서 매체사 서버로 포인트 적립 요청을 보낼 뿐이고, 실제 지급은 매체사 서버에서 처리한다.
 - 포인트 적립 요청에 대한 처리 방법은 [포인트 적립 요청 연동 가이드](docs/POSTBACK.md)를 참고한다.
 
@@ -198,7 +126,7 @@ public class App extends Application {
 #### 포인트 적립 요청 흐름
 ![Task Flow](docs/postback_flow.jpg)
 
-### 5. 추가 기능
+### 4. 추가 기능
 - 다음과 같은 기능이 필요할 때는 ["버즈스크린 SDK 연동 가이드-고급"](docs/ADVANCED-USAGE.md)을 참고한다.
     - 잠금화면 커스터마이징 : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
     - 프로세스 분리 : 메모리의 효율적 사용을 위해 프로세스 분리 지원
