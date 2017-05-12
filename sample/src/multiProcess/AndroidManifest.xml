@@ -17,6 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Configuration for BuzzScreen-->
+        <meta-data
+            android:name="app_license"
+            android:value="<app_license>" />
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.baidu.plist"
+            android:value="<plist>" />
     </application>
 
 </manifest>
