@@ -50,7 +50,8 @@
 ### 액티비티 클래스
 `BaseLockerActivity`를 상속받아서 잠금화면 액티비티 클래스를 생성하고, 초기화 함수(BuzzScreen.init)의 3번째 파라미터에 생성한 액티비티 클래스를 지정해준다. 액티비티 내에서 구현해야하는 필수 요소는 **슬라이더, 시계**이며 그외는 선택에 따라 직접 구현하면 된다.
 
-#### `AndroidManifest.xml` 설정(`BaseLockerActivity`를 상속받은 클래스 이름이 `CustomLockerActivity` 인 경우)
+#### `AndroidManifest.xml` 설정
+`BaseLockerActivity`를 상속받은 클래스 이름이 `CustomLockerActivity` 인 경우
 ```Xml
 <manifest>
     <application>
@@ -110,12 +111,12 @@ setOnTrackingListener(new OnTrackingListener() {
     public void onImpression(Campaign campaign) {
     	//Impression 시 원하는 기능 구현
 	}
-	
+
     @Override
     public void onClick(Campaign campaign) {
     	//Click 시 원하는 기능 구현
     }
-    
+
 });
 ```
 
@@ -126,8 +127,8 @@ setOnTrackingListener(new OnTrackingListener() {
 
 Method prototype(in BaseLockerActivity)
 ```Java
-protected void setPageTransformer(ViewPager.PageTransformer transformer) { 
-    ... 
+protected void setPageTransformer(ViewPager.PageTransformer transformer) {
+    ...
 }
 ```
 
@@ -159,9 +160,9 @@ interface OnPointListener {
 - PointType : 해당 포인트가 발생한 원인에 따라 UNLOCK(잠금해제 - 오른쪽 스와이프), LANDING(페이지 랜딩 - 왼쪽 스와이프) 두가지 중 하나로 정해져 전달된다.
 
 - **주의**
-	- 알림으로 뜨는 포인트는 즉시 적립 가능한 포인트만을 의미한다. 회원가입, 앱 실행형 등 액션을 마쳐야 적립이 이루어지는 광고의 경우 알림을 주지 않는다. 
+	- 알림으로 뜨는 포인트는 즉시 적립 가능한 포인트만을 의미한다. 회원가입, 앱 실행형 등 액션을 마쳐야 적립이 이루어지는 광고의 경우 알림을 주지 않는다.
 	- 이러한 상황에 대해서도 알림을 구현하려고 하는 경우에는 `OnTrackingListener` 의 `onClick(Campaign campaign)` 메소드를 이용해서 처리할 수 있다.([임프레션 및 클릭 이벤트 트래킹](#임프레션-및-클릭-이벤트-트래킹) 참고)
-	
+
 	> onClick 의 파라미터로 전달되는 캠페인에 대해 `campaign.getActionPoints()`를 통해 액션형 포인트를 얻은 후, 이 값이 0보다 크다면 해당 캠페인은 액션형 캠페인이므로 이 정보를 통해 알림을 직접 구현한다.
 
 사용 예시
@@ -190,17 +191,16 @@ BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
 버즈스크린을 동작시키는 서비스는 항상 실행중인 상태를 유지하고 있다. 이 때문에 버즈스크린 서비스가 매체사 앱(버즈스크린을 연동하려는 앱)과 같은 프로세스 내에서 동작하는 경우, 프로세스 단위 메모리 관리가 같이 되고, 이 때문에 메모리 사용량이 높게 측정 될 수 있다. 이를 막기 위해서는 버즈스크린 서비스가 실행되는 프로세스를 분리해야 한다.
 
 ### 적용 방법
-`build.gradle`에서 `compile 'com.buzzvil:buzzscreen:1.+'` 대신 `compile 'com.buzzvil:buzzscreen-multi-process:1.+'` 를 추가합니다. 
+`build.gradle`에서 `compile 'com.buzzvil:buzzscreen:1.+'` 대신 `compile 'com.buzzvil:buzzscreen-multi-process:1.+'` 를 추가한다.
 
 ```
 dependencies {
     // compile 'com.buzzvil:buzzscreen:1.+'
     compile 'com.buzzvil:buzzscreen-multi-process:1.+'
 }
-
 ```
 
-#### 잠금화면 커스터마이징사용하는 경우 추가 작업
+#### 잠금화면 커스터마이징 사용하는 경우 추가 작업
 커스터마이징한 잠금화면 액티비티도 분리된 프로세스에서 동작해야하기 때문에 `android:process=":locker"`를 AndroidManifest.xml 내의 커스터마이장한 잠금화면 속성에 아래와 같이 추가해야 합니다.
 커스터마이장한 잠금화면이 CustomLockerActivity 인 경우
 ```Xml
@@ -216,8 +216,6 @@ dependencies {
             android:taskAffinity="${applicationId}.Locker" />
     </application>
 </manifest>
-
 ```
-
 
 > **프로세스 적용 분리시 주의사항** : 잠금화면이 매체사 앱과는 다른 프로세스에서 구동되기 때문에 커스터마이징한 잠금화면에서 매체사 앱과 연관된 작업을 진행할때에는 구현에 주의를 요한다.
