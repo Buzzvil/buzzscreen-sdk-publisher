@@ -2,13 +2,13 @@
 - Buzzvil's library for integrating BuzzScreen with Android apps.
 - Requires Android version 4.0.3 (API level 15) or newer.
 - Below are the key values which need to be created in order to begin the integration:
-	* `app_key` : Please find the `app_key` on your BuzzScreen dashboard. Please ask your account manager if the account details are not provided yet. ([Required in the `BuzzScreen.init` method](#1) Initialization : call init() and launch())
-	* `app_license` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](# Add the following codes to `AndroidManifest.xml`))
-	* `plist` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](# Add the following codes to `AndroidManifest.xml`))
-- You will be required to submit the integrated APK file to your account manager for review, and then go live once it is confirmed.
+	* `app_key` : Please find the `app_key` on your BuzzScreen dashboard. Please ask your account manager if the account details are not provided yet. ([Required in the `BuzzScreen.init` method](#1-initialization--call-init-and-launch))
+	* `app_license` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](#add-the-following-codes-to-androidmanifestxml))
+	* `plist` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](#add-the-following-codes-to-androidmanifestxml))
+- You will be required to submit the integrated APK file to your account manager for review before going live.
 
 
-## Basic guide (sample-basic)
+## Basic guide (sample/basic)
 Our simplest integration method – add BuzzScreen to your Android application in just a few easy steps.
 
 The reference sample : **sample/basic**
@@ -59,13 +59,13 @@ In order to integrate BuzzScreen into Android apps, please follow the 3 steps be
 
 
 #### 1) Initialization : call init() and launch()
-- `BuzzScreen.init()` : Add to onCreate in your Application Class, in order to call this method in advance of the others. Please see the required parameters below.
+- `BuzzScreen.init()` : Add to onCreate in your application class, in order to call this method in advance of the others. Please see the required parameters below.
    - String appKey : `app_key`. Please find the `app_key` on your BuzzScreen dashboard. 
-    - Context context : Use `this` for Application context
-    - Class<?> lockerActivityClass : Lock screen Activity Class. When no customization is applied, set as `SimpleLockerActivity.class` which is provided in the SDK. When lock screen is to be customized to suit unique needs of yours, set custom-built acitivy class. Please refer to 'Lock screen Customization' on [BuzzScreen SDK Advanced Integration](docs/ADVANCED-USAGE.md)
-    - int imageResourceIdOnFail : An image file to be displayed when either network error occurs or there is no campaign available temporarily. Include the file in resource inside the app. Set resource id of the image.
+   - Context context : Use `this` for application context
+   - Class<?> lockerActivityClass : Lock screen activity class. When no customization is applied, set as `SimpleLockerActivity.class` which is provided in the SDK. When lock screen is to be customized to suit unique needs of yours, set custom-built acitivy class. Please refer to 'Lock Screen Customization' on [BuzzScreen SDK Advanced Integration](docs/ADVANCED-USAGE_EN.md)
+   - int imageResourceIdOnFail : An image file to be displayed when either network error occurs or there is no campaign available temporarily. Include the file in resource inside the app. Set resource id of the image.
  
-     > **Note** : If it is the first time to create Application Class in your app, please do not forget to register Application Class in AndroidManifest.xml
+     > **Note** : If it is the first time to create application class in your app, please do not forget to register application class in AndroidManifest.xml
      
 ```Java
 public class App extends Application {
@@ -74,8 +74,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         ...
-        // app_key : App Key for SDK usage. Find it on your BuzzScreen dashboard.
-        // SimpleLockerActivity.class : Lock screen Activity Class
+        // app_key : `app_key` for SDK usage. Find it on your BuzzScreen dashboard.
+        // SimpleLockerActivity.class : Lock screen activity class
         // R.drawable.image_on_fail : An image file to be displayed when either network error occurs or there is no campaign available temporarily
         BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail);
     }
@@ -86,7 +86,7 @@ public class App extends Application {
 
 
 #### 2) Set User Profile
-- `UserProfile` : Set user profile information in this Class. Calling `setUserId(String user Id)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server fires a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear`, `setGender`, and `setRegion`. 
+- `UserProfile` : Set user profile information in this Class. Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server fires a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear`, `setGender`, and `setRegion`. 
 
 - It is possible receive `UserProfile` by calling `BuzzScreen.getInstance().getUserProfile()`.
 
