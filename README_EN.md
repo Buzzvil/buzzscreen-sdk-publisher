@@ -1,188 +1,141 @@
 # BuzzScreen SDK for Android
 - Buzzvil's library for integrating BuzzScreen with Android apps.
-- Requires Android version 3.0 (API level 11) or newer.
-- Please find the `app_key` on your BuzzScreen dashboard before beginning the SDK integration or running sample applications.
-- The Google Play Services SDK must be configured. Please refer to Google's [Setting Up Google Play Services](https://developers.google.com/android/guides/setup) guide for more details.
+- Requires Android version 4.0.3 (API level 15) or newer.
+- Below are the key values which need to be created in order to begin the integration:
+	* `app_key` : Please find the `app_key` on your BuzzScreen dashboard. Please ask your account manager if the account details are not provided yet. ([Required in the `BuzzScreen.init` method](#1) Initialization : call init() and launch())
+	* `app_license` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](# Add the following codes to `AndroidManifest.xml`))
+	* `plist` : Please ask your account manager. ([Required in the `AndroidManifest.xml` setting](# Add the following codes to `AndroidManifest.xml`))
+- You will be required to submit the integrated APK file to your account manager for review, and then go live once it is confirmed.
 
-	> If you are using android studio, just add `compile 'com.google.android.gms:play-services-ads:7.5.0'` to **build.gradle > dependencies**.
-
-
-## Included files
-- **aars/** : Android Library files for Android Studio
-    - **buzzscreen-sdk-core.aar** : Core SDK for integrating BuzzScreen. It doesn't include BuzzScreen's default `SimpleLockerActivity` lock screen, meaning you must implement a custom lock screen yourself. (Please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md) for more details.)
-    - **buzzscreen-sdk-full.aar** : Full SDK including BuzzScreen's default `SimpleLockerActivity` lock screen which supports BuzzScreen's basic features. Please use this SDK if you don't need customized features.
-- **sample/** : BuzzScreen sample module that enables to build the sample app. It has productFlavors called basic, custom, and multiProcess that represent all versions of integration.
-    - **basic** : Basic BuzzScreen integration example that uses **buzzscreen-sdk-full**.
-    - **custom** : Custom BuzzScreen integration example that uses **buzzscreen-sdk-core** and a customized lock screen. Please compare `SimpleLockerActivity` from **buzzscreen-sdk-full** with `CustomLockerActivity` from **buzzscreen-sdk-core** for further understanding.
-    - **multiProcess** : BuzzScreen integration sample that separates the lock screen process from the main process in order to increase memory usage efficiency. Please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md) for more details.
 
 ## Basic guide (sample-basic)
 Our simplest integration method – add BuzzScreen to your Android application in just a few easy steps.
 
+The reference sample : **sample/basic**
+> Please refer to the sample before applying to your code.
+
 ### 1. Add Libraries
 
-#### For Android Studio
-- Go to [BuzzScreen SDK Releases](https://github.com/Buzzvil/buzzscreen-sdk-publisher/releases) and download the latest release of buzzscreen-sdk-full_*VERSION*.aar.
-- How to add aar as library
-    1. Put the downloaded aar file to libs/ directory of your app module.
-    2. Add to build.gradle : 
-    ```
-    dependencies {
-        compile(name:'buzzscreen-sdk-full_VERSION', ext:'aar')
-    }
-
-    repositories{
-        flatDir{
-            dirs 'libs'
-        }
-    }
-    ```
-
-- Add dependencies of **google play service library** and **universal image loader library** by adding following lines to 'dependencies' in build.gradle.
+#### Add the following codes to `build.gradle` in your app module.
 
 ```
-dependencies {
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+repositories {
+    maven { url "https://dl.bintray.com/buzzvil/buzzscreen/" }
+    maven { url "http://dl.appnext.com/" }
 }
+
+...
+
+dependencies {
+    compile 'com.buzzvil:buzzscreen:1.+'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.google.android.gms:play-services-location:8.4.0'
+}
+
 ```
+> Please change the version number (8.4.0) in `com.google.android.gms:play-services-ads:8.4.0` and `com.google.android.gms:play-services-location:8.4.0` to match them with the version of Google Play Services in your app.
+Otherwise errors such as `com.android.dex.DexException` may occur when compiling.
 
-##### Facebook Audience Network library 
-Download [AudienceNetwork.jar](libs/AudienceNetwork-4.13.1.jar) and add it as library. This is for using [Facebook Audience Network](https://developers.facebook.com/docs/audience-network) so if you are already using it, please don't add it again.
-
-### 2. Setup
-
-Add permissions, activities, services, and receivers to your Android Manifest as below.
-
-#### Upgrade Guide
-- From version 1.2.0, ChangeAdReceiver and DownloadAdReceiver are deprecated.
-- From version 1.2.6, LandingOverlayActivity is added.
-
-```xml
+#### Add the following codes to `AndroidManifest.xml`.
+```Xml
 <manifest>
-    ...
-    <!-- Permissions for BuzzScreen -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application>
         ...
-        <!-- Google Play Services -->
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
-        <!-- Activities for BuzzScreen -->
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.SimpleLockerActivity"
-            android:excludeFromRecents="true"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingHelperActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-        <activity
-            android:name="com.buzzvil.buzzscreen.sdk.LandingOverlayActivity"
-            android:excludeFromRecents="true"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:taskAffinity="<MY_PACKAGE_NAME>.Locker" />
-
-        <!-- Service for BuzzScreen -->
-        <service android:name="com.buzzvil.buzzscreen.sdk.LockerService" />
-
-        <!-- Receivers for BuzzScreen -->
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.BootReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.buzzvil.buzzscreen.sdk.UpdateReceiver"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
+        <!-- Configuration for BuzzScreen-->
+        <meta-data
+            android:name="app_license"
+            android:value="<app_license>" />
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.baidu.plist"
+            android:value="<plist>" />
     </application>
 </manifest>
 ```
+> Please ask your account manager for `<app_license>` and `<plist>`.
 
-Add `BuzzScreen.init()` to onCreate in your Application class.
+### 2. Call Methods
+In order to integrate BuzzScreen into Android apps, please follow the 3 steps below:
+	**1) Initialization -> 2) Set User Profile -> 3) Control Lock Screen**
 
-```java
+
+#### 1) Initialization : call init() and launch()
+- `BuzzScreen.init()` : Add to onCreate in your Application Class, in order to call this method in advance of the others. Please see the required parameters below.
+   - String appKey : `app_key`. Please find the `app_key` on your BuzzScreen dashboard. 
+    - Context context : Use `this` for Application context
+    - Class<?> lockerActivityClass : Lock screen Activity Class. When no customization is applied, set as `SimpleLockerActivity.class` which is provided in the SDK. When lock screen is to be customized to suit unique needs of yours, set custom-built acitivy class. Please refer to 'Lock screen Customization' on [BuzzScreen SDK Advanced Integration](docs/ADVANCED-USAGE.md)
+    - int imageResourceIdOnFail : An image file to be displayed when either network error occurs or there is no campaign available temporarily. Include the file in resource inside the app. Set resource id of the image.
+ 
+     > **Note** : If it is the first time to create Application Class in your app, please do not forget to register Application Class in AndroidManifest.xml
+     
+```Java
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
         ...
-        // app_key: Unique key value for publisher. Please find it on your BuzzScreen dashboard.
-        // SimpleLockerActivity.class: Lock screen activity class.
-        // R.drawable.image_on_fail: A back fill image to be shown when a network error occurs or there is no campaign available.
-        // useMultiProcess: true if the lock screen is separated from the main process, otherwise false.
-        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, false);
+        // app_key : App Key for SDK usage. Find it on your BuzzScreen dashboard.
+        // SimpleLockerActivity.class : Lock screen Activity Class
+        // R.drawable.image_on_fail : An image file to be displayed when either network error occurs or there is no campaign available temporarily
+        BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail);
     }
 }
 ```
 
-##### ProGuard Configuration
-To prevent ProGuard from stripping away required classes, add the following lines in your ProGuard configuration file.
-```
--keep class com.buzzvil.buzzscreen.sdk.** {*;}
--keep interface com.buzzvil.buzzscreen.sdk.** {*;}
+- `BuzzScreen.getInstance().launch()` : Call this in your app's launch activity.
 
--keep class com.google.android.gms.common.GooglePlayServicesUtil {*;}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {*;}
--keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {*;}
 
--keep class com.facebook.ads.** { *; }
--keep interface com.facebook.ads.** { *; }
--dontwarn com.facebook.ads.**
--dontwarn com.google.android.gms.ads.**
-```
+#### 2) Set User Profile
+- `UserProfile` : Set user profile information in this Class. Calling `setUserId(String user Id)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server fires a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear`, `setGender`, and `setRegion`. 
 
-### 3. Lock Screen Control
-- `BuzzScreen.getInstance().launch()`: Call this in your app's launch activity.
-- `BuzzScreen.getInstance().activate()`: Shows BuzzScreen on the lock screen.
-    - If un-removable notification is created at Notification area after calling this method, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+- It is possible receive `UserProfile` by calling `BuzzScreen.getInstance().getUserProfile()`.
+
+##### A list of methods in UserProfile Class
+- `setUserId(String userId)` : Set User Id (**Required**)
+- `setBirthYear(int birthYear)` : Set age by Year of Birth of the user in 4 digits (e.g, 1988)
+- `setGender(String gender)` : Set gender by using predefined strings below: 
+    - `UserProfile.USER_GENDER_MALE` : For male
+    - `UserProfile.USER_GENDER_FEMALE` : For female
+- `setRegion(String region)` : Set region by referring to [Region Format](docs/REGION-FORMAT.md)
+
+> Keep in mind that you must set userId before calling BuzzScreen.getInstance().activate().
+
+
+#### 3) Lock Screen Control
+- `BuzzScreen.getInstance().activate()` : Activate BuzzScreen. 
+
+    - `activate()` doesn't need to be called again unless `deactivate()` is called. BuzzScreen will be kept activated once activate() is called and lock screen cycle will be managed automatically since then. 
+
+    - If un-removable ongoing notification is created at Notification area after calling this method, please refer to [Lock Screen Service Notification](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md). It helps hide it.
     
-    - If you want to catch the event when the lockscreen is ready for the first time after the `activate()` method has been called, implement the below interface and pass it as the parameter for the activate() method as `BuzzScreen.getInstance().activate(ActivateListener listener)`
-      
-    ```Java
-    public interface ActivateListener {
-        void onReady();// This will be called when the first lockscreen is ready to be shown.
-    }
-    ```
+    - If you want to catch the even when the lock screen is ready for the first time after the `activate()` method has been called, implement the below interface and pass it as the parameter for the activate() method as `BuzzScreen.getInstance().activate(ActivateListener listener)`
+          
+        ```Java
+        public interface ActivateListener {
+            void onReady();// This will be called when the first lockscreen is ready to be shown.
+        }
+        ```   
 
-- `BuzzScreen.getInstance().deactivate()`: Hides BuzzScreen from the lock screen.
-    - `BuzzScreen.getInstance().logout()` : Call this when you the user has logged-out. This method calls `deactivate()`, and removes all the `UserProfile` related info from the device.
+- `BuzzScreen.getInstance().deactivate()` : Deactivate BuzzScreen.
+    - `BuzzScreen.getInstance().logout()` : Call this when the user has loggeed-out. This method calls `deactivate()`, and removes all the UserProfile related info from the device.
 
-- `UserProfile`: Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server makes a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear()` and `setGender()`.
 
-> Keep in mind that you must set `userId` before calling `BuzzScreen.getInstance().activate()`, and `UserProfile` data including `userId` can be updated later at any time.
+### 3. Points Accumulation Request (Postback) - Server to Server Integration
+- When a point accumulation activity occurs from a user, BuzzScreen does not give the user reward points directly. The BuzzScreen server will make a point accumulation request to the publisher's server and the publisher's server will process the request and provide points for the user.
 
-### 4. Points Accumulation Request (Postback) - Server to Server Integration
-When a point accumulation activity occurs from a user, BuzzScreen does not give the user reward points directly. The BuzzScreen server will make a point accumulation request to the publisher's server and the publisher's server will process the request and provide points for the user.
-
-Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](docs/POSTBACK_EN.md) for more details.
+- Regarding processing point accumulation requests, please refer to [BuzzScreen's API guidelines](docs/POSTBACK_EN.md) for more details.
 
 > If you would like to send the user a push notification on point accumulation, it should be processed/sent from the publisher's server after receiving a point accumulation request from BuzzScreen.
 
-Point accumulation request flow:
+#### Point accumulation request flow:
 ![Task Flow](docs/postback_flow.jpg)
 
-### 5. Additional Features
+
+### 4. Additional Features
 - If you need any of these features, please refer to [BuzzScreen SDK Integration Guideline - Advanced](docs/ADVANCED-USAGE_EN.md):
     - Customized lock screen sliding/swiping UI, clock UI, or extra lock screen widgets.
     - Separating the lock screen process from main process in order to increase memory usage efficiency.
+
+- To enable customized targeting features not provided in the SDK by default, please refer to ["BuzzScreen Custom Targeting"](docs/CUSTOM_TARGETING_EN.md).
 
 - To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
