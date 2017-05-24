@@ -1,6 +1,6 @@
 # BuzzScreen Custom Targeting
 - When assigning campaigns to users, it is possible to use more advanced targeting features than basic targeting features provided by SDK such as age, gender, and location, by setting up cutom targeting fields. These custom user profile data must be provided by publishers.
-- BuzzScreen provides up to **3 custom targeting fields**.
+- BuzzScreen provides up to **3 custom Targeting Fields**.
 - In order to enable custom targeting features, user profile data to be used for targeting should be set up on client side during the integration process and then advertising operation manager selects criteria when creating campaigns on the BuzzScreen dashboard.
 
 
