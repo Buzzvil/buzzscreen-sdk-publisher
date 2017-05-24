@@ -5,7 +5,7 @@
 
 
 ## Definition of Terms
-- Targeting Field : Targeting Fields are attributes that can categorize users into several group in a way that helps improve the effeciency/effectiveness of advertising campaigns by targeing a specific group to meet a unique objective of the campaigns. (e.g, Interest)
+- Targeting Field : Targeting Fields are attributes that can categorize users into several groups in a way that helps improve the effeciency/effectiveness of advertising campaigns by targeing a specific group to meet a unique objective of the campaigns. (e.g, Interest)
 - Targeting Value : Each Targeting Field includes a list of Targeting Values, predefined, to distinguish each group of users from the others. (e.g, Interest (Targeting Field) - Tech (Targeting Value 1), Business (Targeting Value 2), Travle (Targeting Value 3), and so on)
 
 
