@@ -86,7 +86,7 @@ public class App extends Application {
 
 
 #### 2) Set User Profile
-- `UserProfile` : Set user profile information in this Class. Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server fires a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear`, `setGender`, and `setRegion`. 
+- `UserProfile` : Set user profile information in this Class. Calling `setUserId(String userId)` is required before offering a reward to the user. `userId` is a unique value by which publishers can identify each user, and is delivered in a postback when the BuzzScreen server fires a point accumulation request to the publisher's server. It is also possible for campaigns to target certain users by calling `setBirthYear` and `setGender`.
 
 - It is possible receive `UserProfile` by calling `BuzzScreen.getInstance().getUserProfile()`.
 
@@ -96,10 +96,8 @@ public class App extends Application {
 - `setGender(String gender)` : Set gender by using predefined strings below: 
     - `UserProfile.USER_GENDER_MALE` : For male
     - `UserProfile.USER_GENDER_FEMALE` : For female
-- `setRegion(String region)` : Set region by referring to [Region Format](docs/REGION-FORMAT.md)
-    - **Note** : Region targeting is only available in Korea at this moment. More countries will be supported shortly. Please ask your account manager for further details.
     
-> Keep in mind that you must set userId before calling BuzzScreen.getInstance().activate().
+> Keep in mind that you must set userId before calling `BuzzScreen.getInstance().activate()`
 
 
 #### 3) Lock Screen Control
