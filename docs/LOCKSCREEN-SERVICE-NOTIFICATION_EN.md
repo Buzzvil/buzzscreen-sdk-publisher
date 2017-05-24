@@ -1,9 +1,9 @@
-# Lockscreen Service Notification
+# Lock Screen Service Notification
 Buzzscreen uses [Foregound Service](http://developer.android.com/guide/components/services.html#Foreground) and in principle, foreground service should show ongoing notification. Because this notification is considered to be annoying for user, Buzzscreen SDK uses some tricks to hide it. But in some cases the tricks won't work. So we provide a support class to change notification configurations.
 
-> Cases that the Notification is shown : 23 or higher compile sdk version, rare exceptions.
+> Cases that the Notification is shown : 23 or higher compile sdk version, 23 or higher target sdk version, rare exceptions.
 
-## Lockscreen Service Notification Configuration
+## Lock Screen Service Notification Configuration
 **LockerServiceNotificationConfig** class enables to get or set service notification configurations. Below are configuration details that you can control. You MUST use this class after calling `BuzzScreen.init()`.
 - **Title** : Title of the notification(String). Default is the app's name.
 - **Text** : Content of the notification(String). Default is an empty string("").
