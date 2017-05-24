@@ -97,7 +97,8 @@ public class App extends Application {
     - `UserProfile.USER_GENDER_MALE` : For male
     - `UserProfile.USER_GENDER_FEMALE` : For female
 - `setRegion(String region)` : Set region by referring to [Region Format](docs/REGION-FORMAT.md)
-
+    - **Note** : Region targeting is only available in Korea at this moment. More countries will be supported shortly. Please ask your account manager for further details.
+    
 > Keep in mind that you must set userId before calling BuzzScreen.getInstance().activate().
 
 
