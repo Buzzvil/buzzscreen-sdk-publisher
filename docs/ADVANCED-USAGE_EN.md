@@ -1,14 +1,14 @@
 # BuzzScreen SDK Advanced Integration
 *Please make sure to read [BuzzScreen SDK for Android](https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/README_EN.md) first.*
-- [Lock screen customization](#lock-screen-customization): Customized lock screen sliding/swiping UI, clock UI, and extra lock screen widgets.
-- [Process separation](#process-separation): Separating the lock screen process from main process in order to increase memory usage efficiency.
+- [Lock screen customization](#lock-screen-customization): Customized lock screen slider UI, clock UI, and additional lock screen widgets.
+- [Process separation](#process-separation): Separating the lock screen process from main process in order to increase memory  efficiency.
 
 
 ## Lock Screen Customization
-Sample files are located in **sample/custom**.
-> Please refer to the sample before applying to your code.
+Sample files are located in **sample/custom** of the SDK.
+> Please refer to the sample before applying to your app.
 
-The lock screen consists of one activity. Just like a standard activity, you should create the layout and call a few essential functions inside the activity class.
+The lock screen consists of one activity. Just like a standard activity, you should create the layout and call a few essential methods inside the activity class.
 
 
 ### Layout
@@ -18,8 +18,8 @@ The layout basically consists of **a clock, slider, and background gradation** a
 
 ![Layout](layout.jpg)
 
-- Clock: Add a view to layout, and process it upon `onTimeUpdated()` inside your activity.
-- Slider: You must change all the image files that make up the slider.
+- Clock: Add a view to layout, and update view with the currnet time in the `onTimeUpdated()` of your lock screen activity.
+- Slider: You can customize all the image files that make up the slider.
 
     |Slider Attribute|Description|
     |--------|--------|
@@ -28,7 +28,7 @@ The layout basically consists of **a clock, slider, and background gradation** a
     |slider:sl_pointer|center image of the slider|
     |slider:sl_pointer_drag|center image of the slider during touch|
     |slider:sl_radius|the distance between slider center and the center of left/right icons|
-    |slider:sl_text_size|the size of the texts which show points(Default : 14sp)|
+    |slider:sl_text_size|the size of the reward point texts(Default : 14sp)|
 
     Slider Attribute example
     ```Xml
@@ -47,12 +47,12 @@ The layout basically consists of **a clock, slider, and background gradation** a
         slider:sl_text_size="14sp" />
     ```
 
-- Background gradation: As readability of clock and slider may be affected by the color of campaign images, it is necessary to set up a background gradation under the UI.
-- Additional views: Just like a standard view, you may add a view to the layout, and write a feature inside the activity.
+- Background gradation: As readability of clock and slider may be affected by the color of campaign images, it is highly recommended to set up a background gradation under the UI.
+- Additional views: Just like a standard view, you may add a view to the layout, and implement the features inside the activity.
 
 
 ### Activity Class
-Please create an activity inheriting `BaseLockerActivity` and pass it to `BuzzScreen.init()`. **The slider and clock** must be implemented inside the activity, while the others are optional.
+Please create an activity that inherits `BaseLockerActivity` and pass it to `BuzzScreen.init()`. **The slider and clock** must be implemented inside the activity, while the others are optional.
 
 #### Set `AndroidManifest.xml`
 If the name of class inheriting `BaseLockerActivity` is `CustomLockerActivity`:
@@ -76,14 +76,14 @@ If the name of class inheriting `BaseLockerActivity` is `CustomLockerActivity`:
 #### Slider
 Slider is an independent view from lock screen, so two more steps are required in order to connect it to the lock screen.
 
-- Set up listeners for the slider through `Slider.setLeftOnSelectListener()` and `Slider.setRightOnSelectListener()`. Please call either the unlock function or the landing function depending on the sliding direction. 
-- It is necessary to change the slide points in accordance with the campaign type when a different campaign is called. Please find `onCurrentCampaignUpdated()`, a function in the activity called at the point of campaign change, and call `Slider.setLeftText()` and `Slider.setRightText()`.
+- Set up listeners for the slider through `Slider.setLeftOnSelectListener()` and `Slider.setRightOnSelectListener()`. Please call either the unlock method or the landing method inside the callbacks accordingly.
+- It is necessary to change the slide points in accordance with the campaign when the current campaign is updated. Please find `onCurrentCampaignUpdated()`, a function in the activity called at the point of campaign change, and call `Slider.setLeftText()` and `Slider.setRightText()` using the information of the current campaign.
 
 
 #### Clock
-The `onTimeUpdated` function in your `BaseLockerActivity` is called every minute when it is updated. Override the fuction to update time-related information such as time, am/pm, date, etc, by using the parameters passed in the fuction.
+The `onTimeUpdated` function in your `BaseLockerActivity` is called every minute. Override the fuction to update time-related information such as time, am/pm, date, etc, by using the parameters passed in the fuction.
 
-> **Note** - It is required to override `onCurrentCampaignUpdated` and `onTimeUpdated` in your lock screen activity. Otherwise errors may occur. Please refer to **CustomLockerActivity.java** in the sample for more detailed implementation examples.
+> **Note** - It is required to override `onCurrentCampaignUpdated` and `onTimeUpdated` in your lock screen activity. Otherwise errors will occur. Please refer to **CustomLockerActivity.java** in the sample for more detailed implementation examples.
 
 
 #### Additional Feature
@@ -158,9 +158,9 @@ setPageTransformer(new ViewPager.PageTransformer() {
 ```
 
 ##### Informing Results of Point Accumultation Request
-Using `OnPointListener` interface, you can inform user of that the point accumulation request resulted from unlocking or landing (from) lock screen has been successful(`onSuccess`) or not(`onFail`). You can use it by implementing the following interface, and pass it as the parameter in `setOnPointListener(OnPointListener listener)` method.
+Using `OnPointListener` interface, you can inform user that the point accumulation request has been successful(`onSuccess`) or not(`onFail`). Implement the following interface, and pass it as the parameter in `setOnPointListener(OnPointListener listener)` method.
 
-> setOnPointListener(OnPointListener pointListener) is defined in `BuzzScreen` class. So you have to use it as `BuzzScreen.getInstance().setOnPointListener(...)`. This method must be called after `BuzzScreen.init()`.
+> setOnPointListener(OnPointListener pointListener) is defined in `BuzzScreen` class. So you have to use it as `BuzzScreen.getInstance().setOnPointListener(...)`. Therefore this method must be called after `BuzzScreen.init()`.
 
 ```Java
 interface OnPointListener {
@@ -168,13 +168,13 @@ interface OnPointListener {
     void onFail(PointType type);
 }
 ```
-- PointType : Depending on the user's action which results in current point accumulation request, the `PointType` is either UNLOCK(swiping right) or LANDING(swiping left).
+- PointType : Depending on the user's action which results in the point accumulation event, the `PointType` is either UNLOCK(swiping right) or LANDING(swiping left).
 
 - **Note**
-	- The informed points are only for **instantly earning-possible points**. Points which can be earned after certain actions such as app execution, sign up, and event participation(aka CPA types) will **not** be informed by this method.
+	- The informed points are only for **completing instant reward campaigns**. Points that are earned after a course of actions such as app execution, sign up, and event participation(aka CPA types) will **not** be informed by this method.
 	- If you want to handle the CPA types as well, you can use `onClick(Campaign campaign)` method in `OnTrackingListener`.(Please refer to [Tracking Impression and Click Events](#tracking-impression-and-click-events))
 
-	> Using `campaign.getActionPoints()` to get action type's points(action_points) in `onClick` method's parameter, `campaign`, and check if it is bigger than 0, which means the campaign is CPA type. If so, you can inform users of instructions like - 'if you finish participating this campaign, you can get {action_points} points'.
+	> Call `campaign.getActionPoints()` to get action type's points(action_points) in `onClick` method's parameter, `campaign`, and check if it is bigger than 0, which means the campaign is CPA type. If so, you can inform users of instructions like - 'if you finish participating this campaign, you can get {action_points} points'.
 
 Example
 ```Java
@@ -197,9 +197,9 @@ BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
 
 ## Process Separation
 Sample files are located in **sample/multiProcess**.
-> Please refer to the sample before applying to your code.
+> Please refer to the sample before applying to your app.
 
-The BuzzScreen SDK is always running/using Android's service component in the foreground. Thus, in case the BuzzScreen service is running in the same process together with your app, memory usage of BuzzScreen will be managed together with your main process, which will result in inefficient management of memory usage. To prevent this, it is necessary to separate the process in which BuzzScreen is running from the main process.
+The BuzzScreen SDK is continuously running Android's service component in the foreground. Thus, in case the BuzzScreen service is running in the same process with your app, your app might experience insufficient memories in some cases. To prevent this, you can separate the Buzzscreen process from the main process.
 
 
 ### How To Apply
@@ -215,7 +215,7 @@ dependencies {
 #### Additional Work if Customized Lock Screen is Being Used
 As customized lock screen activity should also work in the separated process, it is required to add `android:process=":locker"` to `AndroidManifest.xml` like the followings:
 
-If `CustomLockerActivity` is customized lock screen activity:
+For example, if `CustomLockerActivity` is the customized lock screen activity you are using:
 ```Xml
 <manifest>
     <application>
@@ -231,4 +231,4 @@ If `CustomLockerActivity` is customized lock screen activity:
 </manifest>
 ```
 
-> **Notes** : Now that lock screen runs in a separated process from the original app, please be mindful when you use features which are **originally from the main app**, on the lock screen area.
+> **Notes** : Now that lock screen runs in a separated process from the original app, please be mindful when you provide features, which are **originally from the main app**, on the lock screen area.
