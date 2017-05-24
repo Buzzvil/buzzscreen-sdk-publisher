@@ -122,7 +122,7 @@ public class App extends Application {
 ### 3. Reward Accumulation (via Postback) - Server to Server Integration
 - When a reward accumulation event occurs from a user, BuzzScreen does not handle this in the client side. Instead the BuzzScreen server will make a reward accumulation request to the publisher's server and the publisher's server should process the request and provide rewards for the user.
 
-- Regarding implementing the postback, please refer to [BuzzScreen's API guidelines](docs/POSTBACK_EN.md).
+- Regarding implementing the postback, please refer to [BuzzScreen's Postback API guidelines](docs/POSTBACK_EN.md).
 
 > If you would like to send the user a push notification on point accumulation, it should be processed/sent from your server after receiving a reward accumulation request from BuzzScreen.
 
