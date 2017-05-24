@@ -1,7 +1,7 @@
 # BuzzScreen Custom Targeting
-- When assigning campaigns to users, it is possible to use more advanced targeting features than basic targeting features provided by SDK such as age, gender, and location, by setting up cutom targeting fields. These custom user profile data must be provided by publishers.
+- Besides basic targeting methods using age/gender, Buzzscreen provides more advanced targeting features which can be set up using cutom targeting fields. These custom user profile data must be provided by publishers.
 - BuzzScreen provides up to **3 custom Targeting Fields**.
-- In order to enable custom targeting features, user profile data to be used for targeting should be set up on client side during the integration process and then advertising operation manager selects criteria when creating campaigns on the BuzzScreen dashboard.
+- In order to enable custom targeting features, user profile data to be used for targeting should be set up on client side during the integration process and then advertising operation manager sets the custom targeting value when creating campaigns on the BuzzScreen dashboard.
 
 
 ## Definition of Terms
@@ -50,7 +50,7 @@ Define what to assign to each Targeting Field.
 ### 3. Apply Targeting Setting
 #### Set Targeting Values from UserProfile
 - Receive UserProfile by calling `BuzzScreen.getInstance().getUserProfile()`
-- Input Targeting Values as String in UserProfile by calling `setCustomTarget1()`, `setCustomTarget2()`, `setCustomTarget3()`.
+- Set Targeting Values as String in UserProfile by calling `setCustomTarget1()`, `setCustomTarget2()`, `setCustomTarget3()`.
 - When assigning multiple Targeting Values in Field, use comma without space to distinguish the Values in one String. (See Code Samples)
 
 ##### Code Samples
