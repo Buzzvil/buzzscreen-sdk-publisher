@@ -1,15 +1,15 @@
 # Lock Screen Service Notification
-Buzzscreen uses [Foregound Service](http://developer.android.com/guide/components/services.html#Foreground) and in principle, foreground service should show ongoing notification. Because this notification is considered to be annoying for user, Buzzscreen SDK uses some tricks to hide it. But in some cases the tricks won't work. So we provide a support class to change notification configurations.
+Buzzscreen uses [Foregound Service](http://developer.android.com/guide/components/services.html#Foreground) and in principle, a foreground service results in ongoing notification. Because this notification is considered to be annoying for many users, Buzzscreen SDK uses some tricks to hide it. But in some cases the tricks won't work. So we provide a support class to change notification content to provide more contextually meaningful information for users.
 
-> Cases that the Notification is shown : 23 or higher compile sdk version, 23 or higher target sdk version, rare exceptions.
+> Cases that the Notification is shown : 23 or higher compile sdk version, 23 or higher target sdk version.
 
-## Lock Screen Service Notification Configuration
-**LockerServiceNotificationConfig** class enables to get or set service notification configurations. Below are configuration details that you can control. You MUST use this class after calling `BuzzScreen.init()`.
+## Setting and Getting Lock Screen Service Notification Content
+**LockerServiceNotificationConfig** class enables to get or set service notification content. Below are components that you can set. You MUST use this class after calling `BuzzScreen.init()`.
 - **Title** : Title of the notification(String). Default is the app's name.
 - **Text** : Content of the notification(String). Default is an empty string("").
 - **SmallIcon** : Small icon of the notification(int). Default is the app's icon.
 - **LargeIcon** : Large icon of the notification(int). Default is none.
-- **ShowAlways** : Boolean value that decides whether or not to show the notification always(boolean). You can use it to test your notification setting. Defult is false.
+- **ShowAlways** : Boolean value that decides whether or not to show the notification always(boolean). You can use it to test your notification setting. Default is false.
 - **Intent** : Intent that defines the action when notification is clicked(Intent). Default is to start the Launcher Activity.
 
 ### Example
