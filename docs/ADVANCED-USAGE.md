@@ -172,13 +172,13 @@ BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
     @Override
     public void onSuccess(PointType type, int points) {
         // 적립 요청 성공 메세지
-        Toast.makeText(MainActivity.this, points + " p 적립 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), points + " p 적립 요청이 완료되었습니다.", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onFail(PointType type) {
         // 포인트 적립 실패 메세지
-        Toast.makeText(MainActivity.this, "네트워크 문제로 적립되지 않았습니다", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "네트워크 문제로 적립되지 않았습니다", Toast.LENGTH_LONG).show();
     }
 
 });

@@ -183,13 +183,13 @@ BuzzScreen.getInstance().setOnPointListener(new OnPointListener() {
     @Override
     public void onSuccess(PointType type, int points) {
         // Point accumulation request success message
-        Toast.makeText(MainActivity.this, points + " p request succeeded!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), points + " p request succeeded!", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onFail(PointType type) {
         // Point accumulation request fail message
-        Toast.makeText(MainActivity.this, "Fail to process points accumulation request due to the network issue..", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Fail to process points accumulation request due to the network issue..", Toast.LENGTH_LONG).show();
     }
 
 });
