@@ -33,7 +33,7 @@ API for notifying a publisher server when users earn rewards through BuzzScreen 
 | point | Integer | Total reward points to offer for users.<br>It is the sum of base_point and the original points of participated campaign.|
 | *base_point*   | Integer | (Optional) Hourly free reward points to users.<br>If a user is given points within this hour, it's 0.<br>Otherwise, it's the value of hourly free reward points set by your account manager. |
 | data | String  | (Optional) Use this parameter when the parameters are encrypted. Please refer to the below for more information. |
-| revenue_type | String  | Type of ad <ul><li>cpi: cost per install (install only)</li><li>cpe: cost per engagement (install + open)</li><li>cpa: cost per action (action required by advertier)</li><li>Set as **null** if it's content</li></ul> |
+| revenue_type | String  | Type of ad <ul><li>cpi: cost per install (install only)</li><li>cpe: cost per engagement (install + open)</li><li>cpa: cost per action (action required by advertiser)</li><li>Set as **null** if it's content</li></ul> |
 | ~~click_type~~ (Deprecated) | String  | (Optional) A separator of landing and swipe to unlock <ul><li>u: Swipe to unlock</li><li>l: Landing (Click) </li></ul> |
 
 ### 5. HTTP Request Parameter Encryption
