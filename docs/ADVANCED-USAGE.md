@@ -2,6 +2,7 @@
 ["버즈스크린 SDK 연동 가이드 - 기본"](https://github.com/Buzzvil/buzzscreen-sdk-publisher#버즈스크린-sdk-연동-가이드---기본)을 먼저 진행한 후에 필요에 따라 본 문서 내용을 진행한다.
 - [잠금화면 커스터마이징](#잠금화면-커스터마이징) : 시계 및 하단 슬라이더 UI 변경, 위젯 추가
 - [프로세스 분리](#프로세스-분리) : 메모리의 효율적 사용을 위해 프로세스 분리 지원
+- [추가 기능](#추가-기능) : 간단한 기능 모음
 
 ## 잠금화면 커스터마이징
 참고 샘플 : **sample/custom**
@@ -219,3 +220,14 @@ dependencies {
 ```
 
 > **프로세스 적용 분리시 주의사항** : 잠금화면이 매체사 앱과는 다른 프로세스에서 구동되기 때문에 커스터마이징한 잠금화면에서 매체사 앱과 연관된 작업을 진행할때에는 구현에 주의를 요한다.
+
+## 추가 기능
+반드시 사용할 필요는 없지만 잠금화면 유저경험을 위해 제공하는 간단한 기능 모음
+
+### 잠시 쉬기
+버즈스크린을 잠시 꺼두기 위해 사용할 수 있습니다.
+- `BuzzScreen.getInstance().snooze(int snoozeForSecs)` : 버즈스크린이 활성화된 상태에서 이 함수를 호출하면 snoozeForSecs 초 동안 버즈스크린이 잠금화면에 나타나지 않습니다. snoozeForSecs 후에 다시 자동으로 버즈스크린이 보여지게 됩니다.
+- `BuzzScreen.getInstance().isSnoozed()` : `BuzzScreen.getInstance().snooze(int snoozeForSecs)` 호출을 통해 현재 버즈스크린이 잠시 쉬는 상태인지 확인할 수 있습니다.
+> 버즈스크린이 보여지는 조건 : `BuzzScreen.getInstance().isActivated() && !BuzzScreen.getInstance().isSnoozed()`
+
+
