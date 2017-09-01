@@ -226,7 +226,8 @@ dependencies {
 
 ### 잠시 쉬기
 버즈스크린을 잠시 꺼두기 위해 사용할 수 있습니다.
-- `BuzzScreen.getInstance().snooze(int snoozeForSecs)` : 버즈스크린이 활성화된 상태에서 이 함수를 호출하면 snoozeForSecs 초 동안 버즈스크린이 잠금화면에 나타나지 않습니다. snoozeForSecs 후에 다시 자동으로 버즈스크린이 보여지게 됩니다.
+- `BuzzScreen.getInstance().snooze(int snoozeForSecs)` : 버즈스크린이 활성화된 상태에서 이 함수를 호출하면 snoozeForSecs 초 동안 버즈스크린이 잠금화면에 나타나지 않습니다. snoozeForSecs 후에 다시 자동으로 버즈스크린이 보여지게 됩니다
+  > snooze 후에 BuzzScreen.getInstance().activate() 를 호출하면 바로 다시 잠금화면이 보여지게 됩니다.
 - `BuzzScreen.getInstance().isSnoozed()` : `BuzzScreen.getInstance().snooze(int snoozeForSecs)` 호출을 통해 현재 버즈스크린이 잠시 쉬는 상태인지 확인할 수 있습니다.
   > 버즈스크린이 보여지는 조건 : `BuzzScreen.getInstance().isActivated() && !BuzzScreen.getInstance().isSnoozed()`
 
