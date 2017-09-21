@@ -21,9 +21,11 @@ public class CustomLockerActivity extends BaseLockerActivity {
     final static String TAG = "LockerActivity";
 
     // 화면 하단 슬라이더
+    // Slider UI for unlocking the lock screen
     Slider slider;
 
     // 시계
+    // Clock UI
     TextView tvTime;
     TextView tvAmPm;
     TextView tvDate;
@@ -45,6 +47,7 @@ public class CustomLockerActivity extends BaseLockerActivity {
         slider = (Slider)findViewById(R.id.locker_slider);
 
         // 슬라이더에서 왼쪽 아이콘이 선택(왼쪽 아이콘 위치에서 터치 업)되었을 때 호출되는 리스너
+        // Listner that is called when the icon on the left of the Slider is selected (on touchUp)
         slider.setLeftOnSelectListener(new SliderIcon.OnSelectListener() {
             @Override
             public void onSelect() {
@@ -53,6 +56,7 @@ public class CustomLockerActivity extends BaseLockerActivity {
         });
 
         // 슬라이더에서 오른쪽 아이콘이 선택(오른쪽 아이콘 위치에서 터치 업)되었을 때 호출되는 리스너
+        // Listner that is called when the icon on the right of the Slider is selected (on touchUp)
         slider.setRightOnSelectListener(new SliderIcon.OnSelectListener() {
             @Override
             public void onSelect() {
@@ -61,6 +65,7 @@ public class CustomLockerActivity extends BaseLockerActivity {
         });
 
         // 화면 터치시 상하 페이시 화살표 표시
+        // Indicators (usually arrows) for scrolling up and down when there's a touchDown event on the lockscreen
         setPageIndicators(
                 findViewById(R.id.locker_arrow_top),
                 findViewById(R.id.locker_arrow_bottom)
@@ -70,6 +75,7 @@ public class CustomLockerActivity extends BaseLockerActivity {
             @Override
             public void onClick(View v) {
                 // 카메라 앱 오픈
+                // Open Camera app
                 Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
                 startActivity(intent);
             }
@@ -78,11 +84,15 @@ public class CustomLockerActivity extends BaseLockerActivity {
 
     @Override
     protected void onCurrentCampaignUpdated(Campaign campaign) {
+
         // 현재 보여지고 있는 캠페인이 업데이트 될때 호출된다.
         // 현재 캠페인에 따라 UI를 변화시키고 싶으면 여기서 작업하면 된다.
+        //This listner is called when the ad campaign item that is shown on the page gets updated - eg) user scrolls up, etc
+        //If there's any effect/feature you'd like to implement when the current item is updated, you can implement it here.
         Log.i(TAG, campaign.toString());
 
         // 좌우 포인트가 변경되었을 때 UI 업데이트
+        // Update the point values when the current campaign gets update.
         int landingPoints = campaign.getLandingPoints();
         int unlockPoints = campaign.getUnlockPoints();
 
