@@ -92,7 +92,7 @@ public class CustomLockerActivity extends BaseLockerActivity {
         Log.i(TAG, campaign.toString());
 
         // 좌우 포인트가 변경되었을 때 UI 업데이트
-        // Update the point values when the current campaign gets update.
+        // Update the point values when the current campaign gets updated.
         int landingPoints = campaign.getLandingPoints();
         int unlockPoints = campaign.getUnlockPoints();
 
