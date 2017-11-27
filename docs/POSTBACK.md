@@ -74,5 +74,5 @@ HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미�
     > 예제에서는 AES key, IV 값으로 모두 '12341234asdfasdf'를 사용하였다.
 
 ```
-Vblq5XX2g/M2fGs5GRbrLQGh6mwGXDI/frRb2Zn2syY0VAzG6ftcvDzaxSLLvgzYMmvhLTDKZATDX2F9U4AENfBZYQ/Ov+Y9QPfW9A39kaQi/XS3kea09+aI1pO0NkHqP8My8TuR//xhVYtoWovSIw42jbTzUhgJ8SePTC5ZwrLg7bOS7cy3gEgcHL9XzUOrxL8RqMo8fieSMv9hr2YkJJmNL2t0akyj/Hz/lXUvOqhrb9mmFuSlWLF/kS8af3fRKgjxNjGGIVDoVotPipFSbHbpExSp6wY0wsmjfcXGw6g=
+sgfHOC5Z66tLmlokmQEaXY39u+64gMWhLnxQAZ9ivYsTvF1isjVfaRx2BNhOADwPR6KB55/7F7iXBm5FKU8mHmHnlR3wSomVAlcjtx77KluoYoXi/jRCvaFLGIo7vcK1GVHxS557u/XTo53/AzdPZpk/aXkvFZvWPgS+GWj1TWle0mBJ0xOgfmb8LwMfi4rvfayTph3bZeryLuphorBzMoIhf+kQLyjfIyouWVoCh6UICeRBgzTS9SlgdUA6M1PVlCsQch0zKVeTJZEFEn8478QbpEEhgHDhXkzdo8tXgkw=
 ```
