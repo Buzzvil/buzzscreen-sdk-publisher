@@ -138,3 +138,6 @@ public class App extends Application {
 - To enable customized targeting features, please refer to ["BuzzScreen Custom Targeting"](docs/CUSTOM_TARGETING_EN.md).
 
 - To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
+
+## Open Source Software License Notice
+_ Licenses of Open Source Software used by this software are available on the "Open Source Software License Notice ([raw file](docs/3rd_party_licenses.html)|[rendered version](https://htmlpreview.github.io/?https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/docs/3rd_party_licenses.html))" page.
