@@ -135,3 +135,6 @@ public class App extends Application {
 - 유저에게 할당되는 광고의 타게팅 정보를 커스터마이징 하려고 할 때는 ["버즈스크린 커스텀 타게팅"](docs/CUSTOM_TARGETING.md)을 참고한다.
 
 - Lockscreen Service Notification 설정을 위해서는 ["잠금화면 서비스 노티피케이션"](docs/LOCKSCREEN-SERVICE-NOTIFICATION.md)을 참고한다.
+
+## 오픈 소스 라이센스 고지
+- 이 소프트웨어가 사용하는 오픈 소스 소프트웨어의 라이센스는 [오픈 소스 라이센스 고지 페이지](docs/licenses.html)에서 확인할 수 있다.
