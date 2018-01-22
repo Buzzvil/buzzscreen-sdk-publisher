@@ -140,4 +140,4 @@ public class App extends Application {
 - To customize lockscreen service notification, please refer to [Locksceen Service Notification Guideline](docs/LOCKSCREEN-SERVICE-NOTIFICATION_EN.md).
 
 ## Open Source Software License Notice
-_ Licenses of Open Source Software used by this software are available on the "Open Source Software License Notice [raw file](docs/licenses.html)|[rendered version](https://htmlpreview.github.io/?https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/docs/licenses.html)" page.
+_ Licenses of Open Source Software used by this software are available on the "Open Source Software License Notice ([raw file](docs/licenses.html)|[rendered version](https://htmlpreview.github.io/?https://github.com/Buzzvil/buzzscreen-sdk-publisher/blob/master/docs/licenses.html))" page.
