@@ -41,7 +41,7 @@
 HTTP Request parameter를 암호화 하고 싶은 경우 사용하는 파라미터. BuzzScreen 에서는 아래와 같은 순서로 파라미터를 암호화한다.
 
 1. JSON serialized parameters with UTF-8 encoding
-2. AES(CBC mode, PCKS7 padding) encryption
+2. AES(CBC mode, PKCS7 padding) encryption
 3. base64 encoding
 
 암호화된 데이터는 HTTP POST request 파라미터에 data 라는 이름으로 추가하여 전송한다.

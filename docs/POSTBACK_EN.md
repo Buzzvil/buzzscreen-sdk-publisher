@@ -40,7 +40,7 @@ API for notifying a publisher server when users earn rewards through BuzzScreen 
 Guide for decrypting 'data' parameter when HTTP Request Parameter Encryption is enabled. Please follow the process below in order.
 
 1. JSON serialized parameters with UTF-8 encoding
-2. AES(CBC mode, PCKS7 padding) encryption
+2. AES(CBC mode, PKCS7 padding) encryption
 3. base64 encoding
 
 Encrypted data should be sent as 'data' parameter in HTTP POST request.
