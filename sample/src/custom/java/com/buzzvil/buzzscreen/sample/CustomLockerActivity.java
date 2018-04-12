@@ -80,6 +80,14 @@ public class CustomLockerActivity extends BaseLockerActivity {
                 startActivity(intent);
             }
         });
+
+        // 클릭시 Context Menu 보여줄 뷰
+        findViewById(R.id.locker_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLockerContextMenu();
+            }
+        });
     }
 
     @Override

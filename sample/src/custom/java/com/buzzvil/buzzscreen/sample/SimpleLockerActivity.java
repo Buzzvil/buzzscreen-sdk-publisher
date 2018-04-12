@@ -3,6 +3,7 @@ package com.buzzvil.buzzscreen.sample;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.buzzvil.buzzscreen.sdk.BaseLockerActivity;
@@ -62,6 +63,14 @@ public class SimpleLockerActivity extends BaseLockerActivity {
                 findViewById(R.id.locker_arrow_top),
                 findViewById(R.id.locker_arrow_bottom)
         );
+
+        // 클릭시 Context Menu 보여줄 뷰
+        findViewById(R.id.locker_menu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLockerContextMenu();
+            }
+        });
     }
 
     @Override

@@ -1,21 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:slider="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                xmlns:slider="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"
-        android:src="@drawable/locker_background_top" />
+        android:src="@drawable/locker_background_top"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_alignParentBottom="true"
         android:scaleType="fitXY"
-        android:src="@drawable/locker_background_bottom" />
+        android:src="@drawable/locker_background_bottom"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_alignParentLeft="true"
             android:includeFontPadding="false"
             android:textColor="#ffffff"
-            android:textSize="56sp" />
+            android:textSize="56sp"/>
 
         <TextView
             android:id="@+id/locker_am_pm"
@@ -42,7 +42,7 @@
             android:layout_toRightOf="@id/locker_time"
             android:includeFontPadding="false"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/locker_date"
@@ -53,16 +53,25 @@
             android:layout_marginTop="-4dp"
             android:includeFontPadding="false"
             android:textColor="#ffffff"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
+
+        <ImageButton
+            android:id="@+id/locker_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bs_locker_icon_menu"
+            android:padding="16dp"/>
 
         <ImageButton
             android:id="@+id/locker_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/locker_camera" />
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@id/locker_menu"
+            android:background="@drawable/locker_camera"/>
 
     </RelativeLayout>
 
@@ -78,7 +87,7 @@
         slider:sl_pointer_drag="@drawable/locker_slider_drag"
         slider:sl_radius="128dp"
         slider:sl_right_icon="@drawable/locker_unlock"
-        slider:sl_text_size="14sp" />
+        slider:sl_text_size="14sp"/>
 
     <ImageView
         android:id="@+id/locker_arrow_top"
@@ -87,7 +96,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="4dp"
-        android:src="@drawable/locker_arrow_top" />
+        android:src="@drawable/locker_arrow_top"/>
 
     <ImageView
         android:id="@+id/locker_arrow_bottom"
@@ -96,6 +105,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="4dp"
-        android:src="@drawable/locker_arrow_bottom" />
+        android:src="@drawable/locker_arrow_bottom"/>
 
 </RelativeLayout>

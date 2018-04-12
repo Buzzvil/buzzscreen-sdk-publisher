@@ -54,6 +54,15 @@
             android:textColor="#ffffff"
             android:textSize="14sp" />
 
+        <ImageButton
+            android:id="@+id/locker_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:padding="16dp"
+            android:background="@drawable/bs_locker_icon_menu"/>
+
     </RelativeLayout>
 
     <com.buzzvil.buzzscreen.sdk.widget.Slider
