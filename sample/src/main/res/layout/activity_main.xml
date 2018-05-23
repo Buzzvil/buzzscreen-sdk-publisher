@@ -7,21 +7,37 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="BuzzScreen Sample"
         android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/checkbox_test_privacy_consent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Test Privacy Consent" />
 
     <Button
         android:id="@+id/locker_on"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="On" />
+        android:text="Lockscreen On" />
 
     <Button
         android:id="@+id/locker_off"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Off" />
+        android:text="Lockscreen Off" />
+
+    <Button
+        android:id="@+id/privacy_consent_revoke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Revoke privacy consent"
+        android:visibility="gone" />
 </LinearLayout>
