@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
 import com.buzzvil.buzzscreen.sdk.UserProfile;
@@ -14,8 +13,8 @@ import com.buzzvil.buzzscreen.sdk.UserProfile;
 import java.util.Random;
 
 public class MainActivity extends Activity {
+
     final static String TAG = "MainActivity";
-    boolean privacyConsentEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class MainActivity extends Activity {
         // 앱 실행시 처음 실행되는 액티비티에 추가해 준다.
         BuzzScreen.getInstance().launch();
 
-        Button btnLockerOn = (Button) findViewById(R.id.locker_on);
+        Button btnLockerOn = findViewById(R.id.locker_on);
         btnLockerOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,10 +42,7 @@ public class MainActivity extends Activity {
                 userProfile.setRegion("서울특별시 관악구");
 
                 // 버즈스크린 활성화
-                if (privacyConsentEnabled) {
-                    BuzzScreen.getInstance().activate();
-                } else {
-                    /*
+                if (Constants.useGDPR) {
                     BuzzScreen.getInstance().activateIfConsent(MainActivity.this, new BuzzScreen.OnActivateListener() {
                         @Override
                         public void onActivated() {
@@ -57,13 +53,19 @@ public class MainActivity extends Activity {
                         public void onCancelledByUser() {
                             Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
                         }
+
+                        @Override
+                        public void onNetworkError() {
+                            Toast.makeText(MainActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                        }
                     });
-                    */
+                } else {
+                    BuzzScreen.getInstance().activate();
                 }
             }
         });
 
-        Button btnLockerOff = (Button) findViewById(R.id.locker_off);
+        Button btnLockerOff = findViewById(R.id.locker_off);
         btnLockerOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,19 +74,11 @@ public class MainActivity extends Activity {
             }
         });
 
-        final Button privacyConsentRevokeButton = findViewById(R.id.privacy_consent_revoke);
-        ((CheckBox) findViewById(R.id.checkbox_test_privacy_consent)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                privacyConsentEnabled = isChecked;
-                privacyConsentRevokeButton.setVisibility(privacyConsentEnabled ? View.VISIBLE : View.GONE);
-            }
-        });
-
+        Button privacyConsentRevokeButton = findViewById(R.id.privacy_consent_revoke);
+        privacyConsentRevokeButton.setVisibility(Constants.useGDPR ? View.VISIBLE : View.GONE);
         privacyConsentRevokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
                 BuzzScreen.getInstance().showRevokeConsentDialog(MainActivity.this, new BuzzScreen.OnConsentRevokeListener() {
                     @Override
                     public void onConsentRevoked() {
@@ -92,16 +86,10 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onDeactivated() {
-                        Toast.makeText(MainActivity.this, "Deactivated", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
                     public void onCancelledByUser() {
                         Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
                     }
                 });
-                */
             }
         });
     }

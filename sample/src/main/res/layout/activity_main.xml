@@ -12,13 +12,6 @@
         android:text="BuzzScreen Sample"
         android:textSize="20sp" />
 
-    <CheckBox
-        android:id="@+id/checkbox_test_privacy_consent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Test Privacy Consent" />
-
     <Button
         android:id="@+id/locker_on"
         android:layout_width="match_parent"
