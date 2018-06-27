@@ -1,11 +1,18 @@
 package com.buzzvil.buzzscreen.sample;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
 import com.buzzvil.buzzscreen.sdk.SimpleLockerActivity;
 
 public class App extends Application {
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
