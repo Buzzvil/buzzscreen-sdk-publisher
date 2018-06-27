@@ -24,8 +24,11 @@
         <meta-data
             android:name="com.buzzvil.locker.mediation.baidu.plist"
             android:value="<plist>" />
+
+        <!-- Optional: Opt-in mopub mediation.
         <meta-data
             android:name="com.buzzvil.locker.mediation.mopub.ad_unit_id"
             android:value="<ad_unit_id>" />
+        -->
     </application>
 </manifest>
