@@ -2,7 +2,9 @@ apply plugin: 'com.android.application'
 
 repositories {
     maven { url "https://dl.bintray.com/buzzvil/buzzscreen/" }
+
     maven { url "http://dl.appnext.com/" }
+    maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist/" } // optional: avocarrot
 }
 
 android {
@@ -15,6 +17,7 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
 
     productFlavors {
@@ -31,13 +34,24 @@ android {
     }
 }
 
+configurations.all {
+    // because: dependencies of play-services-ads:12.0.1 internally, set your supportLibVersion
+    resolutionStrategy.force 'com.android.support:support-v4:26.0.2'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.google.android.gms:play-services-location:8.4.0'
+    compile 'com.google.android.gms:play-services-ads:12.0.1'
+    compile 'com.google.android.gms:play-services-location:12.0.1'
+    compile 'com.android.support:multidex:1.0.1'
 
-    basicCompile 'com.buzzvil:buzzscreen:1.+'
-    customCompile 'com.buzzvil:buzzscreen:1.+'
-    multiProcessCompile 'com.buzzvil:buzzscreen-multi-process:1.+'
+    basicCompile 'com.buzzvil:buzzscreen:1.8.2'
+    customCompile 'com.buzzvil:buzzscreen:1.8.2'
+    multiProcessCompile 'com.buzzvil:buzzscreen-multi-process:1.8.2'
+
+//    compile 'com.buzzvil.buzzscreen.ext:feed-sdk:1.0.2.1'   // Feed-News
+//    compile 'com.buzzvil.buzzscreen.ext:mediation-mopub:5.00.0.1'
+//    compile 'com.buzzvil.buzzscreen.ext:mediation-outbrain:2.5.3.1'
+//    compile 'com.buzzvil.buzzscreen.ext:mediation-avocarrot:4.7.3.0'
 }
