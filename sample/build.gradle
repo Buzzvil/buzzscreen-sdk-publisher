@@ -35,7 +35,7 @@ android {
 }
 
 configurations.all {
-    // because: dependencies of play-services-ads:12.0.1 internally, set your supportLibVersion
+    // Please keep the same version as the app's supportLibVersion
     resolutionStrategy.force 'com.android.support:support-v4:26.0.2'
 }
 
