@@ -17,6 +17,14 @@
             </intent-filter>
         </activity>
 
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.mobvista.app_id"
+            android:value="<app_id>" />
+
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.mobvista.app_key"
+            android:value="<app_key>" />
+
         <!-- Configuration for BuzzScreen -->
         <meta-data
             android:name="app_license"
