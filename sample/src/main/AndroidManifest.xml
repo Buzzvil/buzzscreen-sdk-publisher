@@ -24,7 +24,16 @@
         <meta-data
             android:name="com.buzzvil.locker.mediation.baidu.plist"
             android:value="<plist>" />
+        
+        <!--optional: Mobvista 연동 파트너사의 경우 아래의 메타데이터 추가 필요 (BuzzScreen SDK 1.8.5.1 이상)-->
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.mobvista.app_id"
+            android:value="<app_id>" />
 
+        <meta-data
+            android:name="com.buzzvil.locker.mediation.mobvista.app_key"
+            android:value="<app_key>" />
+        
         <!-- Optional: Opt-in mopub mediation.
         <meta-data
             android:name="com.buzzvil.locker.mediation.mopub.ad_unit_id"
