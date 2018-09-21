@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    maven { url "https://dl.bintray.com/buzzvil/buzzscreen/" }
+    maven { url "https://dl.bintray.com/buzzvil/maven/" }
 
     maven { url "http://dl.appnext.com/" }
     maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist/" } // optional: avocarrot
@@ -51,14 +51,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:12.0.1'
     compile 'com.android.support:multidex:1.0.1'
 
-    basicCompile 'com.buzzvil:buzzscreen:1.8.5.1'
-    customCompile 'com.buzzvil:buzzscreen:1.8.5.1'
-    multiProcessCompile 'com.buzzvil:buzzscreen-multi-process:1.8.5.1'
+    basicCompile 'com.buzzvil:buzzscreen:1.8.9.0'
+    customCompile 'com.buzzvil:buzzscreen:1.8.9.0'
+    multiProcessCompile 'com.buzzvil:buzzscreen-multi-process:1.8.9.0'
 
 //    compile 'com.buzzvil.buzzscreen.ext:feed-sdk:1.0.3.0'   // Feed-News
-//    compile 'com.buzzvil.buzzscreen.ext:mediation-avocarrot:4.7.3.0'
-//    compile 'com.buzzvil.buzzscreen.ext:mediation-mobvista:8.11.2.0'
-//    compile 'com.buzzvil.buzzscreen.ext:mediation-mopub:5.00.0.1'
-//    compile 'com.buzzvil.buzzscreen.ext:mediation-mytarget:5.1.2.0'
-//    compile 'com.buzzvil.buzzscreen.ext:mediation-outbrain:2.5.3.1'
+//    compile 'com.buzzvil.mediation:sdk-avocarrot:4.7.5.0'
+//    compile 'com.buzzvil.mediation:sdk-mobvista:8.11.2.0'
+//    compile 'com.buzzvil.mediation:sdk-mopub:5.3.0.0'
+//    compile 'com.buzzvil.mediation:sdk-mytarget:5.1.2.0'
+//    compile 'com.buzzvil.mediation:sdk-outbrain:2.5.3.0'
 }
