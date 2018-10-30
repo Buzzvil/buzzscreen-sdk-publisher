@@ -9,7 +9,8 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker" />
+            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker"
+            android:resizeableActivity="false" />
     </application>
 
 </manifest>
