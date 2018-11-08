@@ -58,9 +58,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:12.0.1'
     implementation 'com.android.support:multidex:1.0.1'
 
-    basicImplementation 'com.buzzvil:buzzscreen:1.9.0.7'
-    customImplementation 'com.buzzvil:buzzscreen:1.9.0.7'
-    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:1.9.0.7'
+    basicImplementation 'com.buzzvil:buzzscreen:1.9.0.8'
+    customImplementation 'com.buzzvil:buzzscreen:1.9.0.8'
+    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:1.9.0.8'
 
 //    implementation 'com.buzzvil.buzzscreen.ext:feed-sdk:1.0.3.0'   // Feed-News
 //    implementation 'com.buzzvil.mediation:sdk-avocarrot:4.7.5.0'
