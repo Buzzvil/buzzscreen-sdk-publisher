@@ -8,7 +8,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 26 // it should be 26 or later.
 
     defaultConfig {
         applicationId "com.buzzvil.buzzscreen.sample"
@@ -58,9 +58,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:12.0.1'
     implementation 'com.android.support:multidex:1.0.1'
 
-    basicImplementation 'com.buzzvil:buzzscreen:1.9.2.2'
-    customImplementation 'com.buzzvil:buzzscreen:1.9.2.2'
-    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:1.9.2.2'
+    basicImplementation 'com.buzzvil:buzzscreen:1.9.2.3'
+    customImplementation 'com.buzzvil:buzzscreen:1.9.2.3'
+    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:1.9.2.3'
 
 //    implementation 'com.buzzvil.buzzscreen.ext:feed-sdk:1.0.3.0'   // Feed-News
 //    implementation 'com.buzzvil.mediation:sdk-avocarrot:4.7.5.0'

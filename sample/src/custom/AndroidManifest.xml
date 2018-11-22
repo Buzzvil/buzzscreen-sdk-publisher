@@ -10,6 +10,7 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:resizeableActivity="false" />
     </application>
 
