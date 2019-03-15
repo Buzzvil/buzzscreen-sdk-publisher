@@ -33,4 +33,38 @@
         android:layout_marginTop="16dp"
         android:text="Revoke privacy consent"
         android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Video Autoplay" />
+
+    <RadioGroup
+        android:id="@+id/radio_autoplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/autoplay_always"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="On" />
+
+        <RadioButton
+            android:id="@+id/autoplay_on_wifi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="On Wifi" />
+
+        <RadioButton
+            android:id="@+id/autoplay_off"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Off" />
+    </RadioGroup>
 </LinearLayout>

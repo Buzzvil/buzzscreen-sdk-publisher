@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BuzzScreen Sample</string>
+
+    <string name="radio_autoplay_enabled_on_wifi">"<b>Autoplay on WiFi</b>\nRecommended for you!"</string>
+    <string name="radio_autoplay_enabled_always">"<b>Always Autoplay</b>\nIf you choose this option, your data consumption may increase."</string>
+    <string name="radio_autoplay_disabled">"<b>Autoplay Disabled</b>\nIf you disable video ads, you may get rewarded less. Choose \"Autoplay on Wifi\" option to get rewarded more without extra data consumption."</string>
+
+    <string name="autoplay_enabled_on_wifi">"Autoplay on WiFi"</string>
+    <string name="autoplay_enabled_always">"Autoplay enabled"</string>
+    <string name="autoplay_disabled">"Autoplay disabled"</string>
 </resources>

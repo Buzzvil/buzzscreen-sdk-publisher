@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
@@ -90,6 +91,37 @@ public class MainActivity extends Activity {
                         Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        RadioGroup radioAutoplay = findViewById(R.id.radio_autoplay);
+        BuzzScreen.AutoplayType autoplayType = BuzzScreen.getInstance().getAutoplayType();
+        if (autoplayType != null) {
+            switch (autoplayType) {
+                case ENABLED:
+                    radioAutoplay.check(R.id.autoplay_always);
+                    break;
+                case ON_WIFI:
+                    radioAutoplay.check(R.id.autoplay_on_wifi);
+                    break;
+                case DISABLED:
+                    radioAutoplay.check(R.id.autoplay_off);
+                    break;
+            }
+        }
+        radioAutoplay.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                BuzzScreen.AutoplayType selectedAutoplayType = null;
+                if (checkedId == R.id.autoplay_always) {
+                    selectedAutoplayType = BuzzScreen.AutoplayType.ENABLED;
+                } else if (checkedId == R.id.autoplay_on_wifi) {
+                    selectedAutoplayType = BuzzScreen.AutoplayType.ON_WIFI;
+                } else if (checkedId == R.id.autoplay_off) {
+                    selectedAutoplayType = BuzzScreen.AutoplayType.DISABLED;
+                }
+
+                BuzzScreen.getInstance().setAutoplayType(selectedAutoplayType);
             }
         });
     }
