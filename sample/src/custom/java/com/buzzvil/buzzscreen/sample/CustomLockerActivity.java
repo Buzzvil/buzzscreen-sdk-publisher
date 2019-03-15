@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.buzzvil.buzzscreen.sdk.BaseLockerActivity;
 import com.buzzvil.buzzscreen.sdk.Campaign;
 import com.buzzvil.buzzscreen.sdk.widget.Slider;
 import com.buzzvil.buzzscreen.sdk.widget.SliderIcon;
+import com.buzzvil.locker.AutoplayState;
 
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
@@ -133,5 +138,37 @@ public class CustomLockerActivity extends BaseLockerActivity {
         String dayName = symbols.getWeekdays()[cal.get(Calendar.DAY_OF_WEEK)];
         String date = String.format("%d월 %d일", cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
         tvDate.setText(String.format("%s %s", date, dayName));
+    }
+
+    @Override
+    protected void onVideoAutoplay(AutoplayState autoplayState) {
+        int messageResourceId;
+        switch (autoplayState) {
+            case AutoPlay:
+                messageResourceId = R.string.autoplay_enabled_always;
+                break;
+            case AutoPlayOnWIFI:
+                messageResourceId = R.string.autoplay_enabled_on_wifi;
+                break;
+            case NotAllowed:
+                messageResourceId = R.string.autoplay_disabled;
+                break;
+            default:
+                return;
+        }
+        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), messageResourceId, Snackbar.LENGTH_SHORT);
+        final View snackBarView = snackbar.getView();
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int marginBottom = (int)(0.2f * displayMetrics.heightPixels);
+        int marginSide = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 46, displayMetrics);
+
+        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)snackBarView.getLayoutParams();
+        params.setMargins(marginSide, 0, marginSide, marginBottom);
+        snackBarView.setLayoutParams(params);
+
+        snackBarView.setBackgroundResource(R.drawable.bg_snackbar);
+        snackbar.setActionTextColor(getResources().getColor(android.R.color.holo_green_light));
+        snackbar.show();
     }
 }
