@@ -124,5 +124,7 @@ public class MainActivity extends Activity {
                 BuzzScreen.getInstance().setAutoplayType(selectedAutoplayType);
             }
         });
+
+        BuzzScreen.getInstance().showBatteryGuideIfNeeded(this, findViewById(android.R.id.content));
     }
 }
