@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
@@ -16,6 +17,7 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
     final static String TAG = "MainActivity";
+    private TextView textViewSecurityType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,22 @@ public class MainActivity extends Activity {
             }
         });
 
+        textViewSecurityType = findViewById(R.id.text_security_type);
+        Button btnSecuritySettings = findViewById(R.id.security_settings);
+        btnSecuritySettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuzzScreen.getInstance().showSecuritySettingsActivity(MainActivity.this, getString(R.string.security_settings));
+            }
+        });
+
         BuzzScreen.getInstance().showBatteryGuideIfNeeded(this, findViewById(android.R.id.content));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        textViewSecurityType.setText("LockType = " + BuzzScreen.getInstance().getSecurityTypeName());
     }
 }

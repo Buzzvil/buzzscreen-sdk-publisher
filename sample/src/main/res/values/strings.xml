@@ -8,4 +8,6 @@
     <string name="autoplay_enabled_on_wifi">"Autoplay on WiFi"</string>
     <string name="autoplay_enabled_always">"Autoplay enabled"</string>
     <string name="autoplay_disabled">"Autoplay disabled"</string>
+
+    <string name="security_settings">Set security lock</string>
 </resources>
