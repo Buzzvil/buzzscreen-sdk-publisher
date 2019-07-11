@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
+import com.buzzvil.buzzscreen.sdk.SecurityConfiguration;
 import com.buzzvil.buzzscreen.sdk.SimpleLockerActivity;
 
 public class App extends Application {
@@ -22,6 +23,8 @@ public class App extends Application {
         // SimpleLockerActivity.class : 잠금화면 액티비티 클래스
         // R.drawable.image_on_fail : 네트워크 에러 혹은 일시적으로 잠금화면에 보여줄 캠페인이 없을 경우 보여주게 되는 이미지.
         BuzzScreen.init("app_key", this, SimpleLockerActivity.class, R.drawable.image_on_fail, Constants.useGDPR ? BuzzScreen.PrivacyPolicy.GDPR : BuzzScreen.PrivacyPolicy.NONE);
-        BuzzScreen.getInstance().enableSecurity(Constants.useSecurity); // default value is true
+        BuzzScreen.getInstance().setSecurityConfiguration(new SecurityConfiguration.Builder().
+                withSecurity(Constants.useSecurity).
+                build());
     }
 }
