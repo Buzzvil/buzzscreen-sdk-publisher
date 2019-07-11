@@ -69,6 +69,7 @@
     </RadioGroup>
 
     <LinearLayout
+        android:id="@+id/layout_security"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
