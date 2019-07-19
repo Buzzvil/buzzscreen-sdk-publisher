@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.buzzvil.buzzscreen.sample"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
