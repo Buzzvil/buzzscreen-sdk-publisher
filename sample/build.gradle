@@ -8,7 +8,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.buzzvil.buzzscreen.sample"
@@ -59,7 +59,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.android.support:multidex:1.0.1'
 
-    basicImplementation 'com.buzzvil:buzzscreen:2.0.2.0'
-    customImplementation 'com.buzzvil:buzzscreen:2.0.2.0'
-    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:2.0.2.0'
+    basicImplementation 'com.buzzvil:buzzscreen:2.0.4.4'
+    customImplementation 'com.buzzvil:buzzscreen:2.0.4.4'
+    multiProcessImplementation 'com.buzzvil:buzzscreen-multi-process:2.0.4.4'
 }
