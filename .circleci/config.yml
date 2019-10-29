@@ -10,11 +10,6 @@ executors:
       JVM_OPTS: -Xmx3g
       GRADLE_OPTS: -Xmx2g -Dkotlin.compiler.execution.strategy=in-process
 
-commands:
-  checkout:
-    steps:
-      - checkout
-
 jobs:
   full-test:
     executor: android-executor
