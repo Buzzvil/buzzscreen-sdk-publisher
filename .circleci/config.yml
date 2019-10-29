@@ -33,7 +33,7 @@ workflows:
   workflow-default:
     jobs:
       - slack/approval-notification:
-          message: ":buzzscreen: buzzscreen-sdk-publisher Test Started~! :socooljoshua:\n*User* : ${CIRCLE_USERNAME}\n*TAG* : ${CIRCLE_TAG}\n*Branch* : ${CIRCLE_BRANCH}"
+          message: ":buzzscreen: buzzscreen-sdk-publisher Test Started~! :ponta-good:\n*User* : ${CIRCLE_USERNAME}\n*TAG* : ${CIRCLE_TAG}\n*Branch* : ${CIRCLE_BRANCH}"
       - full-test:
           requires:
             - slack/approval-notification
