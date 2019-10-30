@@ -22,20 +22,20 @@
         <!--Optional: Opt-in mobvista mediation.-->
         <meta-data
             android:name="com.buzzvil.locker.mediation.mobvista.app_id"
-            android:value="<app_id>" />
+            android:value="__app_id__" />
 
         <meta-data
             android:name="com.buzzvil.locker.mediation.mobvista.app_key"
-            android:value="<app_key>" />
+            android:value="__app_key__" />
         
         <!--Optional: Opt-in mopub mediation.-->
         <meta-data
             android:name="com.buzzvil.locker.mediation.mopub.ad_unit_id"
-            android:value="<ad_unit_id>" />
+            android:value="__ad_unit_id__" />
 
         <!--Optional: Opt-in admob mediation.-->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="<app_key>" />
+            android:value="__app_key__" />
     </application>
 </manifest>

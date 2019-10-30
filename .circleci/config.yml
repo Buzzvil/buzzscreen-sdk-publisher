@@ -1,0 +1,39 @@
+version: 2.1
+
+executors:
+  android-executor:
+    working_directory: ~/code
+    docker:
+      - image: circleci/android:api-29
+    resource_class: small
+    environment:
+      JVM_OPTS: -Xmx3g
+      GRADLE_OPTS: -Xmx2g -Dkotlin.compiler.execution.strategy=in-process
+
+jobs:
+  full-test:
+    executor: android-executor
+    steps:
+      - checkout
+      - run:
+          name: Run Lints and Tests
+          command: ./gradlew lint test -profile
+          no_output_timeout: 60m
+      - store_test_results:
+          path: |
+            ./build/reports/profile
+      - slack/status:
+          success_message: ":buzzscreen: buzzscreen-sdk-publisher Test Succeeded~! :grin:"
+          failure_message: ":buzzscreen: buzzscreen-sdk-publisher Test Failed~! :disappointed:"
+
+orbs:
+  slack: circleci/slack@3.4.0
+
+workflows:
+  workflow-default:
+    jobs:
+      - slack/approval-notification:
+          message: ":buzzscreen: buzzscreen-sdk-publisher Test Started~! :ponta-good:\n*User* : ${CIRCLE_USERNAME}\n*TAG* : ${CIRCLE_TAG}\n*Branch* : ${CIRCLE_BRANCH}"
+      - full-test:
+          requires:
+            - slack/approval-notification
