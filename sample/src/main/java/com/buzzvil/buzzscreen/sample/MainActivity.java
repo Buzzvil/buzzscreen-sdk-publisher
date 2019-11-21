@@ -127,8 +127,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        BuzzScreen.getInstance().showBatteryGuideIfNeeded(this, findViewById(android.R.id.content));
-
         if (Constants.useSecurity) {
             findViewById(R.id.layout_security).setVisibility(View.VISIBLE);
             textViewSecurityType = findViewById(R.id.text_security_type);
@@ -142,6 +140,15 @@ public class MainActivity extends Activity {
         } else {
             findViewById(R.id.layout_security).setVisibility(View.GONE);
         }
+
+        BuzzScreen.getInstance().showOverlayPermissionGuideDialogIfNeeded(MainActivity.this, new BuzzScreen.OnOverlayPermissionCancelListener() {
+            @Override
+            public void onCancel(boolean forcedPermission) {
+                if (forcedPermission) {
+                    BuzzScreen.getInstance().deactivate();
+                }
+            }
+        });
     }
 
     @Override
