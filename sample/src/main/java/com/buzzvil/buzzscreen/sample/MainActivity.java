@@ -141,14 +141,7 @@ public class MainActivity extends Activity {
             findViewById(R.id.layout_security).setVisibility(View.GONE);
         }
 
-        BuzzScreen.getInstance().showOverlayPermissionGuideDialogIfNeeded(MainActivity.this, new BuzzScreen.OnOverlayPermissionCancelListener() {
-            @Override
-            public void onCancel(boolean forcedPermission) {
-                if (forcedPermission) {
-                    BuzzScreen.getInstance().deactivate();
-                }
-            }
-        });
+        BuzzScreen.getInstance().showOverlayPermissionGuideDialogIfNeeded(MainActivity.this);
     }
 
     @Override
