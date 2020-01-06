@@ -60,22 +60,7 @@ ex) `BaseLockerActivity`를 상속받은 클래스 이름이 `CustomLockerActivi
 </manifest>
 ```
 > 프로세스를 분리해서 사용하는 경우 위 액티비티에 `android:process=":locker"` 속성이 필요합니다.
-### 2-2. meta-data 추가
-`<app_license>` 및 `<plist>` 는 파트너십 매니저에게 문의 바랍니다.
-```Xml
-<manifest>
-    <application>
-        ...
-        <!-- Configuration for BuzzScreen-->
-        <meta-data
-            android:name="app_license"
-            android:value="<app_license>" />
-        <meta-data
-            android:name="com.buzzvil.locker.mediation.baidu.plist"
-            android:value="<plist>" />
-    </application>
-</manifest>
-```
+
 ## 3. [새 연동가이드](../README.md) 읽고 문제가 없는지 확인 바랍니다.
 
 마이그레이션 작업이 문제있거나 궁금한점이 있으면 언제든지 문의주시기 바랍니다. 빠르게 대응하도록 하겠습니다. 감사합니다.

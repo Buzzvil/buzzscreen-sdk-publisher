@@ -22,12 +22,11 @@ allprojects {
 
 
 ext {
-    buzzscreenVersionName = '2.0.5.5'
+    buzzscreenVersionName = '2.0.5.6'
 
     mediationAdfitVersion = '3.0.9.0'
     mediationAdmobVersion = '17.1.1.0'
     mediationAltamobVersion = '5.2.0.6.9.1'
-    mediationBaiduVersion = '1.2.7.0'
     mediationMobvistaVersion = '9.0.2.0'
     mediationMopubVersion = '5.5.0.0'
     mediationMytargetVersion = '5.1.2.1'
