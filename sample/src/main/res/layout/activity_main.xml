@@ -68,6 +68,13 @@
             android:text="Off" />
     </RadioGroup>
 
+    <Button
+        android:id="@+id/set_custom_migration_interactive_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Use Custom Migration Interactive Guide" />
+
     <LinearLayout
         android:id="@+id/layout_security"
         android:layout_width="match_parent"

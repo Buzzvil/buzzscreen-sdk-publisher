@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
 import com.buzzvil.buzzscreen.sdk.UserProfile;
+import com.buzzvil.buzzscreen.sdk.tutorial.BaseLockerInteractiveGuideFragment;
+import com.buzzvil.buzzscreen.sdk.tutorial.InteractiveGuideConfig;
+import com.buzzvil.buzzscreen.sdk.tutorial.InteractiveGuideViewProvider;
 
 import java.util.Random;
 
@@ -124,6 +127,26 @@ public class MainActivity extends Activity {
                 }
 
                 BuzzScreen.getInstance().setAutoplayType(selectedAutoplayType);
+            }
+        });
+
+        findViewById(R.id.set_custom_migration_interactive_guide).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BuzzScreen.getInstance().resetInteractiveGuide();
+
+                InteractiveGuideConfig interactiveGuideConfig = new InteractiveGuideConfig.Builder()
+                        .setEnabled(true)
+                        .setType(InteractiveGuideConfig.Type.Migration)
+                        .setViewProvider(new InteractiveGuideViewProvider() {
+                            @Override
+                            public BaseLockerInteractiveGuideFragment newFragment() {
+                                return SampleInteractiveGuideFragment.newInstance();
+                            }
+                        })
+                        .build();
+                BuzzScreen.getInstance().setInteractiveGuide(interactiveGuideConfig);
+                Toast.makeText(MainActivity.this, "Custom migration interactive guide is set", Toast.LENGTH_SHORT).show();
             }
         });
 
