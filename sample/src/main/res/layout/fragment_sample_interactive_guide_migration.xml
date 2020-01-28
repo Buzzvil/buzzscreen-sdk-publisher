@@ -102,4 +102,15 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_gravity="center|bottom"
+            android:background="#00aaaa"
+            android:textColor="@android:color/black"
+            android:text="추가 UI Component"
+            />
+
 </FrameLayout>
