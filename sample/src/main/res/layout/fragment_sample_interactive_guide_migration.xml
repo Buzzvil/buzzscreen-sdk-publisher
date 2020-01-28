@@ -3,7 +3,7 @@
         android:id="@+id/tutorialContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/interactive_guide_background">
+        android:background="#BF000000">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                         android:id="@+id/tutorialSubTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/interactive_guide_gray"
+                        android:textColor="#66000000"
                         android:textSize="10sp"
                         android:text="1 OF 5"/>
                     <TextView
