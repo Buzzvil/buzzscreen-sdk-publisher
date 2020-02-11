@@ -1,7 +1,13 @@
 apply plugin: 'com.android.application'
 
 repositories {
-    maven { url "https://dl.bintray.com/buzzvil/maven/" }
+    maven {
+        url "https://dl.bintray.com/buzzvil/maven/"
+        credentials {
+            username = "dev@buzzvil"
+            password = "2eddc09a5feff3f7bef5802f9ede5a41e073a986"
+        }
+    }
 
     maven { url "http://dl.appnext.com/" }
     maven { url "https://s3.amazonaws.com/avocarrot-android-builds/dist/" } // optional: avocarrot
@@ -11,7 +17,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.buzzvil.buzzscreen.sample"
+        applicationId "com.sample"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
@@ -35,7 +41,12 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

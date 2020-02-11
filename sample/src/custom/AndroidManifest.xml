@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.buzzvil.buzzscreen.sample">
+    package="com.sample">
 
     <application>
         <!-- Activities for BuzzScreen -->
@@ -9,7 +9,7 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:taskAffinity="com.buzzvil.buzzscreen.sample.Locker"
+            android:taskAffinity="com.sample.Locker"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:resizeableActivity="false" />
     </application>

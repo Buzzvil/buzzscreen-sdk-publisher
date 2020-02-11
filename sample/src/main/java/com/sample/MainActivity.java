@@ -1,4 +1,4 @@
-package com.buzzvil.buzzscreen.sample;
+package com.sample;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sample.R;
 import com.buzzvil.buzzscreen.sdk.BuzzScreen;
 import com.buzzvil.buzzscreen.sdk.UserProfile;
 

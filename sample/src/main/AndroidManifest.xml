@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.buzzvil.buzzscreen.sample">
+    package="com.sample">
     <application
-        android:name=".App"
+        android:name="com.sample.App"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.sample.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,11 +31,11 @@
         <!--Optional: Opt-in mopub mediation.-->
         <meta-data
             android:name="com.buzzvil.locker.mediation.mopub.ad_unit_id"
-            android:value="__ad_unit_id__" />
+            android:value="e51175991ff140a89d51c44d2b29156b" />
 
         <!--Optional: Opt-in admob mediation.-->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="__app_key__" />
+            android:value="ca-app-pub-3940256099942544~3347511713" />
     </application>
 </manifest>

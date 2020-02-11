@@ -1,4 +1,4 @@
-package com.buzzvil.buzzscreen.sample;
+package com.sample;
 
 public class Constants {
     public static final boolean useGDPR = false;
