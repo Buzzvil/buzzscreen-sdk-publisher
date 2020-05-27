@@ -3,10 +3,6 @@ apply plugin: 'com.android.application'
 repositories {
     maven {
         url "https://dl.bintray.com/buzzvil/maven/"
-        credentials {
-            username = "dev@buzzvil"
-            password = "2eddc09a5feff3f7bef5802f9ede5a41e073a986"
-        }
     }
 
     maven { url "http://dl.appnext.com/" }
